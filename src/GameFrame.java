@@ -30,7 +30,7 @@ public class GameFrame extends JFrame{
 	
 	public static void add(JPanel jpanel)
 	{
-		System.out.println(jpanel);
+		System.out.print(jpanel);
 		System.out.println("added to frame");
 		Main.frame.getContentPane().add(jpanel);
 	}
