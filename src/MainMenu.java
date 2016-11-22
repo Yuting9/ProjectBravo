@@ -40,6 +40,7 @@ public class MainMenu extends JPanel
 			{
 				GameFrame.clear();
 				GameFrame.state="Game";
+				System.out.println("magic");
 				Game.GameSetup();
 			}
 			else if(arg0.getSource() == btnArray[2])

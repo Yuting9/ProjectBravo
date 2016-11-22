@@ -6,6 +6,7 @@ public class GameFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	public static Container container;
 	public static MainMenu menu = new MainMenu();
+	
 	public GameFrame()
 	{
 		this.setTitle("Test");
@@ -33,6 +34,8 @@ public class GameFrame extends JFrame{
 		System.out.print(jpanel);
 		System.out.println("added to frame");
 		Main.frame.getContentPane().add(jpanel);
+		System.out.print(">re");
+		Main.frame.repaint();
 	}
 	
 

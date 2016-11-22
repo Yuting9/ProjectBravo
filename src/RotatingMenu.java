@@ -17,12 +17,15 @@ public class RotatingMenu extends JPanel{
 			System.out.println("excetution");
 			for(int i = 0; i<10; i++)
 			{
+				System.out.println("What the actual fuck "+Integer.toString(i));
 				buttons.add(new JButton("Button "+Integer.toString(i)));
 				buttons.get(buttons.size()-1).setSize(50,30);
 				buttons.get(buttons.size()-1).setLocation(0, 40*buttons.size());
 				buttons.get(buttons.size()-1).addMouseListener(listener);
 				this.add(buttons.get(buttons.size()-1));
 			}
+			System.out.println("I got this... maybe");
+			Main.frame.repaint();
 		}
 	}
 	
