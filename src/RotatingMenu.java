@@ -19,14 +19,20 @@ public class RotatingMenu extends JPanel{
 			{
 				System.out.println("What the actual fuck "+Integer.toString(i));
 				buttons.add(new JButton("Button "+Integer.toString(i)));
-				buttons.get(buttons.size()-1).setSize(50,30);
+				buttons.get(buttons.size()-1).setSize(100,30);
 				buttons.get(buttons.size()-1).setLocation(0, 40*buttons.size());
 				buttons.get(buttons.size()-1).addMouseListener(listener);
 				this.add(buttons.get(buttons.size()-1));
 			}
 			System.out.println("I got this... maybe");
-			Main.frame.repaint();
+			System.out.print("From rotating");
+			this.revalidate();
+			this.repaint();
+			
+			
+			
 		}
+		
 	}
 	
 	public void add_option(String title)

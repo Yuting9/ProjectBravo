@@ -9,7 +9,7 @@ public class GameFrame extends JFrame{
 	
 	public GameFrame()
 	{
-		this.setTitle("Test");
+		this.setTitle("Rhythm Master");
 		this.setSize(400,600);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -21,6 +21,7 @@ public class GameFrame extends JFrame{
 	{
 		Main.frame.getContentPane().removeAll();
 		Main.frame.getContentPane().add(menu);
+		
 	}
 	
 	public static void clear()
@@ -44,6 +45,5 @@ public class GameFrame extends JFrame{
 		System.out.println("painting");
 		super.paint(g);
 	}
-
 
 }
