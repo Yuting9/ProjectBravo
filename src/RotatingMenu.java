@@ -17,7 +17,7 @@ public class RotatingMenu extends JPanel{
 			System.out.println("excetution");
 			for(int i = 0; i<10; i++)
 			{
-				System.out.println("What the actual fuck "+Integer.toString(i));
+				System.out.println("Adding Button "+Integer.toString(i));
 				buttons.add(new JButton("Button "+Integer.toString(i)));
 				buttons.get(buttons.size()-1).setSize(100,30);
 				buttons.get(buttons.size()-1).setLocation(0, 40*buttons.size());
