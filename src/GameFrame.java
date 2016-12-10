@@ -35,7 +35,6 @@ public class GameFrame extends JFrame{
 		System.out.print(jpanel);
 		System.out.println("added to frame");
 		Main.frame.getContentPane().add(jpanel);
-		System.out.print(">re");
 		Main.frame.repaint();
 	}
 	

@@ -8,18 +8,26 @@ public class Game extends JPanel{
 	public static RotatingMenu gameMenu = new RotatingMenu();
 	
 	public Game(Song beats){
-		System.out.println("Playing: "+beats.title);
+		
 	}
 	
 	public static void GameSetup()
 	{
-		//temp
+		//begin temporary code
+		for(int i =0; i<20; i++)
+		{
+			songs.add(new Song("Song #"+Integer.toString(i)));
+		}
+		
+		//end temporary code
+		for (Song i: songs)
+		{
+			gameMenu.add_button(i.title);
+		}
 		
 		GameFrame.add(gameMenu);
 		gameMenu.revalidate();
 		gameMenu.repaint();
-		
-		
 		
 	}
 
