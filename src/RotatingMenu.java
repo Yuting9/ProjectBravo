@@ -12,9 +12,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 	public RotatingMenu()
 	{
 		this.setLayout(null);
-<<<<<<< HEAD
 		addMouseMotionListener(this);
-=======
 		if (GameFrame.state.equals("Game"))
 		{
 			System.out.println("excetution");
@@ -36,7 +34,6 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 			
 		}
 		
->>>>>>> origin/master
 	}
 	
 	public void add_button(String title)
