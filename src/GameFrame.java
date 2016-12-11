@@ -1,12 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class GameFrame extends JFrame{
+public class GameFrame extends JFrame implements ActionListener{
 	public static String state = "Menu";
 	private static final long serialVersionUID = 1L;
 	public static Container container;
 	public static MainMenu menu = new MainMenu();
-	
+	public static Timer timer;
 	public GameFrame()
 	{
 		this.setTitle("Rhythm Master");
@@ -14,7 +16,10 @@ public class GameFrame extends JFrame{
 		this.setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setResizable(false);
+		
 		this.getContentPane().add(menu);
+		timer=new Timer(600, this);
+		timer.start();
 	}
 	
 	public static void reset()
@@ -41,8 +46,14 @@ public class GameFrame extends JFrame{
 
 	public void paint( Graphics g)
 	{
-		System.out.println("painting");
 		super.paint(g);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		this.repaint();
+		
 	}
 
 }

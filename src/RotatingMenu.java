@@ -12,9 +12,9 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 	public RotatingMenu()
 	{
 		this.setLayout(null);
-<<<<<<< HEAD
+
 		addMouseMotionListener(this);
-=======
+
 		if (GameFrame.state.equals("Game"))
 		{
 			System.out.println("excetution");
@@ -36,7 +36,6 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 			
 		}
 		
->>>>>>> origin/master
 	}
 	
 	public void add_button(String title)
@@ -45,7 +44,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 		buttons.get(buttons.size()-1).setSize(100,30);
 		buttons.get(buttons.size()-1).setName(title);
 		System.out.println(buttons.get(buttons.size()-1).getName());
-		buttons.get(buttons.size()-1).setLocation(10, 40*buttons.size()+50+(int)(shift%10));
+		buttons.get(buttons.size()-1).setLocation(10, 40*buttons.size()+50+(int)(shift%10000));
 		buttons.get(buttons.size()-1).addMouseListener(listener);
 		this.add(buttons.get(buttons.size()-1));
 	}
@@ -53,8 +52,8 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 	public void update()
 	{
 		for(JButton button : buttons){
-			button.setLocation(10, 40*buttons.size()+50+shift);
-			System.out.println(40*buttons.size()+50+(int)(shift%1000));
+			button.setLocation(10, 40*buttons.size()+50+(shift%10000));
+			System.out.println(40*buttons.size()+50+(int)(shift%10000));
 			this.add(button);
 		}
 		this.revalidate();
