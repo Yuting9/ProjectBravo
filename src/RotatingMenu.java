@@ -18,6 +18,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 		if (GameFrame.state.equals("Game"))
 		{
 			System.out.println("excetution");
+			/*
 			for(int i = 0; i<10; i++)
 			{
 				System.out.println("Adding Button "+Integer.toString(i));
@@ -29,6 +30,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 			}
 			System.out.println("I got this... maybe");
 			System.out.print("From rotating");
+			*/
 			this.revalidate();
 			this.repaint();
 			
@@ -51,10 +53,10 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 	
 	public void update()
 	{
-		for(JButton button : buttons){
-			button.setLocation(10, 40*buttons.size()+50+(shift%10000));
-			System.out.println(40*buttons.size()+50+(int)(shift%10000));
-			this.add(button);
+		for(int i=0;i<buttons.size();i++){
+			buttons.get(i).setLocation(10, 40*i+50+(shift%10000));
+			System.out.println(40*i+50+(int)(shift%10000));
+			this.add(buttons.get(i));
 		}
 		this.revalidate();
 		this.repaint();
@@ -71,13 +73,13 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 		if(e.getY()>=550)
 		{
 			System.out.println("scrolling down");
-			shift+=1;
+			shift-=2;
 			update();
 		}
 		else if(e.getY()<=50)
 		{
 			System.out.println("scrolling up");
-			shift-=1;
+			shift+=2;
 			update();
 		}
 		else
