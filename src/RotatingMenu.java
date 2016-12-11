@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 
 public class RotatingMenu extends JPanel implements MouseMotionListener{
-	private static final long serialVersionUID = 1L;
 	public ArrayList<JButton> buttons = new ArrayList<JButton>(); 
 	private ButtonListener listener = new ButtonListener();
 	private int shift= 0;
@@ -17,7 +16,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 		{
 			System.out.println("excetution");
 			for(int i = 0; i<10; i++)
-			{
+			{	
 				System.out.println("Adding Button "+Integer.toString(i));
 				buttons.add(new JButton("Button "+Integer.toString(i)));
 				buttons.get(buttons.size()-1).setSize(100,30);
@@ -29,9 +28,6 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 			System.out.print("From rotating");
 			this.revalidate();
 			this.repaint();
-			
-			
-			
 		}
 		
 	}

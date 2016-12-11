@@ -1,8 +1,18 @@
+import java.util.ArrayList;
 
 public class BeatMap {
 	private static int vars; // Placeholder
-	private static Note[] map;
+	private static ArrayList<Note> map;
 	
+	public BeatMap(){
+		map = new ArrayList<Note>();
+		naileajfi
+		aegfa
+		age
+		aeg
+		aew
+		
+	}
 	
 }
 
