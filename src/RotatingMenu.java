@@ -4,10 +4,11 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 
-public class RotatingMenu extends JPanel implements MouseMotionListener{
+public class RotatingMenu extends JPanel implements MouseMotionListener, MouseListener{
 	private static final long serialVersionUID = 1L;
-	public ArrayList<JButton> buttons = new ArrayList<JButton>(); 
-	private ButtonListener listener = new ButtonListener();
+	public ArrayList<JButton> buttons = new ArrayList<JButton>();
+	private int allx, ally;
+	private Timer time;
 	private int shift= 0;
 	public RotatingMenu()
 	{
@@ -33,11 +34,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 			*/
 			this.revalidate();
 			this.repaint();
-			
-			
-			
 		}
-		
 	}
 	
 	public void add_button(String title)
@@ -47,7 +44,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 		buttons.get(buttons.size()-1).setName(title);
 		System.out.println(buttons.get(buttons.size()-1).getName());
 		buttons.get(buttons.size()-1).setLocation(10, 40*buttons.size()+50+(int)(shift%10000));
-		buttons.get(buttons.size()-1).addMouseListener(listener);
+		buttons.get(buttons.size()-1).addMouseListener(this);
 		this.add(buttons.get(buttons.size()-1));
 	}
 	
@@ -70,13 +67,15 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 	
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		if(e.getY()>=550)
+		allx = e.getX();
+		ally = e.getY();
+		if(ally>=550)
 		{
 			System.out.println("scrolling down");
 			shift-=2;
 			update();
 		}
-		else if(e.getY()<=50)
+		else if(ally<=50)
 		{
 			System.out.println("scrolling up");
 			shift+=2;
@@ -87,37 +86,34 @@ public class RotatingMenu extends JPanel implements MouseMotionListener{
 			System.out.println("not");
 		}
 	}
-	
-	private class ButtonListener implements MouseListener
-	{
-		@Override
-		public void mouseClicked(MouseEvent arg0) 
-		{
-			
-		}
 
-		@Override
-		public void mouseExited(MouseEvent arg0) 
-		{
-			
-		}
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
-		@Override
-		public void mousePressed(MouseEvent arg0)
-		{
-			
-		}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("Show clipart for: " +e.getSource());
+	}
 
-		@Override
-		public void mouseReleased(MouseEvent arg0) 
-		{
-			
-		}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
-		@Override
-		public void mouseEntered(MouseEvent e) 
-		{
-			System.out.println("Show clipart for: " +e.getSource());
-		}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
