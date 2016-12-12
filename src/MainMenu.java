@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class MainMenu extends JPanel implements ActionListener, MouseMotionListener{	
+public class MainMenu extends JPanel implements ActionListener, MouseMotionListener, MouseListener{	
 	JButton[] btnArray = new JButton[4];
 	JLabel[] lblArray = new JLabel[4];
 	JPanel btnPanel = new JPanel();
@@ -32,7 +32,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 			btnArray[i].setSize(150, 50);
 			lblArray[i].setSize(50,50);
 			btnArray[i].addActionListener(this);
-			btnArray[i].addMouseMotionListener(this);
+			btnArray[i].addMouseListener(this);
 			btnPanel.add(lblArray[i]);
 			btnPanel.add(btnArray[i]);
 		}
@@ -80,17 +80,45 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-		if(arg0.getYOnScreen() >= 485){
+		if(arg0.getY() >= 465){
 			setIcons(3);
 		}
-		else if(arg0.getYOnScreen() >= 430){
+		else if(arg0.getY() >= 408){
 			setIcons(2);
 		}
-		else if(arg0.getYOnScreen() >= 375){
+		else if(arg0.getY() >= 352){
 			setIcons(1);
 		}
 		else{
 			setIcons(0);
 		}
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		if(e.getSource() == btnArray[0]){
+			setIcons(0);
+		}
+		else if(e.getSource() == btnArray[1]){
+			setIcons(1);
+		}
+		else if(e.getSource() == btnArray[2]){
+			setIcons(2);
+		}
+		else if(e.getSource() == btnArray[3]){
+			setIcons(3);
+		}
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {	}
 }
