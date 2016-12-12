@@ -6,12 +6,6 @@ public class BeatMap {
 	
 	public BeatMap(){
 		map = new ArrayList<Note>();
-		naileajfi
-		aegfa
-		age
-		aeg
-		aew
-		
 	}
 	
 }
