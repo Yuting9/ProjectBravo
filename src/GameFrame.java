@@ -8,7 +8,6 @@ public class GameFrame extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	public static Container container;
 	public static MainMenu menu = new MainMenu();
-	public static Timer timer;
 	public GameFrame()
 	{
 		this.setTitle("Rhythm Master");
@@ -18,8 +17,6 @@ public class GameFrame extends JFrame implements ActionListener{
 		this.setResizable(false);
 		
 		this.getContentPane().add(menu);
-		timer=new Timer(600, this);
-		timer.start();
 	}
 	
 	public static void reset()
@@ -43,17 +40,9 @@ public class GameFrame extends JFrame implements ActionListener{
 		Main.frame.repaint();
 	}
 	
-
 	public void paint( Graphics g)
 	{
 		super.paint(g);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		this.repaint();
-		
 	}
 
 }
