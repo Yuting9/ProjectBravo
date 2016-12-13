@@ -8,6 +8,7 @@ public class GameFrame extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	public static Container container;
 	public static MainMenu menu = new MainMenu();
+	public static Timer timer;
 	public GameFrame()
 	{
 		this.setTitle("Rhythm Master");
@@ -15,8 +16,9 @@ public class GameFrame extends JFrame implements ActionListener{
 		this.setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setResizable(false);
-		
 		this.getContentPane().add(menu);
+		timer = new Timer(60,this);
+		timer.start();
 	}
 	
 	public static void reset()
@@ -43,6 +45,25 @@ public class GameFrame extends JFrame implements ActionListener{
 	public void paint( Graphics g)
 	{
 		super.paint(g);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		if (state.equals("RotatingMenu")){
+			if(RotatingMenu.movement==2 && RotatingMenu.shift<0 ){
+				RotatingMenu.shift+=5;
+				RotatingMenu.update();
+				System.out.println(RotatingMenu.shift);
+			}
+			if(RotatingMenu.movement==-2 && RotatingMenu.shift>500+(40*(RotatingMenu.buttons.size()-1))*-1 ){
+				RotatingMenu.shift-=5;
+				RotatingMenu.update();
+				System.out.println(RotatingMenu.shift);
+				System.out.println(40*(RotatingMenu.buttons.size()-1));
+				System.out.println();
+			}
+		}
+		
 	}
 
 }

@@ -2,12 +2,11 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-<<<<<<< HEAD
-public class MainMenu extends JPanel implements ActionListener, MouseMotionListener{
-	private static final long serialVersionUID = 1L;
-=======
 public class MainMenu extends JPanel implements ActionListener, MouseMotionListener, MouseListener{	
->>>>>>> origin/master
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JButton[] btnArray = new JButton[4];
 	JLabel[] lblArray = new JLabel[4];
 	JPanel btnPanel = new JPanel();
@@ -42,7 +41,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 			btnPanel.add(lblArray[i]);
 			btnPanel.add(btnArray[i]);
 		}
-		timer
+		
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {

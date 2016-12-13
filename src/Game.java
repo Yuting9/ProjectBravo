@@ -14,7 +14,7 @@ public class Game extends JPanel{
 	public static void GameSetup()
 	{
 		//begin temporary code
-		for(int i =0; i<20; i++)
+		for(int i =0; i<30; i++)
 		{
 			songs.add(new Song("Song #"+Integer.toString(i)));
 		}
