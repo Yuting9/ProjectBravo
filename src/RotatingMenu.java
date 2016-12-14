@@ -64,12 +64,12 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 	public void mouseMoved(MouseEvent e) {
 		allx = e.getX();
 		ally = e.getY();
-		if(ally>=550)
+		if(ally>=550 && allx>100)
 		{
 			System.out.println("scrolling down");
 			movement=-2;
 		}
-		else if(ally<=50)
+		else if(ally<=50 && allx>100)
 		{
 			System.out.println("scrolling up");
 			movement=2;
