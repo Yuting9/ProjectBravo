@@ -11,7 +11,6 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 	JLabel[] lblArray = new JLabel[4];
 	JPanel btnPanel = new JPanel();
 	Icon arrow = null;
-	Timer timer;
 	
 	public MainMenu(){
 		try{
