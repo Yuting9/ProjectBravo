@@ -18,11 +18,6 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		this.setLayout(null);
 		addMouseMotionListener(this);
 		
-		if (GameFrame.state.equals("Game"))
-		{
-			this.revalidate();
-			this.repaint();	
-		}
 		
 	}
 	
