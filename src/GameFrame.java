@@ -55,7 +55,7 @@ public class GameFrame extends JFrame implements ActionListener{
 				RotatingMenu.update();
 				System.out.println(RotatingMenu.shift);
 			}
-			if(RotatingMenu.movement==-2 && RotatingMenu.shift>500+(40*(RotatingMenu.buttons.size()-1))*-1 ){
+			if(RotatingMenu.movement==-2 && RotatingMenu.shift>530+(40*(RotatingMenu.buttons.size()-1))*-1 ){
 				RotatingMenu.shift-=7;
 				RotatingMenu.update();
 				System.out.println(RotatingMenu.shift);

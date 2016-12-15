@@ -1,6 +1,6 @@
 
 public class Song {
-	public String title = "";
+	public String title;
 	
 	public Song(String name)
 	{
