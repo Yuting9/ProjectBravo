@@ -1,4 +1,7 @@
-
+/**
+ * 
+ * @author Yuting, Ganashsai
+ */
 
 public class Main {
 	static GameFrame frame;
