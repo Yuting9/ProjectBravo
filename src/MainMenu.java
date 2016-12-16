@@ -75,7 +75,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 					if(s != null){
 						JOptionPane.showMessageDialog(this, "Invalid Choice - Song already exists");
 					}
-					s = (String) JOptionPane.showInputDialog(this, "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE, null, null, null);	
+					s = (String) JOptionPane.showInputDialog(this, "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE);	
 				}while(!(new File("/src/Songs/"+s).mkdirs()));
 				new Edit(choose.getSelectedFile(),s);
 			}
