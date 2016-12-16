@@ -61,8 +61,6 @@ public class GameFrame extends JFrame implements ActionListener{
 				System.out.println(40*(RotatingMenu.buttons.size()-1));
 				System.out.println();
 			}
-		}
-		
+		}	
 	}
-
 }

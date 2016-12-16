@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 import java.io.File;
 import java.io.FilenameFilter;
 
@@ -28,7 +29,4 @@ public class Game extends JPanel{
 		gameMenu.revalidate();
 		gameMenu.repaint();
 	}
-	
-	
-
 }

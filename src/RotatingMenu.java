@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 
 public class RotatingMenu extends JPanel implements MouseMotionListener, MouseListener{
+	
+	private static final long serialVersionUID = 1L;
 	public static ArrayList<JButton> buttons = new ArrayList<JButton>();
 	public int allx,ally;
 	public static int movement;
@@ -12,22 +14,10 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 	public static int shift= 0;
 	public RotatingMenu()
 	{
-		JLabel lblUp = new JLabel(), lblDown = new JLabel();
 		GameFrame.state= "RotatingMenu";
 		this.setLayout(null);
 		addMouseMotionListener(this);
 		
-		lblUp.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		lblDown.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		lblUp.setBounds(130, 0, 264, 50);
-		lblDown.setBounds(130, 521, 264, 50);
-		this.add(lblUp);
-		this.add(lblDown);
-		if (GameFrame.state.equals("Game"))
-		{
-			this.revalidate();
-			this.repaint();	
-		}
 		
 	}
 	
@@ -69,12 +59,12 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 	public void mouseMoved(MouseEvent e) {
 		allx = e.getX();
 		ally = e.getY();
-		if(ally>=520 && allx>130)
+		if(ally>=550 && allx>100)
 		{
 			System.out.println("scrolling down");
 			movement=-2;
 		}
-		else if(ally<=50 && allx>130)
+		else if(ally<=50 && allx>100)
 		{
 			System.out.println("scrolling up");
 			movement=2;
