@@ -8,6 +8,9 @@ public class BeatMap {
 		map = new ArrayList<Note>();
 	}
 	
+	public ArrayList<Note> getMap(){
+		return map;
+	}
 }
 
 class Note{
@@ -17,5 +20,9 @@ class Note{
 		position = p;
 		length = l;
 		time = t;
+	}
+	
+	public int getTime(){
+		return time;
 	}
 }

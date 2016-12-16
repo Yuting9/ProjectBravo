@@ -17,22 +17,18 @@ public class Game extends JPanel{
 	public static void GameSetup()
 	{
 		File folder = new File("src/Songs/");
-		
 		System.out.println(folder.listFiles());
-		
-		for (final File fileEntry : folder.listFiles()) 
-	    {
+		for (final File fileEntry : folder.listFiles()){
 	    	songs.add(new Song(fileEntry.getName()));
 	    }
-		//end temporary code
-		for (Song i: songs)
-		{
+		for (Song i: songs){
 			gameMenu.add_button(i.title);
 		}
-		
 		GameFrame.add(gameMenu);
 		gameMenu.revalidate();
 		gameMenu.repaint();
 	}
+	
+	
 
 }

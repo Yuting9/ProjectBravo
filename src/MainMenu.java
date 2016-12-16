@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class MainMenu extends JPanel implements ActionListener, MouseMotionListener, MouseListener{	
+public class MainMenu extends JPanel implements ActionListener, MouseMotionListener, MouseListener, KeyListener{	
 	/**
 	 * 
 	 */
@@ -58,7 +58,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 		else if(arg0.getSource() == btnArray[2]){
 			GameFrame.clear();
 			GameFrame.state="Edit";
-			GameFrame.add(new Edit());
+			new Edit();
 		}
 		else if(arg0.getSource() == btnArray[3]){
 			Main.frame.dispose();
@@ -126,4 +126,16 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 
 	@Override
 	public void mouseReleased(MouseEvent e) {	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
 }
