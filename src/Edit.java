@@ -57,7 +57,7 @@ public class Edit extends JPanel implements ActionListener{
 		public void drawMap(BeatMap beats, Graphics g){
 			ArrayList<Note> notes = beats.getMap();
 			for(Note n : notes){
-				
+				//g.drawRect(x, y, width, 5*n.length);
 			}
 		}
 		
