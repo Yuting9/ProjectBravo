@@ -47,7 +47,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 		if(arg0.getSource() == btnArray[0]){
 			GameFrame.clear();
 			GameFrame.state="Instructions";
-			GameFrame.add(new Instructions());
+			new Instructions();
 		}
 		else if(arg0.getSource() == btnArray[1]){
 			GameFrame.clear();

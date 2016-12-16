@@ -2,9 +2,12 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 public class Edit extends JPanel{
-	private static final long serialVersionUID = 1L;
+	
+	JPanel pnlScreen, pnlBtn;
+	JButton btnPlay, btnClear, btnExit;
 	
 	public Edit(){
+		this.setLayout(new BorderLayout());
 		System.out.println("In edit mode");
 	}
 

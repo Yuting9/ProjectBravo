@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 public class GameFrame extends JFrame implements ActionListener{
 	public static String state = "Menu";
-	private static final long serialVersionUID = 1L;
 	public static Container container;
 	public static MainMenu menu = new MainMenu();
 	public static Timer timer;
@@ -51,7 +50,7 @@ public class GameFrame extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		if (state.equals("RotatingMenu")){
 			if(RotatingMenu.movement==2 && RotatingMenu.shift<0 ){
-				RotatingMenu.shift+=7;
+				RotatingMenu.shift+=7;	
 				RotatingMenu.update();
 				System.out.println(RotatingMenu.shift);
 			}
