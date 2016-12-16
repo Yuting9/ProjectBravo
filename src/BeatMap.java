@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class BeatMap {
-	private static int vars; // Placeholder
 	private static ArrayList<Note> map;
 	
 	public BeatMap(){
@@ -20,9 +19,5 @@ class Note{
 		position = p;
 		length = l;
 		time = t;
-	}
-	
-	public int getTime(){
-		return time;
 	}
 }

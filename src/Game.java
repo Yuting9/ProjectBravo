@@ -18,9 +18,11 @@ public class Game extends JPanel{
 	public static void GameSetup()
 	{
 		File folder = new File("src/Songs/");
-		System.out.println(folder.listFiles());
 		for (final File fileEntry : folder.listFiles()){
-	    	songs.add(new Song(fileEntry.getName()));
+			if(!fileEntry.isDirectory()){
+				if(Song.getFileExtension(fileEntry) == "songMap")
+		    		songs.add(Song.inport(fileEntry));
+			}
 	    }
 		for (Song i: songs){
 			gameMenu.add_button(i.title);

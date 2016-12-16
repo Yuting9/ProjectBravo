@@ -1,14 +1,31 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.*;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 import javax.swing.*;
-public class Edit extends JPanel implements ActionListener{
+public class Edit extends JPanel implements ActionListener, MouseListener, MouseMotionListener{
 	
 	JPanel pnlScreen, pnlBtn;
 	JButton btnPlay, btnClear, btnSub, btnExit;
+	BeatMap tempBeats = new BeatMap();
+	File tempSong;
 	
-	public Edit(){
+	public Edit(File song, String name){
+		tempSong = new File("src/Songs/"+name);
+		System.out.println(name);
+		try{
+			FileChannel src = new FileInputStream(song).getChannel();
+			FileChannel dest = new FileOutputStream(tempSong).getChannel();
+			dest.transferFrom(src, 0, src.size());
+			src.close();
+			dest.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		pnlScreen = new DrawPanel();
 		pnlBtn = new JPanel();
 		btnPlay = new JButton("Test");
@@ -56,9 +73,14 @@ public class Edit extends JPanel implements ActionListener{
 		
 		public void drawMap(BeatMap beats, Graphics g){
 			ArrayList<Note> notes = beats.getMap();
+			int place = this.getWidth()/4;
 			for(Note n : notes){
-				//g.drawRect(x, y, width, 5*n.length);
+				g.drawRect(place*n.position, 0+5*n.time, place, 5*n.length);
 			}
+		}
+		
+		public void add(int x, int y, int pos){
+			
 		}
 		
 		public void paintComponent(Graphics g){
@@ -67,6 +89,47 @@ public class Edit extends JPanel implements ActionListener{
 			g.drawLine(this.getWidth()/4*2, 0, this.getWidth()/4*2, this.getHeight());
 			g.drawLine(this.getWidth()/4*3, 0, this.getWidth()/4*3, this.getHeight());
 		}
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
