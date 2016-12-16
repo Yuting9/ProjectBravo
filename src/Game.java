@@ -11,17 +11,14 @@ public class Game extends JPanel{
 	public static ArrayList<Song> songs = new ArrayList<Song>();
 	public static RotatingMenu gameMenu = new RotatingMenu();
 	
-	public Game(Song beats){
-		
-	}
+	public Game(Song beats){}
 	
 	public static void GameSetup()
 	{
 		File folder = new File("src/Songs/");
 		for (final File fileEntry : folder.listFiles()){
-			if(!fileEntry.isDirectory()){
-				if(Song.getFileExtension(fileEntry) == "songMap")
-		    		songs.add(Song.inport(fileEntry));
+			if(fileEntry.isDirectory()){
+		    	songs.add(new Song(fileEntry.getName()));
 			}
 	    }
 		for (Song i: songs){

@@ -6,7 +6,7 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 import javax.swing.*;
-public class Edit extends JPanel implements ActionListener, MouseListener, MouseMotionListener{
+public class Edit extends JPanel implements ActionListener, KeyListener{
 	
 	JPanel pnlScreen, pnlBtn;
 	JButton btnPlay, btnClear, btnSub, btnExit;
@@ -16,10 +16,13 @@ public class Edit extends JPanel implements ActionListener, MouseListener, Mouse
 	public Edit(File song, String name){
 		tempSong = new File("src/Songs/"+name);
 		System.out.println(name);
+		Main.frame.setTitle("Rythmn Master - " + name);
+		
 		try{
-			FileChannel src = new FileInputStream(song).getChannel();
-			FileChannel dest = new FileOutputStream(tempSong).getChannel();
-			dest.transferFrom(src, 0, src.size());
+			System.out.println(tempSong.mkdirs());
+			FileInputStream src = new FileInputStream(song);
+			FileOutputStream dest = new FileOutputStream(tempSong+"/"+name+".wav");
+			dest.getChannel().transferFrom(src.getChannel(), 0, src.getChannel().size());
 			src.close();
 			dest.close();
 		}catch(Exception e){
@@ -92,44 +95,12 @@ public class Edit extends JPanel implements ActionListener, MouseListener, Mouse
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		
-	}
+	public void keyPressed(KeyEvent arg0) {	}
 
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyReleased(KeyEvent arg0) { }
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyTyped(KeyEvent arg0) { }
 
 }

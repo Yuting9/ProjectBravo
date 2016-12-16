@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class BeatMap {
+public class BeatMap{
 	private static ArrayList<Note> map;
 	
 	public BeatMap(){

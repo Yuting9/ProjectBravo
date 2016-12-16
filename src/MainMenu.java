@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -59,15 +61,23 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 		}
 		else if(arg0.getSource() == btnArray[2]){
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV File", "wav");
+			
 			JFileChooser choose = new JFileChooser();
 			choose.setVisible(true);
 			choose.setFileFilter(filter);
+			choose.setAcceptAllFileFilterUsed(false);
 			choose.showOpenDialog(this);
 			if(choose.getSelectedFile() != null){
 				GameFrame.clear();
 				GameFrame.state="Edit";
-				new Edit(choose.getSelectedFile(), (String)JOptionPane.showInputDialog(this,
-	                    "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE, null, null, null));
+				String s = null;
+				do{
+					if(s != null){
+						JOptionPane.showMessageDialog(this, "Invalid Choice - Song already exists");
+					}
+					s = (String) JOptionPane.showInputDialog(this, "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE, null, null, null);	
+				}while(!(new File("/src/Songs/"+s).mkdirs()));
+				new Edit(choose.getSelectedFile(),s);
 			}
 		}
 		else if(arg0.getSource() == btnArray[3]){
