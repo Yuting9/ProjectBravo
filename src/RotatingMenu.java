@@ -33,6 +33,11 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		}
 	}
 	
+	public void addNotify(){
+		super.addNotify();
+		requestFocus();
+	}
+	
 	public void add_button(String title)
 	{
 		int temp_x=40*buttons.size()+(int)(shift%10000);
@@ -122,19 +127,21 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		System.out.println(arg0.getKeyCode());
-		//if(arg0.getKeyCode())
+		// Untested Code - Please Test
+		if(arg0.getKeyCode() == 38){
+			movement = 55;
+		}
+		else if(arg0.getKeyCode() == 40){
+			movement = -55;
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		System.out.println("Hi");
 		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		System.out.println("Hi");
-		
 	}
 }
