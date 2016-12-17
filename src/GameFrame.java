@@ -8,8 +8,7 @@ public class GameFrame extends JFrame implements ActionListener{
 	public static Container container;
 	public static MainMenu menu = new MainMenu();
 	public static Timer timer;
-	public GameFrame()
-	{
+	public GameFrame(){
 		this.setTitle("Rhythm Master");
 		this.setSize(400,600);
 		this.setVisible(true);
@@ -20,29 +19,25 @@ public class GameFrame extends JFrame implements ActionListener{
 		timer.start();
 	}
 	
-	public static void reset()
-	{
+	public static void reset(){
 		Main.frame.getContentPane().removeAll();
 		Main.frame.getContentPane().add(menu);
 		
 	}
 	
-	public static void clear()
-	{
+	public static void clear(){
 		System.out.println("Cleared frame");
 		Main.frame.getContentPane().removeAll();
 	}
 	
-	public static void add(JPanel jpanel)
-	{
+	public static void add(JPanel jpanel){
 		System.out.print(jpanel);
 		System.out.println("added to frame");
 		Main.frame.getContentPane().add(jpanel);
 		Main.frame.repaint();
 	}
 	
-	public void paint( Graphics g)
-	{
+	public void paint( Graphics g){
 		super.paint(g);
 	}
 

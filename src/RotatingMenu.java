@@ -12,8 +12,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 	public static int movement;
 
 	public static int shift= 0;
-	public RotatingMenu()
-	{
+	public RotatingMenu(){
 		JLabel lblUp = new JLabel(), lblDown = new JLabel();
 		GameFrame.state= "RotatingMenu";
 		this.setLayout(null);
@@ -26,8 +25,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		lblDown.setBounds(130, 521, 264, 50);
 		this.add(lblUp);
 		this.add(lblDown);
-		if (GameFrame.state.equals("Game"))
-		{
+		if (GameFrame.state.equals("Game")){
 			this.revalidate();
 			this.repaint();	
 		}
@@ -38,8 +36,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		requestFocus();
 	}
 	
-	public void add_button(String title)
-	{
+	public void add_button(String title){
 		int temp_x=40*buttons.size()+(int)(shift%10000);
 		buttons.add(new JButton(title));
 		buttons.get(buttons.size()-1).setSize(100,30);
@@ -53,8 +50,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		requestFocus();
 	}
 	
-	public static void update()
-	{
+	public static void update(){
 		int temp_x;
 		for(int i=0;i<buttons.size();i++){
 			temp_x=40*i+(int)(shift%10000);
@@ -78,52 +74,45 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 	public void mouseMoved(MouseEvent e) {
 		allx = e.getX();
 		ally = e.getY();
-		if(ally>=520 && allx>130)
-		{
+		if(ally>=520 && allx>130){
 			System.out.println("GOING DOWN");
 			movement=-2;
 		}
-		else if(ally<=50 && allx>130)
-		{
+		else if(ally<=50 && allx>130){
 			System.out.println("GOING UP");
 			movement=2;
 		}
 		else
-		{
 			movement=0;
-			//System.out.println("not");
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		System.out.println("Show clipart for: " +e.getSource());
+		if(e.getSource().getClass() == JButton.class){
+			for(JButton b : buttons){
+				if(e.getSource() == b){
+					for(Song s : Game.songs){
+						if(s.title == b.getText()){
+							 
+						}
+					}
+				}
+			}
 		}
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseExited(MouseEvent e) {	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("Show clipart for: " +e.getSource());
-	}
+	public void mousePressed(MouseEvent e) { }
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseReleased(MouseEvent e) { }
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
