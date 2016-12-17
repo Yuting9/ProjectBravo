@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 
-public class RotatingMenu extends JPanel implements MouseMotionListener, MouseListener{
+public class RotatingMenu extends JPanel implements MouseMotionListener, MouseListener, KeyListener{
 	
 	private static final long serialVersionUID = 1L;
 	public static ArrayList<JButton> buttons = new ArrayList<JButton>();
@@ -18,6 +18,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		GameFrame.state= "RotatingMenu";
 		this.setLayout(null);
 		addMouseMotionListener(this);
+		addKeyListener(this);
 		
 		lblUp.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		lblDown.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -43,6 +44,8 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 
 		buttons.get(buttons.size()-1).addMouseListener(this);
 		this.add(buttons.get(buttons.size()-1));
+
+		requestFocus();
 	}
 	
 	public static void update()
@@ -70,12 +73,14 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 	public void mouseMoved(MouseEvent e) {
 		allx = e.getX();
 		ally = e.getY();
-		if(ally>=550 && allx>100)
+		if(ally>=520 && allx>130)
 		{
+			System.out.println("GOING DOWN");
 			movement=-2;
 		}
-		else if(ally<=50 && allx>100)
+		else if(ally<=50 && allx>130)
 		{
+			System.out.println("GOING UP");
 			movement=2;
 		}
 		else
@@ -112,6 +117,24 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		System.out.println(arg0.getKeyCode());
+		//if(arg0.getKeyCode())
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		System.out.println("Hi");
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		System.out.println("Hi");
 		
 	}
 }
