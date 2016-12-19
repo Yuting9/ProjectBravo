@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class RotatingMenu extends JPanel implements MouseMotionListener, MouseListener, KeyListener{
 	
-	private static final long serialVersionUID = 1L;
 	public static ArrayList<JButton> buttons = new ArrayList<JButton>();
 	public int allx,ally;
 	public static int movement;
@@ -94,6 +93,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		System.out.println("Show clipart for: " +e.getSource());
 		if(e.getSource().getClass() == JButton.class){
 			e.getComponent().getName();
+			// Image Get And Set Here
 		}
 	}
 

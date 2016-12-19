@@ -1,4 +1,6 @@
 /**
+ * Basically this starts the game. that's it. 
+ * I don't know why we have this here. It's pretty much useless
  * 
  * @author Yuting, Ganashsai
  */

@@ -10,7 +10,6 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	JButton[] btnArray = new JButton[4];
 	JLabel[] lblArray = new JLabel[4];
 	JPanel btnPanel = new JPanel();
