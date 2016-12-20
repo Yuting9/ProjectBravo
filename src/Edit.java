@@ -95,7 +95,9 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	}
 
 	@Override
-	public void keyPressed(KeyEvent arg0) {	}
+	public void keyPressed(KeyEvent arg0) {
+		System.out.println(arg0.getKeyChar());
+	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) { }

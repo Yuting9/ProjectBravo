@@ -15,7 +15,7 @@ public class GameFrame extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.getContentPane().add(menu);
-		timer = new Timer(60,this);
+		timer = new Timer(17,this);
 		timer.start();
 	}
 	
