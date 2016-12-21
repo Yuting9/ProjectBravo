@@ -32,6 +32,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 		btnPanel.setLayout(null);
 		this.add(btnPanel, BorderLayout.CENTER);
 		btnPanel.addMouseMotionListener(this);
+		addKeyListener(this);
 		btnPanel.setBackground(Color.WHITE);
 		for(int i=0; i<4; i++){
 			btnArray[i].setLocation(150, 300+(i*55));
@@ -44,6 +45,11 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 			btnPanel.add(btnArray[i]);
 		}
 		
+	}
+	
+	public void addNotify(){
+		super.addNotify();
+		requestFocus();
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
@@ -123,6 +129,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
+		System.out.println("check222");
 		if(e.getSource() == btnArray[0]){
 			setIcons(0);
 		}
@@ -148,6 +155,8 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
+		// This part works now! yay
+		System.out.println(arg0.getKeyCode() + "check");
 	}
 
 	@Override

@@ -108,6 +108,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
+		System.out.println(arg0.getKeyCode());
 		// Untested Code - Please Test
 		if(arg0.getKeyCode() == 38){
 			movement = 55;
