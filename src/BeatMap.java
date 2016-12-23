@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BeatMap{
+public class BeatMap implements Serializable{
 	private static ArrayList<Note> map;
 	
 	public BeatMap(){

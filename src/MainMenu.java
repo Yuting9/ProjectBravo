@@ -59,30 +59,30 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 			new Instructions();
 		}
 		else if(arg0.getSource() == btnArray[1]){
-			GameFrame.clear();
-			GameFrame.state="Game";
-			System.out.println("Game Setup");
-			Game.GameSetup();
 		}
 		else if(arg0.getSource() == btnArray[2]){
+			JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV File", "wav");
-			
 			JFileChooser choose = new JFileChooser();
 			choose.setVisible(true);
 			choose.setFileFilter(filter);
 			choose.setAcceptAllFileFilterUsed(false);
-			choose.showOpenDialog(this);
-			if(choose.getSelectedFile() != null){
-				GameFrame.clear();
-				GameFrame.state="Edit";
+			int result = choose.showOpenDialog(this);
+			if(choose.getSelectedFile() != null && result == JFileChooser.APPROVE_OPTION){
 				String s = null;
 				do{
 					if(s != null){
 						JOptionPane.showMessageDialog(this, "Invalid Choice - Song already exists");
 					}
 					s = (String) JOptionPane.showInputDialog(this, "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE);	
+					if(s == null){
+						break;
+					}
 				}while(!(new File("/src/Songs/"+s).mkdirs()));
-				new Edit(choose.getSelectedFile(),s);
+				GameFrame.clear();
+				GameFrame.state="Edit";
+				if(s != null)
+					new Edit(choose.getSelectedFile(),s);
 			}
 		}
 		else if(arg0.getSource() == btnArray[3]){
@@ -129,7 +129,6 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		System.out.println("check222");
 		if(e.getSource() == btnArray[0]){
 			setIcons(0);
 		}
