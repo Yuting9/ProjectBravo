@@ -1,5 +1,5 @@
 /**
- * Tells the user how to play the game
+ * Tells the user how to play the game	
  * 
  * @author Yuting, Ganashsai
  */

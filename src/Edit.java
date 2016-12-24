@@ -20,6 +20,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	FileOutputStream fileOut, dest;
 	ObjectOutputStream outStream;
 	File tempSong, beatPlace;
+	boolean bd = false, bf = false, bj = false, bk = false;
 	
 	public Edit(File song, String name){
 		tempSong = new File("src/Songs/"+name);
@@ -136,6 +137,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
+		
 		System.out.println(arg0.getKeyCode());
 	}
 
