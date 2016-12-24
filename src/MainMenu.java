@@ -1,3 +1,9 @@
+/**
+ * The main menu, leading to all other panels
+ * 
+ * @author Yuting, Ganashsai
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;

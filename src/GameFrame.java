@@ -1,3 +1,9 @@
+/**
+ * Contains the game
+ * 
+ * @author Yuting, Ganashsai
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

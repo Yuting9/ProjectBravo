@@ -1,3 +1,9 @@
+/**
+ * The Beatmap for the game
+ * 
+ * @author Yuting, Ganashsai
+ */
+
 import java.io.Serializable;
 import java.util.ArrayList;
 

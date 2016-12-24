@@ -1,3 +1,9 @@
+/**
+ * Tells the user how to play the game
+ * 
+ * @author Yuting, Ganashsai
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

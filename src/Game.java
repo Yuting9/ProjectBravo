@@ -1,3 +1,9 @@
+/**
+ * This is the game. GV tells me it's the game. I'm not sure personally, but I sort of have to trust him on this
+ * 
+ * @author Yuting, Ganashsai
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;

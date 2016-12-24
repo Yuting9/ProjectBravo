@@ -1,3 +1,9 @@
+/**
+ * Selects the song from a list
+ * 
+ * @author Yuting, Ganashsai
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

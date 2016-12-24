@@ -1,3 +1,9 @@
+/**
+ * Creates the beatmap from user input
+ * 
+ * @author Yuting, Ganashsai
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
