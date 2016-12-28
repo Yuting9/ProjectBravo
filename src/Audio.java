@@ -5,7 +5,6 @@ import javax.sound.sampled.*;
 
 public class Audio {
 	public Clip clip;
-	private long time;
 
 	public Audio(String filename)
 	{
@@ -23,18 +22,14 @@ public class Audio {
 	
 	public void start()
 	{
+		clip.setMicrosecondPosition(0);
 		clip.start();
 	}
 	
-	public void pause()
-	{
-		time = clip.getMicrosecondPosition();
-		clip.stop();
-	}
+
 	
 	public void resume()
 	{
-		clip.setMicrosecondPosition(time);
 		clip.start();
 	}
 	
