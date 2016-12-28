@@ -96,9 +96,10 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		System.out.println("Show clipart for: " +e.getSource());
+		;
 		if(e.getSource().getClass() == JButton.class){
 			e.getComponent().getName();
+			System.out.println("Show clipart for: " +e.getComponent().getName());
 			// Image Get And Set Here
 		}
 	}

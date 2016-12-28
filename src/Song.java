@@ -14,6 +14,7 @@ public class Song implements Serializable{
 	public BeatMap map;
 	public Image img;
 	public File song;
+	public Audio audio;
 	
 	public Song(String name){
 		this.title = name;
