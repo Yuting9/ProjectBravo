@@ -21,6 +21,9 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	ObjectOutputStream outStream;
 	File tempSong, beatPlace;
 	boolean bd = false, bf = false, bj = false, bk = false;
+	int ind = 0,inf = 0,inj = 0,ink = 0;
+	int bed = 0,bef = 0,bej = 0,bek = 0, totime = 0;
+	Timer time = new Timer(16, this);
 	
 	public Edit(File song, String name){
 		tempSong = new File("src/Songs/"+name);
@@ -68,6 +71,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		this.revalidate();
 		this.repaint();
 		System.out.println("In edit mode");
+		time.start();
 	}
 
 
@@ -77,8 +81,24 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		if(arg0.getSource() == btnExit){
+	public void actionPerformed(ActionEvent arg0){
+		if(arg0.getSource() == time){
+			totime++;
+			pnlScreen.repaint();
+			if(bd){
+				ind++;
+			}
+			else if(bf){
+				inf++;
+			}
+			else if(bj){
+				inj++;
+			}
+			else if(bk){
+				ink++;
+			}
+		}
+		else if(arg0.getSource() == btnExit){
 			closeThings();
 			GameFrame.reset();
 			GameFrame.add(new MainMenu());
@@ -110,39 +130,95 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	}
 	
 	class DrawPanel extends JPanel{
+		int std = 0, stf = 0, stj = 0, stk = 0;
+		
 		public DrawPanel(){
 			this.repaint();
 		}
 		
-		public void drawMap(BeatMap beats, Graphics g){
-			ArrayList<Note> notes = beats.getMap();
+		public void drawMap(Graphics g){
 			int place = this.getWidth()/4;
+			ArrayList<Note> notes = tempBeats.getMap();
 			for(Note n : notes){
-				// ----- Draw the BeatMap here -----
-				g.drawRect(place*n.position, 0+5*n.time, place, 5*n.length);
+				g.drawRect(place*n.position, 0+5*(totime - n.time), place, 5*n.length);
 			}
 		}
 		
-		public void add(int x, int y, int pos){
-			
+		public void drawNotes(){
+			this.repaint();
 		}
 		
 		public void paintComponent(Graphics g){
+			int place = this.getWidth()/4;
 			super.paintComponent(g);
-			g.drawLine(this.getWidth()/4, 0, this.getWidth()/4, this.getHeight());
-			g.drawLine(this.getWidth()/4*2, 0, this.getWidth()/4*2, this.getHeight());
-			g.drawLine(this.getWidth()/4*3, 0, this.getWidth()/4*3, this.getHeight());
+			System.out.println(place);
+			g.drawLine(place, 0, place, this.getHeight());
+			g.drawLine(place*2, 0, place*2, this.getHeight());
+			g.drawLine(place*3, 0, place*3, this.getHeight());
+			System.out.println("Lines Painted");
+			g.drawRect(0, 0, place, ind*5);
+			g.drawRect(place, 0, place, inf*5);
+			g.drawRect(place*2, 0, place, inj*5);
+			g.drawRect(place*3, 0, place, ink*5);
+			drawMap(g);
 		}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		
-		System.out.println(arg0.getKeyCode());
+		if(arg0.getKeyChar() == 'd'){
+			if(!bd){
+				bed = totime;
+			}
+			bd = true;
+		}
+		else if(arg0.getKeyChar() == 'f'){
+			if(!bf){
+				bef = totime;
+			}
+			bf = true;
+		}
+		else if(arg0.getKeyChar() == 'j'){
+			if(!bj){
+				bej = totime;
+			}
+			bj = true;
+		}
+		else if(arg0.getKeyChar() == 'k'){
+			if(!bk){
+				bek = totime;
+			}
+			bk = true;
+		}
 	}
 
 	@Override
-	public void keyReleased(KeyEvent arg0) { }
+	public void keyReleased(KeyEvent arg0) {
+		if(arg0.getKeyChar() == 'd'){
+			tempBeats.add(ind, 0, bed);
+			ind = 0;
+			bed = 0;
+			bd = false;
+		}
+		else if(arg0.getKeyChar() == 'f'){
+			tempBeats.add(inf, 1, bef);
+			inf = 0;
+			bef = 0;
+			bf = false;
+		}
+		else if(arg0.getKeyChar() == 'j'){
+			tempBeats.add(inj, 2, bej);
+			inj = 0;
+			bej = 0;
+			bj = false;
+		}
+		else if(arg0.getKeyChar() == 'k'){
+			tempBeats.add(ink, 3, bek);
+			ink = 0;
+			bek = 0;
+			bk = false;
+		}
+	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) { }
