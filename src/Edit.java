@@ -151,11 +151,9 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		public void paintComponent(Graphics g){
 			int place = this.getWidth()/4;
 			super.paintComponent(g);
-			System.out.println(place);
 			g.drawLine(place, 0, place, this.getHeight());
 			g.drawLine(place*2, 0, place*2, this.getHeight());
 			g.drawLine(place*3, 0, place*3, this.getHeight());
-			System.out.println("Lines Painted");
 			g.fillRect(0, 0, place, ind*5);
 			g.fillRect(place, 0, place, inf*5);
 			g.fillRect(place*2, 0, place, inj*5);
