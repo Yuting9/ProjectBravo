@@ -88,13 +88,13 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			if(bd){
 				ind++;
 			}
-			else if(bf){
+			if(bf){
 				inf++;
 			}
-			else if(bj){
+			if(bj){
 				inj++;
 			}
-			else if(bk){
+			if(bk){
 				ink++;
 			}
 		}
@@ -140,7 +140,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			int place = this.getWidth()/4;
 			ArrayList<Note> notes = tempBeats.getMap();
 			for(Note n : notes){
-				g.drawRect(place*n.position, 0+5*(totime - n.time), place, 5*n.length);
+				g.fillRect(place*n.position,5*(totime - n.time) - 5*n.length, place,5*n.length);
 			}
 		}
 		
@@ -156,10 +156,10 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			g.drawLine(place*2, 0, place*2, this.getHeight());
 			g.drawLine(place*3, 0, place*3, this.getHeight());
 			System.out.println("Lines Painted");
-			g.drawRect(0, 0, place, ind*5);
-			g.drawRect(place, 0, place, inf*5);
-			g.drawRect(place*2, 0, place, inj*5);
-			g.drawRect(place*3, 0, place, ink*5);
+			g.fillRect(0, 0, place, ind*5);
+			g.fillRect(place, 0, place, inf*5);
+			g.fillRect(place*2, 0, place, inj*5);
+			g.fillRect(place*3, 0, place, ink*5);
 			drawMap(g);
 		}
 	}
@@ -172,19 +172,19 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			}
 			bd = true;
 		}
-		else if(arg0.getKeyChar() == 'f'){
+		if(arg0.getKeyChar() == 'f'){
 			if(!bf){
 				bef = totime;
 			}
 			bf = true;
 		}
-		else if(arg0.getKeyChar() == 'j'){
+		if(arg0.getKeyChar() == 'j'){
 			if(!bj){
 				bej = totime;
 			}
 			bj = true;
 		}
-		else if(arg0.getKeyChar() == 'k'){
+		if(arg0.getKeyChar() == 'k'){
 			if(!bk){
 				bek = totime;
 			}
@@ -195,24 +195,32 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		if(arg0.getKeyChar() == 'd'){
+			if(ind < 5)
+				ind = 5;
 			tempBeats.add(ind, 0, bed);
 			ind = 0;
 			bed = 0;
 			bd = false;
 		}
-		else if(arg0.getKeyChar() == 'f'){
+		if(arg0.getKeyChar() == 'f'){
+			if(inf < 5)
+				inf = 5;
 			tempBeats.add(inf, 1, bef);
 			inf = 0;
 			bef = 0;
 			bf = false;
 		}
-		else if(arg0.getKeyChar() == 'j'){
+		if(arg0.getKeyChar() == 'j'){
+			if(inj < 5)
+				inj = 5;
 			tempBeats.add(inj, 2, bej);
 			inj = 0;
 			bej = 0;
 			bj = false;
 		}
-		else if(arg0.getKeyChar() == 'k'){
+		if(arg0.getKeyChar() == 'k'){
+			if(ink < 5)
+				ink = 5;
 			tempBeats.add(ink, 3, bek);
 			ink = 0;
 			bek = 0;
