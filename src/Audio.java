@@ -11,7 +11,7 @@ public class Audio {
 	{
 		try
 		{
-		AudioInputStream audioinputstream = AudioSystem.getAudioInputStream(new File ("/src/Songs/"+filename+"/"+filename+".wav"));
+		AudioInputStream audioinputstream = AudioSystem.getAudioInputStream(new File ("src/Songs/"+filename+"/"+filename+".wav"));
 		clip = AudioSystem.getClip();
 		clip.open(audioinputstream);
 		}

@@ -18,12 +18,13 @@ public class Song implements Serializable{
 	
 	public Song(String name){
 		this.title = name;
+		this.audio = new Audio(name);
 	}
 	
 	public Song(String name, BeatMap map, File song){
 		this.title = name;
 		this.map = map;
-		this.song = song;
+		
 	}
 	
 	public static String getFileExtension(File file) {
