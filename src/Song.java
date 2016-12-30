@@ -18,7 +18,7 @@ public class Song implements Serializable{
 	
 	public Song(String name){
 		this.title = name;
-		this.audio = new Audio(name);
+		this.audio = new Audio("src/Songs/"+title+"/"+title+".wav");
 	}
 	
 	public Song(String name, BeatMap map, File song){

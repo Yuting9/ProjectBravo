@@ -6,11 +6,11 @@ import javax.sound.sampled.*;
 public class Audio {
 	public Clip clip;
 
-	public Audio(String filename)
+	public Audio(String path)
 	{
 		try
 		{
-		AudioInputStream audioinputstream = AudioSystem.getAudioInputStream(new File ("src/Songs/"+filename+"/"+filename+".wav"));
+		AudioInputStream audioinputstream = AudioSystem.getAudioInputStream(new File (path));
 		clip = AudioSystem.getClip();
 		clip.open(audioinputstream);
 		}
@@ -24,6 +24,7 @@ public class Audio {
 	{
 		clip.setMicrosecondPosition(0);
 		clip.start();
+		
 	}
 	
 
