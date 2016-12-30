@@ -84,6 +84,13 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 			choose.setFileFilter(filter);
 			choose.setAcceptAllFileFilterUsed(false);
 			int result = choose.showOpenDialog(this);
+			while((!choose.getSelectedFile().getName().substring(
+					choose.getSelectedFile().getName().lastIndexOf(".")+1,
+					choose.getSelectedFile().getName().length()).equals("wav") || 
+					choose.getSelectedFile() == null) && 
+					result == JFileChooser.APPROVE_OPTION){
+				result = choose.showOpenDialog(this);
+			}
 			if(choose.getSelectedFile() != null && result == JFileChooser.APPROVE_OPTION){
 				String s = null;
 				do{
@@ -95,10 +102,11 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 						break;
 					}
 				}while(!(new File("/src/Songs/"+s).mkdirs()));
+				new File("/src/Songs/"+s).delete();
 				GameFrame.clear();
 				GameFrame.state="Edit";
 				if(s != null)
-					new Edit(choose.getSelectedFile(),s);
+					new Edit(choose.getSelectedFile().getAbsoluteFile(),s);
 			}
 		}
 		else if(arg0.getSource() == btnArray[3]){

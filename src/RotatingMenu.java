@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 public class RotatingMenu extends JPanel implements MouseMotionListener, MouseListener, KeyListener{
 	
-	public static ArrayList<JButton> buttons = new ArrayList<JButton>();
-	public int allx,ally;
-	public static int movement;
+	private static ArrayList<JButton> buttons = new ArrayList<JButton>();
+	private int allx,ally;
+	private static int movement;
 
 	public static int shift= 0;
 	public RotatingMenu(){
@@ -53,6 +53,14 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		this.add(buttons.get(buttons.size()-1));
 
 		requestFocus();
+	}
+	
+	public static int getMovement(){
+		return movement;
+	}
+	
+	public static ArrayList<JButton> getButtons(){
+		return buttons;
 	}
 	
 	public static void update(){
