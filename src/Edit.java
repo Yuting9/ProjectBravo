@@ -7,54 +7,44 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 import javax.swing.*;
 public class Edit extends JPanel implements ActionListener, KeyListener{
 	
-	JPanel pnlScreen, pnlBtn;
-	JButton btnPlay, btnClear, btnSub, btnExit;
-	BeatMap tempBeats = new BeatMap();
-	FileInputStream src;
-	FileOutputStream fileOut, dest;
-	ObjectOutputStream outStream;
-	File tempSong, beatPlace;
-	boolean bd = false, bf = false, bj = false, bk = false;
-	int ind = 0,inf = 0,inj = 0,ink = 0;
-	int bed = 0,bef = 0,bej = 0,bek = 0, totime = 0;
-	Timer time = new Timer(16, this);
+	private JPanel pnlScreen, pnlBtn;
+	private JButton btnPlay, btnClear, btnSub, btnExit;
+	private BeatMap tempBeats = new BeatMap();
+	private FileInputStream src;
+	private FileOutputStream fileOut, dest;
+	private ObjectOutputStream outStream;
+	private File tempSong, beatPlace;
+	private boolean bd = false, bf = false, bj = false, bk = false;
+	private int ind = 0,inf = 0,inj = 0,ink = 0;
+	private int bed = 0,bef = 0,bej = 0,bek = 0, totime = 0;
+	private Audio tempAud;
+	private Timer time = new Timer(16, this);
+	private String fileName;
+	private File songPlace;
 	
 	public Edit(File song, String name){
-		tempSong = new File("src/Songs/"+name);
-		beatPlace = new File("src/Songs/"+name+"/"+name+".songMap");
-		System.out.println(name);
-		Main.frame.setTitle("Rythmn Master - " + name);
-		try{
-			System.out.println("Created the folder: " + tempSong.mkdirs());
-			System.out.println("Created the Beatmap: " + beatPlace.createNewFile());
-			src = new FileInputStream(song);
-			fileOut = new FileOutputStream(beatPlace);
-			outStream = new ObjectOutputStream(fileOut);
-			dest = new FileOutputStream(tempSong+"/"+name+".wav");
-			dest.getChannel().transferFrom(src.getChannel(), 0, src.getChannel().size());
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		songPlace = song;
+		fileName = name;
 		pnlScreen = new DrawPanel();
 		pnlBtn = new JPanel();
 		btnPlay = new JButton("Test");
 		btnClear = new JButton("Clear");
 		btnSub = new JButton("Submit");
 		btnExit = new JButton("Exit");
+		tempAud = new Audio(songPlace);
 		
 		GameFrame.add(this);
-		this.addKeyListener(this);
+		addKeyListener(this);
 		
-		this.setLayout(new BorderLayout());
-		this.add(pnlScreen, BorderLayout.CENTER);
+		setLayout(new BorderLayout());
+		add(pnlScreen, BorderLayout.CENTER);
 		pnlBtn.setLayout(new FlowLayout());
-		this.add(pnlBtn, BorderLayout.SOUTH);
+		add(pnlBtn, BorderLayout.SOUTH);
 		
 		pnlBtn.add(btnPlay);
 		pnlBtn.add(btnClear);
@@ -71,7 +61,26 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		this.revalidate();
 		this.repaint();
 		System.out.println("In edit mode");
+		tempAud.start();
 		time.start();
+	}
+	
+	public void createFiles(){
+		tempSong = new File("src/Songs/"+fileName);
+		beatPlace = new File("src/Songs/"+fileName+"/"+fileName+".songMap");
+		System.out.println(fileName);
+		Main.frame.setTitle("Rythmn Master - " + fileName);
+		try{
+			System.out.println("Created the folder: " + tempSong.mkdirs());
+			System.out.println("Created the Beatmap: " + beatPlace.createNewFile());
+			src = new FileInputStream(songPlace);
+			fileOut = new FileOutputStream(beatPlace);
+			outStream = new ObjectOutputStream(fileOut);
+			dest = new FileOutputStream(tempSong+"/"+fileName+".wav");
+			dest.getChannel().transferFrom(src.getChannel(), 0, src.getChannel().size());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 
@@ -83,6 +92,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0){
 		if(arg0.getSource() == time){
+			System.out.println(tempAud.percentDone());
 			totime++;
 			pnlScreen.repaint();
 			if(bd){
@@ -99,13 +109,14 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			}
 		}
 		else if(arg0.getSource() == btnExit){
-			closeThings();
+			tempAud.remove();
 			GameFrame.reset();
 			GameFrame.add(new MainMenu());
 			System.out.println("Going Back");
 		}
 		else if (arg0.getSource() == btnSub){
 			try {
+				createFiles();
 				outStream.writeObject(tempBeats);
 				//Get the images and stuff
 				closeThings();
@@ -120,6 +131,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	
 	public void closeThings(){
 		try {
+			tempAud.remove();
 			src.close();
 			dest.close();
 			fileOut.close();
