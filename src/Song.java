@@ -6,12 +6,14 @@
 
 import java.awt.Image;
 import java.io.*;
+import java.util.ArrayList;
+
 
 public class Song implements Serializable{
 	
 	
 	public String title;
-	public BeatMap map;
+	public ArrayList<Note> map;
 	public Image img;
 	public File song;
 	public Audio audio;
@@ -48,20 +50,19 @@ public class Song implements Serializable{
 		}
 	}
 	
-	public static Song inport(File file){
+	public void get_BeatMap(){
 		FileInputStream fileOut;
 		ObjectInputStream outStream;
 		try{
-			fileOut = new FileInputStream(file.getPath());
+			fileOut = new FileInputStream("src/Songs/"+this.title+"/"+this.title+".songMap");
 			outStream = new ObjectInputStream(fileOut);
-			Song tempSong = (Song) outStream.readObject();
+			this.map = ((BeatMap) outStream.readObject()).getMap();
+			
 			outStream.close();
 			fileOut.close();
-			return tempSong;
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return null;
 	}
 	
 	public String toString(){
