@@ -10,7 +10,7 @@ public class Audio {
 	
 	public Audio(String filename){
 		try{
-			audin = AudioSystem.getAudioInputStream(new File ("src/Songs/"+filename+"/"+filename+".wav"));
+			audin = AudioSystem.getAudioInputStream(new File (filename));
 			clip = AudioSystem.getClip();
 			clip.open(audin);
 		}
