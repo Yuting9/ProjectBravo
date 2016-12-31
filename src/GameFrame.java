@@ -20,7 +20,7 @@ public class GameFrame extends JFrame implements ActionListener{
 	// Defualt Constructor
 	public GameFrame(){
 		setTitle("Rhythm Master");
-		setSize(400,600);
+		setSize(600,600);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setResizable(false);

@@ -19,9 +19,9 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	private FileOutputStream fileOut, dest;
 	private ObjectOutputStream outStream;
 	private File tempSong, beatPlace;
-	private boolean bd = false, bf = false, bj = false, bk = false;
-	private int ind = 0,inf = 0,inj = 0,ink = 0;
-	private int bed = 0,bef = 0,bej = 0,bek = 0, totime = 0;
+	private boolean bd = false, bf = false, bg = false, bh = false, bj = false, bk = false;
+	private int ind = 0,inf = 0,ing = 0,inh = 0,inj = 0,ink = 0;
+	private int bed = 0,bef = 0,beg = 0,beh = 0,bej = 0,bek = 0,totime = 0;
 	private int songPercent = 0;
 	private Audio tempAud;
 	private Timer time = new Timer(16, this);
@@ -174,7 +174,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		}
 		
 		public void drawMap(Graphics g){
-			int place = this.getWidth()/4;
+			int place = this.getWidth()/6;
 			ArrayList<Note> notes = tempBeats.getMap();
 			for(Note n : notes){
 				switch(n.position){
@@ -186,6 +186,9 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 						break;
 				case 3: g.setColor(Color.ORANGE);
 						break;
+				case 4: g.setColor(Color.RED);
+						break;
+				case 5: g.setColor(Color.GRAY);
 				default: g.setColor(Color.BLACK);
 						break;
 				}
@@ -198,16 +201,20 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		}
 		
 		public void paintComponent(Graphics g){
-			int place = this.getWidth()/4;
+			int place = this.getWidth()/6;
 			super.paintComponent(g);
 			g.setColor(Color.BLACK);
 			g.drawLine(place, 0, place, this.getHeight());
 			g.drawLine(place*2, 0, place*2, this.getHeight());
 			g.drawLine(place*3, 0, place*3, this.getHeight());
+			g.drawLine(place*4, 0, place*4, this.getHeight());
+			g.drawLine(place*5, 0, place*5, this.getHeight());
 			g.fillRect(0, 0, place, ind*5);
 			g.fillRect(place, 0, place, inf*5);
-			g.fillRect(place*2, 0, place, inj*5);
-			g.fillRect(place*3, 0, place, ink*5);
+			g.fillRect(place*2, 0, place, ing*5);
+			g.fillRect(place*3, 0, place, inh*5);
+			g.fillRect(place*4, 0, place, inj*5);
+			g.fillRect(place*5, 0, place, ink*5);
 			drawMap(g);
 		}
 	}
@@ -225,6 +232,18 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 				bef = totime;
 			}
 			bf = true;
+		}
+		if(arg0.getKeyChar() == 'g'){
+			if(!bj){
+				beg = totime;
+			}
+			bg = true;
+		}
+		if(arg0.getKeyChar() == 'h'){
+			if(!bk){
+				beh = totime;
+			}
+			bh = true;
 		}
 		if(arg0.getKeyChar() == 'j'){
 			if(!bj){
@@ -258,10 +277,26 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			bef = 0;
 			bf = false;
 		}
+		if(arg0.getKeyChar() == 'g'){
+			if(ing < 5)
+				ing = 5;
+			tempBeats.add(ing, 2, beg);
+			ing = 0;
+			beg = 0;
+			bg = false;
+		}
+		if(arg0.getKeyChar() == 'h'){
+			if(inh < 5)
+				inh = 5;
+			tempBeats.add(inh, 3, beh);
+			inh = 0;
+			beh = 0;
+			bh = false;
+		}
 		if(arg0.getKeyChar() == 'j'){
 			if(inj < 5)
 				inj = 5;
-			tempBeats.add(inj, 2, bej);
+			tempBeats.add(inj, 4, bej);
 			inj = 0;
 			bej = 0;
 			bj = false;
@@ -269,7 +304,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		if(arg0.getKeyChar() == 'k'){
 			if(ink < 5)
 				ink = 5;
-			tempBeats.add(ink, 3, bek);
+			tempBeats.add(ink, 5, bek);
 			ink = 0;
 			bek = 0;
 			bk = false;
