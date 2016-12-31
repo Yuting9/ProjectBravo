@@ -100,7 +100,11 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {	}
+	public void mouseClicked(MouseEvent e) {	
+		System.out.println("playing "+Game.songs.get(buttons.indexOf(e.getComponent())));
+		Game.songs.get(buttons.indexOf(e.getComponent())).audio.stop();
+		new Game(Game.songs.get(buttons.indexOf(e.getComponent())));
+	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
