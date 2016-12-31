@@ -15,6 +15,7 @@ public class Audio {
 			clip.open(audin);
 		}
 		catch(Exception e){
+			System.out.println("STRING went wrong");
 			e.printStackTrace();
 		}
 	}
@@ -25,6 +26,7 @@ public class Audio {
 			clip = AudioSystem.getClip();
 			clip.open(audin);
 		}catch(Exception e){
+			System.out.println("FILE went wrong");
 			e.printStackTrace();
 		}
 	}

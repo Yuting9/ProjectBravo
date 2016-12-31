@@ -22,10 +22,12 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	private boolean bd = false, bf = false, bj = false, bk = false;
 	private int ind = 0,inf = 0,inj = 0,ink = 0;
 	private int bed = 0,bef = 0,bej = 0,bek = 0, totime = 0;
+	private int songPercent = 0;
 	private Audio tempAud;
 	private Timer time = new Timer(16, this);
 	private String fileName;
 	private File songPlace;
+	private JLabel lblPercent;
 	
 	public Edit(File song, String name){
 		songPlace = song;
@@ -35,8 +37,10 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		btnPlay = new JButton("Test");
 		btnClear = new JButton("Clear");
 		btnSub = new JButton("Submit");
+		btnSub.setEnabled(false);
 		btnExit = new JButton("Exit");
 		tempAud = new Audio(songPlace);
+		lblPercent = new JLabel(Integer.toString(songPercent));
 		
 		GameFrame.add(this);
 		addKeyListener(this);
@@ -50,6 +54,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		pnlBtn.add(btnClear);
 		pnlBtn.add(btnSub);
 		pnlBtn.add(btnExit);
+		pnlBtn.add(lblPercent);
 		
 		btnPlay.addActionListener(this);
 		btnClear.addActionListener(this);
@@ -92,7 +97,11 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0){
 		if(arg0.getSource() == time){
-			System.out.println(tempAud.percentDone());
+			songPercent = tempAud.percentDone();
+			lblPercent.setText(Integer.toString(songPercent) + "% Complete");
+			if(songPercent == 100 && !btnSub.isEnabled()){
+				btnSub.setEnabled(true);
+			}
 			totime++;
 			pnlScreen.repaint();
 			if(bd){
