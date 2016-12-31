@@ -137,6 +137,21 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 				e.printStackTrace();
 			}
 		}
+		// TEMPORARY CODE START-----------------------
+		else if (arg0.getSource() == btnPlay){
+			try {
+				createFiles();
+				outStream.writeObject(tempBeats);
+				//Get the images and stuff
+				closeThings();
+				GameFrame.reset();
+				GameFrame.add(new MainMenu());
+				System.out.println("Going Back");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		// TEMPORARY CODE END -------------------------
 	}
 	
 	public void closeThings(){
