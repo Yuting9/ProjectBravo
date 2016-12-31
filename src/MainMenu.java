@@ -151,7 +151,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 
 	@Override
 	public void mouseClicked(MouseEvent e) {	}
-
+	
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		if(e.getSource() == btnArray[0]){
