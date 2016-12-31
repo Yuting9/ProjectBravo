@@ -41,6 +41,9 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		btnExit = new JButton("Exit");
 		tempAud = new Audio(songPlace);
 		lblPercent = new JLabel(Integer.toString(songPercent));
+
+		System.out.println(fileName);
+		Main.frame.setTitle("Rythmn Master - " + fileName);
 		
 		GameFrame.add(this);
 		addKeyListener(this);
@@ -73,8 +76,6 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	public void createFiles(){
 		tempSong = new File("src/Songs/"+fileName);
 		beatPlace = new File("src/Songs/"+fileName+"/"+fileName+".songMap");
-		System.out.println(fileName);
-		Main.frame.setTitle("Rythmn Master - " + fileName);
 		try{
 			System.out.println("Created the folder: " + tempSong.mkdirs());
 			System.out.println("Created the Beatmap: " + beatPlace.createNewFile());
