@@ -5,17 +5,6 @@ import java.io.IOException;
 import javax.sound.sampled.*;
 
 public class Audio {
-<<<<<<< HEAD
-	public Clip clip;
-
-	public Audio(String path)
-	{
-		try
-		{
-		AudioInputStream audioinputstream = AudioSystem.getAudioInputStream(new File (path));
-		clip = AudioSystem.getClip();
-		clip.open(audioinputstream);
-=======
 	private Clip clip;
 	AudioInputStream audin;
 	
@@ -27,7 +16,6 @@ public class Audio {
 		}
 		catch(Exception e){
 			e.printStackTrace();
->>>>>>> origin/master
 		}
 	}
 	
