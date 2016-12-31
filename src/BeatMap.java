@@ -20,6 +20,7 @@ public class BeatMap implements Serializable{
 	}
 	
 	public void add(int l, int p, int t){
+		//insertion sort here
 		map.add(new Note(p,l,t));
 	}
 	

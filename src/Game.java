@@ -17,7 +17,11 @@ public class Game extends JPanel{
 	public static ArrayList<Song> songs = new ArrayList<Song>();
 	public static RotatingMenu gameMenu = new RotatingMenu();
 	
-	public Game(Song beats){}
+	public Game(Song song){
+		GameFrame.clear();
+		GameFrame.add(this);
+		System.out.println("playing: "+song.title);
+	}
 	
 	public static void GameSetup(){
 		File folder = new File("src/Songs/");
