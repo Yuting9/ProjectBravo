@@ -41,8 +41,8 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 		addKeyListener(this);
 		btnPanel.setBackground(Color.WHITE);
 		for(int i=0; i<4; i++){
-			btnArray[i].setLocation(150, 300+(i*55));
-			lblArray[i].setLocation(100, 300+(i*55));
+			btnArray[i].setLocation(225, 300+(i*55));
+			lblArray[i].setLocation(175, 300+(i*55));
 			btnArray[i].setSize(150, 50);
 			lblArray[i].setSize(50,50);
 			btnArray[i].addActionListener(this);
