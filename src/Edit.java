@@ -41,6 +41,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		btnExit = new JButton("Exit");
 		tempAud = new Audio(songPlace);
 		lblPercent = new JLabel(Integer.toString(songPercent));
+		pnlScreen.setBackground(Color.WHITE);
 
 		System.out.println(fileName);
 		Main.frame.setTitle("Rythmn Master - " + fileName);
@@ -182,13 +183,13 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 						break;
 				case 1: g.setColor(Color.GREEN);
 						break;
-				case 2: g.setColor(Color.YELLOW);
+				case 2: g.setColor(Color.BLUE);
 						break;
-				case 3: g.setColor(Color.ORANGE);
+				case 3: g.setColor(Color.GREEN);
 						break;
-				case 4: g.setColor(Color.RED);
+				case 4: g.setColor(Color.BLUE);
 						break;
-				case 5: g.setColor(Color.GRAY);
+				case 5: g.setColor(Color.GREEN);
 				default: g.setColor(Color.BLACK);
 						break;
 				}

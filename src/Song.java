@@ -25,7 +25,7 @@ public class Song implements Serializable{
 	
 	public Song(String name, BeatMap map, File song){
 		this.title = name;
-		this.map = map;
+		this.map = map.getMap();
 		
 	}
 	
