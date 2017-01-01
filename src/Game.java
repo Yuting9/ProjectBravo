@@ -22,8 +22,7 @@ public class Game extends JPanel{
 		GameFrame.add(this);
 		System.out.println("playing: "+song.title);
 		song.get_BeatMap();
-		for (Note n:song.map)
-			System.out.println(n.time+","+n.length+","+n.position);
+		
 		
 	}
 	
