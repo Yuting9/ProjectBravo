@@ -19,9 +19,9 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	private FileOutputStream fileOut, dest;
 	private ObjectOutputStream outStream;
 	private File tempSong, beatPlace;
-	private boolean bd = false, bf = false, bg = false, bh = false, bj = false, bk = false;
-	private int ind = 0,inf = 0,ing = 0,inh = 0,inj = 0,ink = 0;
-	private int bed = 0,bef = 0,beg = 0,beh = 0,bej = 0,bek = 0,totime = 0;
+	private boolean bd = false, bf = false, bg = false, bh = false, bj = false, bk = false; // If the button bX is being pressed
+	private int ind = 0,inf = 0,ing = 0,inh = 0,inj = 0,ink = 0; // length of key inX
+	private int bed = 0,bef = 0,beg = 0,beh = 0,bej = 0,bek = 0,totime = 0; // The beginning of the key press, and total time passed
 	private int songPercent = 0;
 	private Audio tempAud;
 	private Timer time = new Timer(16, this);
