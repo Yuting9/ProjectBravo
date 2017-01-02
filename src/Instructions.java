@@ -7,7 +7,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-public class Instructions extends JPanel implements ActionListener, MouseListener{
+public class Instructions extends JPanel implements ActionListener{
 	
 	JButton back = new JButton("Back");
 	JPanel btnPnl = new JPanel();
@@ -32,7 +32,7 @@ public class Instructions extends JPanel implements ActionListener, MouseListene
 		
 		this.revalidate();
 		this.repaint();
-		System.out.println("In instructions mode");
+		System.out.println("In options mode");
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
@@ -42,30 +42,4 @@ public class Instructions extends JPanel implements ActionListener, MouseListene
 			System.out.println("Going Back");
 		}
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		
-	}
-
 }

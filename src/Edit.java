@@ -145,11 +145,10 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			}
 		}
 		// TEMPORARY CODE START-----------------------
-		else if (arg0.getSource() == btnPlay){
-			try {
+		else if (arg0.getSource() == btnPlay){//     |
+			try {//                                  |
 				createFiles();
-				outStream.writeObject(tempBeats);
-				//Get the images and stuff
+				outStream.writeObject(tempBeats);	
 				closeThings();
 				GameFrame.reset();
 				GameFrame.add(new MainMenu());
