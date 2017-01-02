@@ -20,22 +20,35 @@ public class Setup extends JPanel implements ActionListener, MouseListener{
 		pnlChoSong = new JPanel();
 		pnlPicture = new JPanel();
 		
-		btnConfirm = new JButton();
-		btnCancel  = new JButton();
+		pnlChoSong.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		pnlPicture.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		btnConfirm = new JButton("Confirm");
+		btnCancel  = new JButton("Cancel");
 		
 		btnCSong   = new JButton();
 		btnCPic= new JButton();
 		
 		setLayout(new BorderLayout());
-		pnlChoices.setLayout(new FlowLayout());
+		pnlChoices.setLayout(new BoxLayout(pnlChoices, 0));
+		pnlConfirm.setLayout(new FlowLayout());
+
+		pnlConfirm.add(btnCancel);
+		pnlConfirm.add(btnConfirm);
 		add(pnlConfirm, BorderLayout.SOUTH);
-		add(pnlChoices, BorderLayout.CENTER);
+
 		pnlChoices.add(pnlChoSong);
 		pnlChoices.add(pnlPicture);
-		
+		add(pnlChoices, BorderLayout.CENTER);
 		
 		GameFrame.add(this);
 		addMouseListener(this);
+		
+
+		this.setVisible(true);
+		
+		this.revalidate();
+		this.repaint();
 	}
 
 	@Override
