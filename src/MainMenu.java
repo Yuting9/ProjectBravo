@@ -31,7 +31,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 		for(int i = 0; i<4; i++){
 			lblArray[i] = new JLabel("");
 		}
-		btnArray[0] = new JButton("How to Play");
+		btnArray[0] = new JButton("Options");
 		btnArray[1] = new JButton("Player Mode");
 		btnArray[2] = new JButton("Creator Mode");
 		btnArray[3] = new JButton("EXIT");
