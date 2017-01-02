@@ -1,8 +1,9 @@
 import java.awt.event.*;
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class Setup extends JPanel implements ActionListener, MouseListener{
+public class Setup extends JPanel implements ActionListener{
 	
 	JPanel pnlConfirm;
 	JPanel pnlChoices;
@@ -13,6 +14,14 @@ public class Setup extends JPanel implements ActionListener, MouseListener{
 	JButton btnCancel;
 	JButton btnCSong;
 	JButton btnCPic;
+	
+	JLabel lblSong;
+	JLabel lblPict;
+	JLabel lblInfo;
+	
+	File song;
+	
+	Audio audTest;
 	
 	public Setup(){
 		pnlConfirm = new JPanel();
@@ -25,9 +34,16 @@ public class Setup extends JPanel implements ActionListener, MouseListener{
 		
 		btnConfirm = new JButton("Confirm");
 		btnCancel  = new JButton("Cancel");
-		
 		btnCSong   = new JButton();
-		btnCPic= new JButton();
+		btnCPic    = new JButton();
+
+		Audio sampleAud = new Audio();
+		
+		JLabel lblSong = new JLabel("Selected File: Choose a File");
+		JLabel lblPict = new JLabel();
+		JLabel lblInfo = new JLabel("Song Length: " + sampleAud.getTime());
+		
+		
 		
 		setLayout(new BorderLayout());
 		pnlChoices.setLayout(new BoxLayout(pnlChoices, 0));
@@ -38,52 +54,21 @@ public class Setup extends JPanel implements ActionListener, MouseListener{
 		add(pnlConfirm, BorderLayout.SOUTH);
 
 		pnlChoices.add(pnlChoSong);
+		pnlChoSong.add(lblSong);
+		pnlChoSong.add(lblInfo);
 		pnlChoices.add(pnlPicture);
 		add(pnlChoices, BorderLayout.CENTER);
 		
 		GameFrame.add(this);
-		addMouseListener(this);
-		
 
 		this.setVisible(true);
 		
 		this.revalidate();
 		this.repaint();
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
