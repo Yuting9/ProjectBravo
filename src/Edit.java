@@ -19,9 +19,9 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	private FileOutputStream fileOut, dest;
 	private ObjectOutputStream outStream;
 	private File tempSong, beatPlace;
-	private boolean bd = false, bf = false, bg = false, bh = false, bj = false, bk = false; // If the button bX is being pressed
-	private int ind = 0,inf = 0,ing = 0,inh = 0,inj = 0,ink = 0; // length of key inX
-	private int bed = 0,bef = 0,beg = 0,beh = 0,bej = 0,bek = 0,totime = 0; // The beginning of the key press, and total time passed
+	private boolean bd = false, bf = false, bl = false, bs = false, bj = false, bk = false; // If the button bX is being pressed
+	private int ind = 0,inf = 0,inl = 0,ins = 0,inj = 0,ink = 0; // length of key inX
+	private int bed = 0,bef = 0,bel = 0,bes = 0,bej = 0,bek = 0,totime = 0; // The beginning of the key press, and total time passed
 	private int songPercent = 0;
 	private Audio tempAud;
 	private Timer time = new Timer(16, this);
@@ -112,11 +112,11 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			if(bf){
 				inf++;
 			}
-			if(bg){
-				ing++;
+			if(bl){
+				inl++;
 			}
-			if(bh){
-				inh++;
+			if(bs){
+				ins++;
 			}
 			if(bj){
 				inj++;
@@ -217,12 +217,12 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			g.drawLine(place*3, 0, place*3, this.getHeight());
 			g.drawLine(place*4, 0, place*4, this.getHeight());
 			g.drawLine(place*5, 0, place*5, this.getHeight());
-			g.fillRect(0, 0, place, ind*5);
-			g.fillRect(place, 0, place, inf*5);
-			g.fillRect(place*2, 0, place, ing*5);
-			g.fillRect(place*3, 0, place, inh*5);
-			g.fillRect(place*4, 0, place, inj*5);
-			g.fillRect(place*5, 0, place, ink*5);
+			g.fillRect(0, 0, place, ins*5);
+			g.fillRect(place, 0, place, ind*5);
+			g.fillRect(place*2, 0, place, inf*5);
+			g.fillRect(place*3, 0, place, inj*5);
+			g.fillRect(place*4, 0, place, ink*5);
+			g.fillRect(place*5, 0, place, inl*5);
 			drawMap(g);
 		}
 	}
@@ -230,6 +230,12 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// Find which key was pressed, and if it isn't being held, set the initial time to the current time
+		if(arg0.getKeyChar() == 's'){
+			if(!bs){
+				bes = totime;
+			}
+			bs = true;
+		}
 		if(arg0.getKeyChar() == 'd'){
 			if(!bd){
 				bed = totime;
@@ -241,18 +247,6 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 				bef = totime;
 			}
 			bf = true;
-		}
-		if(arg0.getKeyChar() == 'g'){
-			if(!bg){
-				beg = totime;
-			}
-			bg = true;
-		}
-		if(arg0.getKeyChar() == 'h'){
-			if(!bh){
-				beh = totime;
-			}
-			bh = true;
 		}
 		if(arg0.getKeyChar() == 'j'){
 			if(!bj){
@@ -266,15 +260,29 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			}
 			bk = true;
 		}
+		if(arg0.getKeyChar() == 'l'){
+			if(!bl){
+				bel = totime;
+			}
+			bl = true;
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// Find which key was released, set the minimum length of note, create the note in the beatmap, and reset vars.
+		if(arg0.getKeyChar() == 's'){
+			if(ins < 5)
+				ins = 5;
+			tempBeats.add(ins, 0, bes);
+			ins = 0;
+			bes = 0;
+			bs = false;
+		}
 		if(arg0.getKeyChar() == 'd'){
 			if(ind < 5)
 				ind = 5;
-			tempBeats.add(ind, 0, bed);
+			tempBeats.add(ind, 1, bed);
 			ind = 0;
 			bed = 0;
 			bd = false;
@@ -282,31 +290,15 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		if(arg0.getKeyChar() == 'f'){
 			if(inf < 5)
 				inf = 5;
-			tempBeats.add(inf, 1, bef);
+			tempBeats.add(inf, 2, bef);
 			inf = 0;
 			bef = 0;
 			bf = false;
 		}
-		if(arg0.getKeyChar() == 'g'){
-			if(ing < 5)
-				ing = 5;
-			tempBeats.add(ing, 2, beg);
-			ing = 0;
-			beg = 0;
-			bg = false;
-		}
-		if(arg0.getKeyChar() == 'h'){
-			if(inh < 5)
-				inh = 5;
-			tempBeats.add(inh, 3, beh);
-			inh = 0;
-			beh = 0;
-			bh = false;
-		}
 		if(arg0.getKeyChar() == 'j'){
 			if(inj < 5)
 				inj = 5;
-			tempBeats.add(inj, 4, bej);
+			tempBeats.add(inj, 3, bej);
 			inj = 0;
 			bej = 0;
 			bj = false;
@@ -314,10 +306,18 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		if(arg0.getKeyChar() == 'k'){
 			if(ink < 5)
 				ink = 5;
-			tempBeats.add(ink, 5, bek);
+			tempBeats.add(ink, 4, bek);
 			ink = 0;
 			bek = 0;
 			bk = false;
+		}
+		if(arg0.getKeyChar() == 'l'){
+			if(inl < 5)
+				inl = 5;
+			tempBeats.add(inl, 5, bel);
+			inl = 0;
+			bel = 0;
+			bl = false;
 		}
 	}
 
