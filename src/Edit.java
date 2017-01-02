@@ -112,6 +112,12 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			if(bf){
 				inf++;
 			}
+			if(bg){
+				ing++;
+			}
+			if(bh){
+				inh++;
+			}
 			if(bj){
 				inj++;
 			}
@@ -190,6 +196,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 				case 4: g.setColor(Color.BLUE);
 						break;
 				case 5: g.setColor(Color.GREEN);
+						break;
 				default: g.setColor(Color.BLACK);
 						break;
 				}
@@ -222,6 +229,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
+		// Find which key was pressed, and if it isn't being held, set the initial time to the current time
 		if(arg0.getKeyChar() == 'd'){
 			if(!bd){
 				bed = totime;
@@ -235,13 +243,13 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			bf = true;
 		}
 		if(arg0.getKeyChar() == 'g'){
-			if(!bj){
+			if(!bg){
 				beg = totime;
 			}
 			bg = true;
 		}
 		if(arg0.getKeyChar() == 'h'){
-			if(!bk){
+			if(!bh){
 				beh = totime;
 			}
 			bh = true;
@@ -262,6 +270,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
+		// Find which key was released, set the minimum length of note, create the note in the beatmap, and reset vars.
 		if(arg0.getKeyChar() == 'd'){
 			if(ind < 5)
 				ind = 5;

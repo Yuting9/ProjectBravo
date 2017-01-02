@@ -7,7 +7,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-public class Instructions extends JPanel implements ActionListener{
+public class Instructions extends JPanel implements ActionListener, MouseListener{
 	
 	JButton back = new JButton("Back");
 	JPanel btnPnl = new JPanel();
@@ -41,6 +41,31 @@ public class Instructions extends JPanel implements ActionListener{
 			GameFrame.add(new MainMenu());
 			System.out.println("Going Back");
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		
 	}
 
 }
