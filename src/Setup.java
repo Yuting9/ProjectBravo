@@ -5,24 +5,24 @@ import javax.swing.*;
 
 public class Setup extends JPanel implements ActionListener{
 	
-	JPanel pnlConfirm;
-	JPanel pnlChoices;
-	JPanel pnlChoSong;
-	JPanel pnlPicture;
-	
-	JButton btnConfirm;
-	JButton btnCancel;
-	JButton btnCSong;
-	JButton btnCPic;
-	
-	JLabel lblSong;
-	JLabel lblPict;
-	JLabel lblInfo;
-	
-	File song;
-	
-	Audio audTest;
-	
+	private JPanel pnlConfirm;
+	private JPanel pnlChoices;
+	private JPanel pnlChoSong;                   
+	private JPanel pnlPicture;                    
+	                                             
+	private JButton btnConfirm;                  
+	private JButton btnCancel;                   
+	private JButton btnCSong;                    
+	private JButton btnCPic;                     
+	                                             
+	private JLabel lblSong;                      
+	private JLabel lblPict;                      
+	private JLabel lblInfo;                      
+	                                             
+	private File song;                           
+	                                             
+	private Audio audTest;                       
+	                                             
 	public Setup(){
 		pnlConfirm = new JPanel();
 		pnlChoices = new JPanel();
@@ -69,7 +69,9 @@ public class Setup extends JPanel implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
+		if(arg0.getSource() == btnCancel){
+			
+		}
 	}
 
 }
