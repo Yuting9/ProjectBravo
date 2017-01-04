@@ -27,7 +27,6 @@ $RECYCLE.BIN/
 .DS_Store
 .AppleDouble
 .LSOverride
-.class
 
 # Thumbnails
 ._*
@@ -46,3 +45,4 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.class

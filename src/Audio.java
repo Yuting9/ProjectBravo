@@ -59,8 +59,8 @@ public class Audio {
 		return (int)(((double)clip.getMicrosecondPosition())/len*100);
 	}
 	
-	public int getLength(){
-		return (int)(len/1000000);
+	public long getLength(){
+		return len;
 	}
 	
 	public String getTime(){

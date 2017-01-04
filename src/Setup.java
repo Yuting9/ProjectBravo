@@ -7,22 +7,24 @@ public class Setup extends JPanel implements ActionListener{
 	
 	private JPanel pnlConfirm;
 	private JPanel pnlChoices;
-	private JPanel pnlChoSong;                   
-	private JPanel pnlPicture;                    
-	                                             
-	private JButton btnConfirm;                  
-	private JButton btnCancel;                   
-	private JButton btnCSong;                    
-	private JButton btnCPic;                     
-	                                             
-	private JLabel lblSong;                      
-	private JLabel lblPict;                      
-	private JLabel lblInfo;                      
-	                                             
-	private File song;                           
-	                                             
-	private Audio audTest;                       
-	                                             
+	private JPanel pnlChoSong;
+	private JPanel pnlPicture;
+	
+	private JButton btnConfirm;
+	private JButton btnCancel; 
+	private JButton btnChoSong;
+	private JButton btnChoPic;
+	
+	private JLabel lblSong;
+	private JLabel lblPict;
+	private JLabel lblInfo;
+	
+	private File song;
+	
+	private Audio audTest;
+	
+	private JProgressBar songProgress;
+	      
 	public Setup(){
 		pnlConfirm = new JPanel();
 		pnlChoices = new JPanel();
@@ -34,8 +36,8 @@ public class Setup extends JPanel implements ActionListener{
 		
 		btnConfirm = new JButton("Confirm");
 		btnCancel  = new JButton("Cancel");
-		btnCSong   = new JButton();
-		btnCPic    = new JButton();
+		btnChoSong = new JButton("Choose Song");
+		btnChoPic  = new JButton("Choose Thumbnail");
 
 		Audio sampleAud = new Audio();
 		
@@ -43,10 +45,11 @@ public class Setup extends JPanel implements ActionListener{
 		JLabel lblPict = new JLabel();
 		JLabel lblInfo = new JLabel("Song Length: " + sampleAud.getTime());
 		
-		
+		JProgressBar songProgress = new JProgressBar();
+		songProgress.setMaximum((int)sampleAud.getLength());
 		
 		setLayout(new BorderLayout());
-		pnlChoices.setLayout(new BoxLayout(pnlChoices, 0));
+		pnlChoices.setLayout(new GridLayout());
 		pnlConfirm.setLayout(new FlowLayout());
 
 		pnlConfirm.add(btnCancel);
@@ -54,7 +57,9 @@ public class Setup extends JPanel implements ActionListener{
 		add(pnlConfirm, BorderLayout.SOUTH);
 
 		pnlChoices.add(pnlChoSong);
+		pnlChoSong.setLayout(new GridLayout(0, 1, 0, 0));
 		pnlChoSong.add(lblSong);
+		pnlChoSong.add(btnChoSong);
 		pnlChoSong.add(lblInfo);
 		pnlChoices.add(pnlPicture);
 		add(pnlChoices, BorderLayout.CENTER);
@@ -62,7 +67,6 @@ public class Setup extends JPanel implements ActionListener{
 		GameFrame.add(this);
 
 		this.setVisible(true);
-		
 		this.revalidate();
 		this.repaint();
 	}
