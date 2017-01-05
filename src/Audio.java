@@ -8,9 +8,11 @@ public class Audio {
 	private Clip clip;
 	private long len = 0;
 	private AudioInputStream audin;
+	public boolean empty;
 	
 	public Audio(){
 		System.out.println("Empty Audio Created");
+		empty = true;
 	}
 	
 	public Audio(String filename){
@@ -19,6 +21,7 @@ public class Audio {
 			clip = AudioSystem.getClip();
 			clip.open(audin);
 			len = clip.getMicrosecondLength();
+			empty = false;
 		}
 		catch(Exception e){
 			System.out.println("STRING went wrong");
@@ -32,6 +35,7 @@ public class Audio {
 			clip = AudioSystem.getClip();
 			clip.open(audin);
 			len = clip.getMicrosecondLength();
+			empty = false;
 		}catch(Exception e){
 			System.out.println("FILE went wrong");
 			e.printStackTrace();
@@ -39,20 +43,35 @@ public class Audio {
 	}
 	
 	public void start(){
-		clip.setMicrosecondPosition(0);
-		clip.start();
+		if(!empty){
+			clip.setMicrosecondPosition(0);
+			clip.start();
+		}
 	}
 	
 	public void resume(){
-		clip.start();
+		if(!empty)
+			clip.start();
+	}
+	
+	public void pause(){
+		if(!empty)
+			clip.stop();
 	}
 	
 	public void stop(){
-		clip.stop();
+		if(!empty){
+			clip.stop();
+			clip.setMicrosecondPosition(0);
+		}
 	}
 	
 	public boolean checkEnd(){
 		return len==clip.getMicrosecondPosition();
+	}
+	
+	public long getCurrent(){
+		return clip.getMicrosecondPosition();
 	}
 	
 	public int percentDone(){

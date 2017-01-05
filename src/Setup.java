@@ -25,7 +25,6 @@ public class Setup extends JPanel implements ActionListener{
 	private JButton btnStop;
 	private JButton btnPause;
 	
-	
 	private JLabel lblSong;
 	private JLabel lblPict;
 	private JLabel lblInfo;
@@ -37,7 +36,11 @@ public class Setup extends JPanel implements ActionListener{
 	private JProgressBar songProgress;
 	
 	private Timer timer;
-	      
+	
+	private String chosenName;
+	
+	private JFileChooser choose;
+	
 	public Setup(){
 		//--------------------------Variable Initialization------------------------
 		pnlConfirm = new JPanel();
@@ -59,6 +62,8 @@ public class Setup extends JPanel implements ActionListener{
 		btnStop    = new JButton("Stop");
 		btnPause   = new JButton("Pause");
 		
+		choose 	   = new JFileChooser();
+		
 		btnConfirm.addActionListener(this);
 		btnCancel .addActionListener(this);
 		btnChoSong.addActionListener(this);
@@ -66,16 +71,21 @@ public class Setup extends JPanel implements ActionListener{
 		btnPlay   .addActionListener(this);
 		btnStop   .addActionListener(this);
 		btnPause  .addActionListener(this);
-
-		Audio sampleAud = new Audio();
 		
-		JLabel lblSong = new JLabel("Selected File: Choose a File");
-		JLabel lblPict = new JLabel();
-		JLabel lblInfo = new JLabel("Song Length: " + sampleAud.getTime());
+		audTest = new Audio();
 		
-		JProgressBar songProgress = new JProgressBar();
+		lblSong = new JLabel("Selected File: Choose a File");
+		lblPict = new JLabel();
+		lblInfo = new JLabel("Song Length: " + audTest.getTime());
+		
+		songProgress = new JProgressBar(0, (int)audTest.getLength());
+		songProgress.setStringPainted(true);
+		songProgress.setValue(0);
+		
+		timer = new Timer(16, this);
 		
 		//----------------------Setting Parameters------------------------------
+		
 		
 		pnlConfirm.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		pnlChoices.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -87,7 +97,6 @@ public class Setup extends JPanel implements ActionListener{
 		pnlPlaSong.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		pnlControl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
-		songProgress.setMaximum((int)sampleAud.getLength());
 		songProgress.setSize((this.getWidth()/4)-10, 10);
 		
 		setLayout(new BorderLayout());
@@ -120,11 +129,6 @@ public class Setup extends JPanel implements ActionListener{
 		pnlControl.add(btnStop);
 		pnlGetSong.add(lblInfo);
 		
-		
-		
-		
-		
-		
 		pnlChoices.add(pnlPicture);
 		
 		GameFrame.add(this);
@@ -132,27 +136,33 @@ public class Setup extends JPanel implements ActionListener{
 		this.setVisible(true);
 		this.revalidate();
 		this.repaint();
+		timer.start();
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		if(arg0.getSource() == timer){
+			lblInfo.setText("Song Length: " + audTest.getTime());
+			if(!audTest.empty){
+				songProgress.setValue((int)audTest.getCurrent());
+				songProgress.repaint();
+			}
+			this.revalidate();
+			this.repaint();
+		}
 		if(arg0.getSource() == btnCancel){
 			
 		}
 		if(arg0.getSource() == btnConfirm){
-			/*
-			if(s != null){
+			if(chosenName != null){
 				GameFrame.clear();
 				GameFrame.state="Edit";
-				new Edit(choose.getSelectedFile().getAbsoluteFile(),s);
+				new Edit(choose.getSelectedFile().getAbsoluteFile(),chosenName);
 			}
-			*/
 		}
 		if(arg0.getSource() == btnChoSong){
-
 			JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV File", "wav");
-			JFileChooser choose = new JFileChooser();
 			choose.setVisible(true);
 			choose.setFileFilter(filter);
 			choose.setAcceptAllFileFilterUsed(false);
@@ -176,8 +186,38 @@ public class Setup extends JPanel implements ActionListener{
 					}
 				}while(!(new File("/src/Songs/"+s).mkdirs()));
 				new File("/src/Songs/"+s).delete();
+				audTest = new Audio(choose.getSelectedFile());
+				songProgress = new JProgressBar(0, (int)audTest.getLength());
+				songProgress.setValue(0);
+				this.repaint(0);
 			}
 		}
+		if(arg0.getSource() == btnPlay){
+			System.out.println("Play");
+			audTest.resume();
+			repaint();
+		}
+		if(arg0.getSource() == btnPause){
+			System.out.println("Pause");
+			audTest.pause();
+			repaint();
+		}
+		if(arg0.getSource() == btnStop){
+			System.out.println("Stop");
+			audTest.stop();
+			repaint();
+		}
 	}
-
+	
+	class DrawPanel extends JPanel{
+		
+		public DrawPanel(){
+			
+		}
+		
+		public void paintComponenet(Graphics g){
+			
+		}
+		
+	}
 }
