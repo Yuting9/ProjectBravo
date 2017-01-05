@@ -21,9 +21,8 @@ public class Setup extends JPanel implements ActionListener{
 	private JButton btnCancel; 
 	private JButton btnChoSong;
 	private JButton btnChoPic;
-	private JButton btnPlay;
+	private JButton btnPlayPause;
 	private JButton btnStop;
-	private JButton btnPause;
 	
 	private JLabel lblSong;
 	private JLabel lblName;
@@ -55,23 +54,21 @@ public class Setup extends JPanel implements ActionListener{
 		pnlPlaSong = new JPanel();
 		pnlControl = new JPanel();
 		
-		btnConfirm = new JButton("Confirm");
-		btnCancel  = new JButton("Cancel");
-		btnChoSong = new JButton("Choose Song");
-		btnChoPic  = new JButton("Choose Thumbnail");
-		btnPlay    = new JButton("Play");
-		btnStop    = new JButton("Stop");
-		btnPause   = new JButton("Pause");
+		btnConfirm   = new JButton("Confirm");
+		btnCancel    = new JButton("Cancel");
+		btnChoSong   = new JButton("Choose Song");
+		btnChoPic    = new JButton("Choose Thumbnail");
+		btnPlayPause = new JButton("Play");
+		btnStop      = new JButton("Stop");
 		
-		choose 	   = new JFileChooser();
+		choose 	     = new JFileChooser();
 		
-		btnConfirm.addActionListener(this);
-		btnCancel .addActionListener(this);
-		btnChoSong.addActionListener(this);
-		btnChoPic .addActionListener(this);
-		btnPlay   .addActionListener(this);
-		btnStop   .addActionListener(this);
-		btnPause  .addActionListener(this);
+		btnConfirm  .addActionListener(this);
+		btnCancel   .addActionListener(this);
+		btnChoSong  .addActionListener(this);
+		btnChoPic   .addActionListener(this);
+		btnPlayPause.addActionListener(this);
+		btnStop   	.addActionListener(this);
 		
 		audTest = new Audio();
 		
@@ -123,8 +120,7 @@ public class Setup extends JPanel implements ActionListener{
 		pnlSongLen.add(lblInfo, BorderLayout.CENTER);
 		pnlSongLen.add(songProgress, BorderLayout.SOUTH);
 		pnlPlaSong.add(pnlControl);
-		pnlControl.add(btnPlay);
-		pnlControl.add(btnPause);
+		pnlControl.add(btnPlayPause);
 		pnlControl.add(btnStop);
 		
 		pnlChoices.add(pnlPicture);
@@ -156,6 +152,22 @@ public class Setup extends JPanel implements ActionListener{
 				new Edit(choose.getSelectedFile().getAbsoluteFile(),chosenName);
 			}
 		}
+		if(arg0.getActionCommand() != null){
+			if(arg0.getActionCommand().equals("Play")){
+				if(!audTest.empty){
+					btnPlayPause.setText("Pause");
+					System.out.println("Play");
+					audTest.resume();
+					repaint();
+				}
+			}
+			if(arg0.getActionCommand().equals("Pause")){
+				btnPlayPause.setText("Play");
+				System.out.println("Pause");
+				audTest.pause();
+				repaint();
+			}
+		}
 		if(arg0.getSource() == btnChoSong){
 			JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV File", "wav");
@@ -185,16 +197,6 @@ public class Setup extends JPanel implements ActionListener{
 				lblName.setText(choose.getSelectedFile().getName());
 				audTest = new Audio(choose.getSelectedFile());
 			}
-		}
-		if(arg0.getSource() == btnPlay){
-			System.out.println("Play");
-			audTest.resume();
-			repaint();
-		}
-		if(arg0.getSource() == btnPause){
-			System.out.println("Pause");
-			audTest.pause();
-			repaint();
 		}
 		if(arg0.getSource() == btnStop){
 			System.out.println("Stop");

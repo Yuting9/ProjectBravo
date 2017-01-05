@@ -86,6 +86,10 @@ public class Audio {
 		return (len/1000000)/60 + ":" + String.format("%02d", (len/1000000)%60);
 	}
 	
+	public String getCurrentTime(){
+		return (clip.getMicrosecondPosition()/1000000)/60 + ":" + String.format("%02d", (clip.getMicrosecondPosition()/1000000)%60);
+	}
+	
 	public void remove(){
 		try {
 			clip.stop();
