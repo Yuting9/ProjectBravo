@@ -33,7 +33,7 @@ public class Setup extends JPanel implements ActionListener{
 	
 	private Audio audTest;
 	
-	private JProgressBar songProgress;
+	private DrawPanel songProgress;
 	
 	private Timer timer;
 	
@@ -78,9 +78,7 @@ public class Setup extends JPanel implements ActionListener{
 		lblPict = new JLabel();
 		lblInfo = new JLabel("Song Length: " + audTest.getTime());
 		
-		songProgress = new JProgressBar(0, (int)audTest.getLength());
-		songProgress.setStringPainted(true);
-		songProgress.setValue(0);
+		songProgress = new DrawPanel();
 		
 		timer = new Timer(16, this);
 		
@@ -144,7 +142,6 @@ public class Setup extends JPanel implements ActionListener{
 		if(arg0.getSource() == timer){
 			lblInfo.setText("Song Length: " + audTest.getTime());
 			if(!audTest.empty){
-				songProgress.setValue((int)audTest.getCurrent());
 				songProgress.repaint();
 			}
 			this.revalidate();
@@ -186,10 +183,8 @@ public class Setup extends JPanel implements ActionListener{
 					}
 				}while(!(new File("/src/Songs/"+s).mkdirs()));
 				new File("/src/Songs/"+s).delete();
+				lblSong.setText("Selected File: " + choose.getSelectedFile().getName());
 				audTest = new Audio(choose.getSelectedFile());
-				songProgress = new JProgressBar(0, (int)audTest.getLength());
-				songProgress.setValue(0);
-				this.repaint(0);
 			}
 		}
 		if(arg0.getSource() == btnPlay){
@@ -212,12 +207,19 @@ public class Setup extends JPanel implements ActionListener{
 	class DrawPanel extends JPanel{
 		
 		public DrawPanel(){
-			
+			this.repaint();
 		}
 		
-		public void paintComponenet(Graphics g){
-			
+		public void paintComponent(Graphics g){
+			super.paintComponent(g);
+			int w = this.getWidth(), h = this.getHeight();
+			g.setColor(Color.BLACK);
+			g.drawRect(0, 0, w, h);
+			if(!audTest.empty){
+				g.setColor(Color.GREEN);
+				g.fillRect(0, 0, (int)((w/100)*((audTest.getCurrent()*100/audTest.getLength()))), h);
+				System.out.println((audTest.getCurrent()*100/audTest.getLength()));
+			}
 		}
-		
 	}
 }
