@@ -26,6 +26,7 @@ public class Setup extends JPanel implements ActionListener{
 	private JButton btnPause;
 	
 	private JLabel lblSong;
+	private JLabel lblName;
 	private JLabel lblPict;
 	private JLabel lblInfo;
 	
@@ -74,7 +75,8 @@ public class Setup extends JPanel implements ActionListener{
 		
 		audTest = new Audio();
 		
-		lblSong = new JLabel("Selected File: Choose a File");
+		lblSong = new JLabel("Selected File: ");
+		lblName = new JLabel("Choose a File");
 		lblPict = new JLabel();
 		lblInfo = new JLabel("Song Length: " + audTest.getTime());
 		
@@ -91,9 +93,6 @@ public class Setup extends JPanel implements ActionListener{
 		pnlPicture.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		pnlFileNom.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		pnlSongLen.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		pnlGetSong.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		pnlPlaSong.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		pnlControl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		songProgress.setSize((this.getWidth()/4)-10, 10);
 		
@@ -116,16 +115,17 @@ public class Setup extends JPanel implements ActionListener{
 		pnlChoSong.add(pnlGetSong);
 		pnlGetSong.add(pnlFileNom);
 		pnlFileNom.add(lblSong);
+		pnlFileNom.add(lblName);
 		pnlGetSong.add(pnlSongBtn);
 		pnlSongBtn.add(btnChoSong);
 		pnlChoSong.add(pnlPlaSong);
 		pnlPlaSong.add(pnlSongLen);
+		pnlSongLen.add(lblInfo, BorderLayout.CENTER);
 		pnlSongLen.add(songProgress, BorderLayout.SOUTH);
 		pnlPlaSong.add(pnlControl);
 		pnlControl.add(btnPlay);
 		pnlControl.add(btnPause);
 		pnlControl.add(btnStop);
-		pnlGetSong.add(lblInfo);
 		
 		pnlChoices.add(pnlPicture);
 		
@@ -137,7 +137,6 @@ public class Setup extends JPanel implements ActionListener{
 		timer.start();
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource() == timer){
 			lblInfo.setText("Song Length: " + audTest.getTime());
@@ -183,7 +182,7 @@ public class Setup extends JPanel implements ActionListener{
 					}
 				}while(!(new File("/src/Songs/"+s).mkdirs()));
 				new File("/src/Songs/"+s).delete();
-				lblSong.setText("Selected File: " + choose.getSelectedFile().getName());
+				lblName.setText(choose.getSelectedFile().getName());
 				audTest = new Audio(choose.getSelectedFile());
 			}
 		}
@@ -213,13 +212,12 @@ public class Setup extends JPanel implements ActionListener{
 		public void paintComponent(Graphics g){
 			super.paintComponent(g);
 			int w = this.getWidth(), h = this.getHeight();
-			g.setColor(Color.BLACK);
-			g.drawRect(0, 0, w, h);
 			if(!audTest.empty){
 				g.setColor(Color.GREEN);
-				g.fillRect(0, 0, (int)((w/100)*((audTest.getCurrent()*100/audTest.getLength()))), h);
-				System.out.println((audTest.getCurrent()*100/audTest.getLength()));
+				g.fillRect(0, 0, (int)((w/100)*((audTest.getCurrent()*100/audTest.getLength()))), h);	
 			}
+			g.setColor(Color.BLACK);
+			g.drawRect(0, 0, w, h);
 		}
 	}
 }
