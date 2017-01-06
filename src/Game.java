@@ -13,18 +13,12 @@ import java.io.FilenameFilter;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-public class Game extends JPanel{
+public class Game extends JPanel implements ActionListener, KeyListener{
 	public static ArrayList<Song> songs = new ArrayList<Song>();
 	public static RotatingMenu gameMenu = new RotatingMenu();
+	private Timer timer = new Timer(16,this);
 	
-	public Game(Song song){
-		GameFrame.clear();
-		GameFrame.add(this);
-		System.out.println("playing: "+song.title);
-		song.get_BeatMap();
-		
-		
-	}
+
 	
 	public static void GameSetup(){
 		File folder = new File("src/Songs/");
@@ -39,5 +33,41 @@ public class Game extends JPanel{
 		GameFrame.add(gameMenu);
 		gameMenu.revalidate();
 		gameMenu.repaint();
+	}
+	
+	public Game(Song song){
+		GameFrame.clear();
+		GameFrame.add(this);
+		System.out.println("playing: "+song.title);
+		song.get_BeatMap();
+		addKeyListener(this);
+		song.audio.start();
+		
+	}
+	
+	
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
