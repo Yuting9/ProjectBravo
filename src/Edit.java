@@ -203,10 +203,6 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			}
 		}
 		
-		public void drawNotes(){
-			this.repaint();
-		}
-		
 		public void paintComponent(Graphics g){
 			int place = this.getWidth()/6;
 			super.paintComponent(g);
