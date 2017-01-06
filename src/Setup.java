@@ -137,6 +137,7 @@ public class Setup extends JPanel implements ActionListener{
 		if(arg0.getSource() == timer){
 			lblInfo.setText("Song Length: " + audTest.getTime());
 			if(!audTest.empty){
+				System.out.println(audTest.getCurrentTime() + " " + audTest.percentDone());
 				songProgress.repaint();
 			}
 			this.revalidate();
@@ -216,7 +217,7 @@ public class Setup extends JPanel implements ActionListener{
 			int w = this.getWidth(), h = this.getHeight();
 			if(!audTest.empty){
 				g.setColor(Color.GREEN);
-				g.fillRect(0, 0, (int)((w/100)*((audTest.getCurrent()*100/audTest.getLength()))), h);	
+				g.fillRect(0, 0, (int)((w/100.0)*audTest.percentDone()), h);	
 			}
 			g.setColor(Color.BLACK);
 			g.drawRect(0, 0, w, h);
