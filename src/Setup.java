@@ -124,6 +124,7 @@ public class Setup extends JPanel implements ActionListener{
 		pnlControl.add(btnStop);
 		
 		pnlChoices.add(pnlPicture);
+		pnlPicture.add(btnChoPic);
 		
 		GameFrame.add(this);
 		
