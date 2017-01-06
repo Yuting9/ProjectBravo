@@ -6,10 +6,11 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.io.File;
 import java.io.FilenameFilter;
-
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +18,9 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	public static ArrayList<Song> songs = new ArrayList<Song>();
 	public static RotatingMenu gameMenu = new RotatingMenu();
 	private Timer timer = new Timer(16,this);
+	private Song song;
+	private int time;
+	private static BufferedImage image;
 	
 
 	
@@ -30,6 +34,14 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		for (Song i: songs){
 			gameMenu.add_button(i.title);
 		}
+		
+		try{
+			image= ImageIO.read(new File("bin/Untitled-2.png"));
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 		GameFrame.add(gameMenu);
 		gameMenu.revalidate();
 		gameMenu.repaint();
@@ -39,18 +51,30 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		GameFrame.clear();
 		GameFrame.add(this);
 		System.out.println("playing: "+song.title);
+		this.song=song;
 		song.get_BeatMap();
 		addKeyListener(this);
 		song.audio.start();
+		timer.start();
 		
 	}
 	
-	
+	public void paintComponent(Graphics g){
+		System.out.print("this is happeneing");
+		super.paintComponent(g);
+		g.drawImage(image, 0, 0, this);
+		g.setColor(Color.blue);
+		for (Note n: song.map){
+			g.fillRect(100*n.position,5*(time - n.time) - 5*n.length, 100,5*n.length);
+		}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		System.out.print("stuff");
+		this.repaint();
+		time++;
 	}
 
 	@Override
