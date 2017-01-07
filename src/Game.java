@@ -10,7 +10,6 @@ import java.awt.event.*;
 import java.io.*;
 import java.io.File;
 import java.io.FilenameFilter;
-import javax.awt.*;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -71,11 +70,14 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 			System.out.println(n.length);
 		song.audio.start();
 		timer.start();
-		
+		this.repaint();
+	}
+	
+	public Game(){
+		this.repaint();
 	}
 	
 	public void paintComponent(Graphics g){
-		System.out.print("this is happeneing");
 		super.paintComponent(g);
 		//g.drawImage(image, 0, 0, this);
 		g.setColor(Color.blue);
