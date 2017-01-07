@@ -148,7 +148,10 @@ public class Setup extends JPanel implements ActionListener{
 			
 		}
 		if(arg0.getSource() == btnConfirm){
+			System.out.println("CONFIRM");
+			System.out.println(chosenName);
 			if(chosenName != null){
+				timer.stop();
 				GameFrame.clear();
 				GameFrame.state="Edit";
 				new Edit(choose.getSelectedFile().getAbsoluteFile(),chosenName);
@@ -185,21 +188,20 @@ public class Setup extends JPanel implements ActionListener{
 				result = choose.showOpenDialog(this);
 			}
 			if(choose.getSelectedFile() != null && result == JFileChooser.APPROVE_OPTION){
-				String s = null;
 				do{
-					if(s != null){
+					if(chosenName != null){
 						JOptionPane.showMessageDialog(this, "Invalid Choice - Song already exists");
 					}
-					s = (String) JOptionPane.showInputDialog(this, "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE);	
-					if(s == null){
+					chosenName = (String) JOptionPane.showInputDialog(this, "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE);	
+					if(chosenName == null){
 						break;
 					}
-				}while(!(new File("/src/Songs/"+s).mkdirs()));
-				new File("/src/Songs/"+s).delete();
-				if(s != null){
+				}while(!(new File("/src/Songs/"+chosenName).mkdirs()));
+				new File("/src/Songs/"+chosenName).delete();
+				if(chosenName != null){
 					lblName.setText(choose.getSelectedFile().getName());
 					audTest = new Audio(choose.getSelectedFile());
-					Main.frame.setTitle("Rhythm Master - " + s);
+					Main.frame.setTitle("Rhythm Master - " + chosenName);
 				}
 			}
 		}
