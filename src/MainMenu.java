@@ -70,13 +70,14 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 			Game.GameSetup();
 		}
 		else if(arg0.getSource() == btnArray[1]){
+			/*
 			this.repaint();
 			GameFrame.timer.stop();
 			GameFrame.clear();
 			GameFrame.state="Setup";
 			System.out.println("Edit Setup");
 			new Setup();
-			/* OLD CODE
+			*/
 			GameFrame.timer.stop();
 			JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV File", "wav");
@@ -109,7 +110,6 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 				if(s != null)
 					new Edit(choose.getSelectedFile().getAbsoluteFile(),s);
 			}
-			*/
 		}
 		if(arg0.getSource() == btnArray[2]){
 			GameFrame.timer.stop();
