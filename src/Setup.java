@@ -188,17 +188,19 @@ public class Setup extends JPanel implements ActionListener{
 				result = choose.showOpenDialog(this);
 			}
 			if(choose.getSelectedFile() != null && result == JFileChooser.APPROVE_OPTION){
+				String s = null;
 				do{
-					if(chosenName != null){
+					if(s != null){
 						JOptionPane.showMessageDialog(this, "Invalid Choice - Song already exists");
 					}
-					chosenName = (String) JOptionPane.showInputDialog(this, "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE);	
-					if(chosenName == null){
+					s = (String) JOptionPane.showInputDialog(this, "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE);	
+					if(s == null){
 						break;
 					}
-				}while(!(new File("/src/Songs/"+chosenName).mkdirs()));
-				new File("/src/Songs/"+chosenName).delete();
-				if(chosenName != null){
+				}while(!(new File("/src/Songs/"+s).mkdirs()));
+				new File("/src/Songs/"+s).delete();
+				if(s != null){
+					chosenName = s;
 					lblName.setText(choose.getSelectedFile().getName());
 					audTest = new Audio(choose.getSelectedFile());
 					Main.frame.setTitle("Rhythm Master - " + chosenName);
