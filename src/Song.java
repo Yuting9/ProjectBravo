@@ -50,7 +50,7 @@ public class Song implements Serializable{
 					parameters[i]=Integer.parseInt(strNums[i]);
 				}
 				System.out.println(parameters);
-				map.add(new Note(parameters[1],parameters[0],parameters[2]));
+				map.add(new Note(parameters[0],parameters[1],parameters[2]));
 			}
 		} catch (IOException e) {
 			

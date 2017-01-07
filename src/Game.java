@@ -68,7 +68,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		song.addMap();
 		for (Note n: song.map)
 			System.out.println(n.length);
-		song.audio.start();
+		
 		timer.start();
 		this.repaint();
 	}
@@ -82,45 +82,19 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		//g.drawImage(image, 0, 0, this);
 		g.setColor(Color.blue);
 		for (Note n: song.map){
-			g.fillRect(100*n.position,5*(time - n.time) - 5*n.length, 100,5*n.length);
+			g.fillRect(100*n.position,5*(time - n.time)-500 - 5*n.length, 100,5*n.length);
 		}
 	}
 	
-	/*
-	class DrawPanel extends JPanel{
-		int std = 0, stf = 0, stj = 0, stk = 0;
-		
-		public DrawPanel(){
-			this.repaint();
-		}
-		
-		public void drawMap(Graphics g){
-			int place = this.getWidth()/6;
-			g.setColor(Color.blue);
-			g.fillRect(place*n.position,5*(time - n.time) - 5*n.length, place,5*n.length);
-			}
-		}
-		
 
-		
-		public void paintComponent(Graphics g){
-			int place = this.getWidth()/6;
-			super.paintComponent(g);
-			g.setColor(Color.BLACK);
-			g.drawLine(place, 0, place, this.getHeight());
-			g.drawLine(place*2, 0, place*2, this.getHeight());
-			g.drawLine(place*3, 0, place*3, this.getHeight());
-			g.drawLine(place*4, 0, place*4, this.getHeight());
-			g.drawLine(place*5, 0, place*5, this.getHeight());
-			
-			drawMap(g);
-		}
-	}
-	*/
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.print("stuff");
+		if(5*time==600)
+		{
+			song.audio.start();
+		}
+		System.out.println(song.audio.percentDone());
 		this.repaint();
 		time++;
 	}

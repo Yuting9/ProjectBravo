@@ -18,10 +18,7 @@ public class BeatMap{
 	public ArrayList<Note> getMap(){
 		return map;
 	}
-	
-	public ArrayList<Note> inportMap(String title){
-		
-	}
+
 	
 	public void add(int l, int p, int t){
 		//insertion sort here
