@@ -73,7 +73,7 @@ public class Setup extends JPanel implements ActionListener{
 		audTest = new Audio();
 		
 		lblSong = new JLabel("Selected File: ");
-		lblName = new JLabel("Choose a File");
+		lblName = new JLabel("Choose a WAV File");
 		lblPict = new JLabel();
 		lblInfo = new JLabel("Song Length: " + audTest.getTime());
 		
@@ -148,7 +148,10 @@ public class Setup extends JPanel implements ActionListener{
 			
 		}
 		if(arg0.getSource() == btnConfirm){
+			System.out.println("CONFIRM");
+			System.out.println(chosenName);
 			if(chosenName != null){
+				timer.stop();
 				GameFrame.clear();
 				GameFrame.state="Edit";
 				new Edit(choose.getSelectedFile().getAbsoluteFile(),chosenName);
@@ -171,33 +174,35 @@ public class Setup extends JPanel implements ActionListener{
 			}
 		}
 		if(arg0.getSource() == btnChoSong){
-			JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
+			//JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV File", "wav");
 			choose.setVisible(true);
 			choose.setFileFilter(filter);
 			choose.setAcceptAllFileFilterUsed(false);
 			int result = choose.showOpenDialog(this);
-			while((!choose.getSelectedFile().getName().substring(
+			while(result == JFileChooser.APPROVE_OPTION && 
+					(!choose.getSelectedFile().getName().substring(
 					choose.getSelectedFile().getName().lastIndexOf(".")+1,
 					choose.getSelectedFile().getName().length()).equals("wav") || 
-					choose.getSelectedFile() == null) && 
-					result == JFileChooser.APPROVE_OPTION){
+					choose.getSelectedFile() == null)){
 				result = choose.showOpenDialog(this);
 			}
 			if(choose.getSelectedFile() != null && result == JFileChooser.APPROVE_OPTION){
-				String s = null;
 				do{
-					if(s != null){
+					if(chosenName != null){
 						JOptionPane.showMessageDialog(this, "Invalid Choice - Song already exists");
 					}
-					s = (String) JOptionPane.showInputDialog(this, "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE);	
-					if(s == null){
+					chosenName = (String) JOptionPane.showInputDialog(this, "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE);	
+					if(chosenName == null){
 						break;
 					}
-				}while(!(new File("/src/Songs/"+s).mkdirs()));
-				new File("/src/Songs/"+s).delete();
-				lblName.setText(choose.getSelectedFile().getName());
-				audTest = new Audio(choose.getSelectedFile());
+				}while(!(new File("/src/Songs/"+chosenName).mkdirs()));
+				new File("/src/Songs/"+chosenName).delete();
+				if(chosenName != null){
+					lblName.setText(choose.getSelectedFile().getName());
+					audTest = new Audio(choose.getSelectedFile());
+					Main.frame.setTitle("Rhythm Master - " + chosenName);
+				}
 			}
 		}
 		if(arg0.getSource() == btnStop){
