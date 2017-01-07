@@ -82,7 +82,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		//g.drawImage(image, 0, 0, this);
 		g.setColor(Color.blue);
 		for (Note n: song.map){
-			g.fillRect(100*n.position,5*(time - n.time)-500 - 5*n.length, 100,5*n.length);
+			g.fillRect(100*n.position,5*(time - n.time) - 5*n.length, 100,5*n.length);
 		}
 	}
 	
