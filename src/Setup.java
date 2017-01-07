@@ -197,7 +197,9 @@ public class Setup extends JPanel implements ActionListener{
 					if(s == null){
 						break;
 					}
-				}while(!(new File("/src/Songs/"+s).mkdirs()));
+					for(String file : (new File("/src/Songs").list()))
+							System.out.println(file);
+				}while(!(new File("/src/Songs/"+s).mkdir()));
 				new File("/src/Songs/"+s).delete();
 				if(s != null){
 					chosenName = s;
