@@ -86,7 +86,8 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 			choose.setFileFilter(filter);
 			choose.setAcceptAllFileFilterUsed(false);
 			int result = choose.showOpenDialog(this);
-			while((!choose.getSelectedFile().getName().substring(
+			while(choose.getSelectedFile() != null && 
+			      (!choose.getSelectedFile().getName().substring(
 					choose.getSelectedFile().getName().lastIndexOf(".")+1,
 					choose.getSelectedFile().getName().length()).equals("wav") || 
 					choose.getSelectedFile() == null) && 
