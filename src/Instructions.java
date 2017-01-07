@@ -32,7 +32,7 @@ public class Instructions extends JPanel implements ActionListener{
 		
 		this.revalidate();
 		this.repaint();
-		System.out.println("In instructions mode");
+		System.out.println("In options mode");
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
@@ -42,5 +42,4 @@ public class Instructions extends JPanel implements ActionListener{
 			System.out.println("Going Back");
 		}
 	}
-
 }

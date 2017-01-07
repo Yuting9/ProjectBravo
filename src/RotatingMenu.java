@@ -27,8 +27,8 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		
 		lblUp.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		lblDown.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		lblUp.setBounds(130, 0, 264, 50);
-		lblDown.setBounds(130, 521, 264, 50);
+		lblUp.setBounds(230, 0, 260, 50);
+		lblDown.setBounds(230, 521, 260, 50);
 		this.add(lblUp);
 		this.add(lblDown);
 		if (GameFrame.state.equals("Game")){
@@ -100,7 +100,11 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {	}
+	public void mouseClicked(MouseEvent e) {	
+		System.out.println("playing "+Game.songs.get(buttons.indexOf(e.getComponent())));
+		Game.songs.get(buttons.indexOf(e.getComponent())).audio.stop();
+		new Game(Game.songs.get(buttons.indexOf(e.getComponent())));
+	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {

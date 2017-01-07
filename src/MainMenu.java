@@ -31,9 +31,9 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 		for(int i = 0; i<4; i++){
 			lblArray[i] = new JLabel("");
 		}
-		btnArray[0] = new JButton("How to Play");
-		btnArray[1] = new JButton("Player Mode");
-		btnArray[2] = new JButton("Creator Mode");
+		btnArray[0] = new JButton("Player Mode");
+		btnArray[1] = new JButton("Creator Mode");
+		btnArray[2] = new JButton("Options");
 		btnArray[3] = new JButton("EXIT");
 		btnPanel.setLayout(null);
 		this.add(btnPanel, BorderLayout.CENTER);
@@ -41,8 +41,8 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 		addKeyListener(this);
 		btnPanel.setBackground(Color.WHITE);
 		for(int i=0; i<4; i++){
-			btnArray[i].setLocation(150, 300+(i*55));
-			lblArray[i].setLocation(100, 300+(i*55));
+			btnArray[i].setLocation(225, 300+(i*55));
+			lblArray[i].setLocation(175, 300+(i*55));
 			btnArray[i].setSize(150, 50);
 			lblArray[i].setSize(50,50);
 			btnArray[i].addActionListener(this);
@@ -60,14 +60,8 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 	
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource() == btnArray[0]){
-			GameFrame.timer.stop();
-			GameFrame.clear();
-			GameFrame.state="Instructions";
-			new Instructions();
-		}
-		else if(arg0.getSource() == btnArray[1]){
-			btnArray[1].setText("Loading...");
-			btnArray[1].repaint();
+			btnArray[0].setText("Loading...");
+			btnArray[0].repaint();
 			this.repaint();
 			GameFrame.timer.stop();
 			GameFrame.clear();
@@ -75,7 +69,15 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 			System.out.println("Game Setup");
 			Game.GameSetup();
 		}
-		else if(arg0.getSource() == btnArray[2]){
+		else if(arg0.getSource() == btnArray[1]){
+			/*
+			this.repaint();
+			GameFrame.timer.stop();
+			GameFrame.clear();
+			GameFrame.state="Setup";
+			System.out.println("Edit Setup");
+			new Setup();
+			*/
 			GameFrame.timer.stop();
 			JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV File", "wav");
@@ -108,6 +110,12 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 				if(s != null)
 					new Edit(choose.getSelectedFile().getAbsoluteFile(),s);
 			}
+		}
+		if(arg0.getSource() == btnArray[2]){
+			GameFrame.timer.stop();
+			GameFrame.clear();
+			GameFrame.state="Options";
+			new Instructions();
 		}
 		else if(arg0.getSource() == btnArray[3]){
 			GameFrame.timer.stop();

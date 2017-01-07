@@ -45,7 +45,4 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-src/Songs/IT WORKS/IT WORKS.songMap
-src/Songs/asdf/asdf.songMap
-src/Songs/asdf/asdf.wav
-src/Songs/IT WORKS/IT WORKS.wav
+*.class
