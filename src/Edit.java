@@ -132,13 +132,12 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		else if (arg0.getSource() == btnSub){
 			try {
 				createFiles();
-				outStream.writeObject(tempBeats);
 				//Get the images and stuff
 				closeThings();
 				GameFrame.reset();
 				GameFrame.add(new MainMenu());
 				System.out.println("Going Back");
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -146,12 +145,11 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		else if (arg0.getSource() == btnPlay){//     |
 			try {//                                  |
 				createFiles();
-				outStream.writeObject(tempBeats);	
 				closeThings();
 				GameFrame.reset();
 				GameFrame.add(new MainMenu());
 				System.out.println("Going Back");
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
