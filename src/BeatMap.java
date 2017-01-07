@@ -15,7 +15,11 @@ public class BeatMap{
 		map = new ArrayList<Note>();
 	}
 	
-	public  ArrayList<Note> getMap(String title){
+	public ArrayList<Note> getMap(){
+		return map;
+	}
+	
+	public ArrayList<Note> inportMap(String title){
 		System.out.println("start of getmap");
 		BufferedReader input=null;
 		try{

@@ -56,7 +56,6 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		System.out.println("playing: "+song.title);
 		this.song=song;
 		this.setLayout(null);
-		song.get_BeatMap();
 		addKeyListener(this);
 		setLayout(null);
 		//why = new DrawPanel();

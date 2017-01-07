@@ -14,20 +14,21 @@ public class Song implements Serializable{
 	
 	public String title;
 	public ArrayList<Note> map;
-	private BeatMap temp;
 	public Image img;
 	public File song;
 	public Audio audio;
 	
 	public Song(String name){
-		this.title = name;
-		this.audio = new Audio("src/Songs/"+title+"/"+title+".wav");
+		title = name;
+		map = new ArrayList<Note>();
+		audio = new Audio("src/Songs/"+title+"/"+title+".wav");
 	}
 	
-	public Song(String name, BeatMap map, File song){
-		this.title = name;
-		this.map = map.getMap();
-		
+	public Song(String name, BeatMap beat, File songFile){
+		title = name;
+		map = beat.inportMap(title);
+		song = songFile;
+		audio = new Audio("src/Songs/"+title+"/"+title+".wav");
 	}
 	
 	public static String getFileExtension(File file) {
@@ -49,10 +50,6 @@ public class Song implements Serializable{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-	}
-	
-	public void get_BeatMap(){
-		this.map = temp.getMap(this.title);
 	}
 	
 	public String toString(){
