@@ -26,12 +26,14 @@ public class BeatMap{
 	
 	public void writeMap(File beatPlace){
 		try {
+			System.out.println("Created the Beatmap: " + beatPlace.createNewFile());
 			FileOutputStream fileOut = new FileOutputStream(beatPlace);
 			PrintWriter outFile = new PrintWriter(fileOut);
 			for(Note note : map){
+				System.out.println(note);
 				outFile.println(note);
 			}
-			System.out.println("Created the Beatmap: " + beatPlace.createNewFile());
+			outFile.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,5 +48,8 @@ class Note{
 		position = p;
 		length = l;
 		time = t;
+	}
+	public String toString(){
+		return position + " " + length + " " + time;
 	}
 }

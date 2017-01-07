@@ -16,8 +16,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 	private JButton btnPlay, btnClear, btnSub, btnExit;
 	private BeatMap tempBeats = new BeatMap();
 	private FileInputStream src;
-	private FileOutputStream fileOut, dest;
-	private ObjectOutputStream outStream;
+	private FileOutputStream dest;
 	private File tempSong, beatPlace;
 	private boolean bd = false, bf = false, bl = false, bs = false, bj = false, bk = false; // If the button bX is being pressed
 	private int ind = 0,inf = 0,inl = 0,ins = 0,inj = 0,ink = 0; // length of key inX
@@ -161,8 +160,6 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			tempAud.remove();
 			src.close();
 			dest.close();
-			fileOut.close();
-			outStream.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
