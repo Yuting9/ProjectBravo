@@ -47,7 +47,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		buttons.add(new JButton(title));
 		buttons.get(buttons.size()-1).setSize(7*title.length()+40,30);
 		buttons.get(buttons.size()-1).setName(title);
-		System.out.println(buttons.get(buttons.size()-1).getName());
+		//System.out.println(buttons.get(buttons.size()-1).getName());
 		buttons.get(buttons.size()-1).setLocation((int)(-4*(temp_x*temp_x-570*temp_x)/10000), temp_x);
 		buttons.get(buttons.size()-1).addMouseListener(this);
 		this.add(buttons.get(buttons.size()-1));
@@ -68,9 +68,9 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		for(int i=0;i<buttons.size();i++){
 			temp_x=40*i+(int)(shift%10000);
 			buttons.get(i).setLocation((int)(-4*(temp_x*temp_x-570*temp_x)/10000), temp_x);
-			System.out.println((int)(-4*(temp_x*temp_x-570*temp_x)/1000));
-			System.out.println(temp_x);
-			System.out.println();
+			//System.out.println((int)(-4*(temp_x*temp_x-570*temp_x)/1000));
+			//System.out.println(temp_x);
+			//System.out.println();
 			Game.gameMenu.add(buttons.get(i));
 		}	
 		Game.gameMenu.revalidate();
@@ -88,11 +88,11 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		allx = e.getX();
 		ally = e.getY();
 		if(ally>=520 && allx>130){
-			System.out.println("GOING DOWN");
+			//System.out.println("GOING DOWN");
 			movement=-2;
 		}
 		else if(ally<=50 && allx>130){
-			System.out.println("GOING UP");
+			//System.out.println("GOING UP");
 			movement=2;
 		}
 		else
@@ -101,7 +101,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 
 	@Override
 	public void mouseClicked(MouseEvent e) {	
-		System.out.println("playing "+Game.songs.get(buttons.indexOf(e.getComponent())));
+		//System.out.println("playing "+Game.songs.get(buttons.indexOf(e.getComponent())));
 		Game.songs.get(buttons.indexOf(e.getComponent())).audio.stop();
 		new Game(Game.songs.get(buttons.indexOf(e.getComponent())));
 	}
@@ -111,7 +111,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		;
 		if(e.getSource().getClass() == JButton.class){
 			e.getComponent().getName();
-			System.out.println("Show clipart for: " +e.getComponent().getName());
+			//System.out.println("Show clipart for: " +e.getComponent().getName());
 			Game.songs.get(buttons.indexOf(e.getComponent())).audio.start();
 			// Image Get And Set Here
 		}
@@ -130,7 +130,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		System.out.println(arg0.getKeyCode());
+		//System.out.println(arg0.getKeyCode());
 		// Untested Code - Please Test
 		if(arg0.getKeyCode() == 38){
 			movement = 55;

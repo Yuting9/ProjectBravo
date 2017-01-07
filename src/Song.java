@@ -23,12 +23,40 @@ public class Song implements Serializable{
 		map = new ArrayList<Note>();
 		audio = new Audio("src/Songs/"+title+"/"+title+".wav");
 	}
-	
+	/*
 	public Song(String name, BeatMap beat, File songFile){
 		title = name;
 		map = beat.inportMap(title);
 		song = songFile;
 		audio = new Audio("src/Songs/"+title+"/"+title+".wav");
+	}
+	*/
+	public void addMap(){
+		System.out.println("start of getmap");
+		BufferedReader input=null;
+		try{
+			input= new BufferedReader(new FileReader("src/Songs/"+title+"/"+title+".songMap"));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		String line = null;
+		String[] strNums;
+		int parameters[] = new int[3];
+		try {
+			while((line=input.readLine()) != null){
+				strNums=line.split("\\s");
+				for(int i=0;i<3;i++)
+				{
+					parameters[i]=Integer.parseInt(strNums[i]);
+				}
+				System.out.println(parameters);
+				map.add(new Note(parameters[1],parameters[0],parameters[2]));
+			}
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public static String getFileExtension(File file) {
