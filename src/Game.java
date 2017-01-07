@@ -10,7 +10,6 @@ import java.awt.event.*;
 import java.io.*;
 import java.io.File;
 import java.io.FilenameFilter;
-import javax.awt.*;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -80,12 +79,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-<<<<<<< HEAD
-		System.out.print("this is happeneing");
-		g.drawImage(image, 0, 0, this);
-=======
 		//g.drawImage(image, 0, 0, this);
->>>>>>> refs/remotes/origin/master
 		g.setColor(Color.blue);
 		for (Note n: song.map){
 			g.fillRect(100*n.position,5*(time - n.time) - 5*n.length, 100,5*n.length);
