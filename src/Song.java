@@ -14,6 +14,7 @@ public class Song implements Serializable{
 	
 	public String title;
 	public ArrayList<Note> map;
+	private BeatMap temp;
 	public Image img;
 	public File song;
 	public Audio audio;
@@ -51,18 +52,7 @@ public class Song implements Serializable{
 	}
 	
 	public void get_BeatMap(){
-		FileInputStream fileOut;
-		ObjectInputStream outStream;
-		try{
-			fileOut = new FileInputStream("src/Songs/"+this.title+"/"+this.title+".songMap");
-			outStream = new ObjectInputStream(fileOut);
-			this.map = ((BeatMap) outStream.readObject()).getMap();
-			
-			outStream.close();
-			fileOut.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		this.map = temp.getMap(this.title);
 	}
 	
 	public String toString(){

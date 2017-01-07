@@ -15,7 +15,31 @@ public class BeatMap{
 		map = new ArrayList<Note>();
 	}
 	
-	public ArrayList<Note> getMap(){
+	public  ArrayList<Note> getMap(String title){
+		System.out.println("start of getmap");
+		BufferedReader input=null;
+		try{
+			input= new BufferedReader(new FileReader("src/Songs/"+title+"/"+title+".songMap"));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		String line = null;
+		String[] strNums;
+		int parameters[] = new int[3];
+		try {
+			while((line=input.readLine()) != null){
+				strNums=line.split("\\s");
+				for(int i=0;i<3;i++)
+				{
+					parameters[i]=Integer.parseInt(strNums[i]);
+				}
+				System.out.println(parameters);
+				add(parameters[1],parameters[0],parameters[2]);
+			}
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		return map;
 	}
 	
@@ -39,6 +63,8 @@ public class BeatMap{
 		}
 		
 	}
+	
+	
 	
 }
 
