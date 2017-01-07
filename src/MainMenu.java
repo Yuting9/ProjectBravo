@@ -66,7 +66,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 			GameFrame.timer.stop();
 			GameFrame.clear();
 			GameFrame.state="Game";
-			System.out.println("Game Setup");
+			//System.out.println("Game Setup");
 			Game.GameSetup();
 		}
 		else if(arg0.getSource() == btnArray[1]){
@@ -154,7 +154,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// This part works now! yay
-		System.out.println(arg0.getKeyCode() + "check");
+		//System.out.println(arg0.getKeyCode() + "check");
 	}
 
 	@Override

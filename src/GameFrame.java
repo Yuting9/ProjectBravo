@@ -39,13 +39,13 @@ public class GameFrame extends JFrame implements ActionListener{
 	
 	// 
 	public static void clear(){
-		System.out.println("Cleared frame");
+		//System.out.println("Cleared frame");
 		Main.frame.getContentPane().removeAll();
 	}
 	
 	public static void add(JPanel jpanel){
-		System.out.print(jpanel);
-		System.out.println("added to frame");
+		//System.out.print(jpanel);
+		//System.out.println("added to frame");
 		Main.frame.getContentPane().add(jpanel);
 		Main.frame.repaint();
 	}
@@ -60,14 +60,14 @@ public class GameFrame extends JFrame implements ActionListener{
 			if(RotatingMenu.getMovement()==2 && RotatingMenu.shift<0 ){
 				RotatingMenu.shift+=7;	
 				RotatingMenu.update();
-				System.out.println(RotatingMenu.shift);
+				//System.out.println(RotatingMenu.shift);
 			}
 			if(RotatingMenu.getMovement()==-2 && RotatingMenu.shift>530+(40*(RotatingMenu.getButtons().size()-1))*-1 ){
 				RotatingMenu.shift-=7;
 				RotatingMenu.update();
-				System.out.println(RotatingMenu.shift);
-				System.out.println(40*(RotatingMenu.getButtons().size()-1));
-				System.out.println();
+				//System.out.println(RotatingMenu.shift);
+				//System.out.println(40*(RotatingMenu.getButtons().size()-1));
+				//System.out.println();
 			}
 		}	
 	}

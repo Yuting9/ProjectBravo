@@ -65,6 +65,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		label.setLocation(0, 0);
 		this.repaint();
 		this.revalidate();
+		song.addMap();
 		for (Note n: song.map)
 			System.out.println(n.length);
 		song.audio.start();
