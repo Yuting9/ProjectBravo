@@ -4,10 +4,10 @@
  * @author Yuting, Ganashsai
  */
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 
-public class BeatMap implements Serializable{
+public class BeatMap{
 	// We're gonna have to sort these by start time
 	private static ArrayList<Note> map;
 	
@@ -22,6 +22,20 @@ public class BeatMap implements Serializable{
 	public void add(int l, int p, int t){
 		//insertion sort here
 		map.add(new Note(p,l,t));
+	}
+	
+	public void writeMap(File beatPlace){
+		try {
+			FileOutputStream fileOut = new FileOutputStream(beatPlace);
+			PrintWriter outFile = new PrintWriter(fileOut);
+			for(Note note : map){
+				outFile.println(note);
+			}
+			System.out.println("Created the Beatmap: " + beatPlace.createNewFile());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

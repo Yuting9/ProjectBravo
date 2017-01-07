@@ -79,10 +79,8 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		beatPlace = new File("src/Songs/"+fileName+"/"+fileName+".songMap");
 		try{
 			System.out.println("Created the folder: " + tempSong.mkdirs());
-			System.out.println("Created the Beatmap: " + beatPlace.createNewFile());
 			src = new FileInputStream(songPlace);
-			fileOut = new FileOutputStream(beatPlace);
-			outStream = new ObjectOutputStream(fileOut);
+			tempBeats.writeMap(beatPlace);
 			dest = new FileOutputStream(tempSong+"/"+fileName+".wav");
 			dest.getChannel().transferFrom(src.getChannel(), 0, src.getChannel().size());
 		}catch(Exception e){
