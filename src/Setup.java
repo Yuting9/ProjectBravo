@@ -73,7 +73,7 @@ public class Setup extends JPanel implements ActionListener{
 		audTest = new Audio();
 		
 		lblSong = new JLabel("Selected File: ");
-		lblName = new JLabel("Choose a File");
+		lblName = new JLabel("Choose a WAV File");
 		lblPict = new JLabel();
 		lblInfo = new JLabel("Song Length: " + audTest.getTime());
 		
@@ -171,17 +171,17 @@ public class Setup extends JPanel implements ActionListener{
 			}
 		}
 		if(arg0.getSource() == btnChoSong){
-			JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
+			//JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV File", "wav");
 			choose.setVisible(true);
 			choose.setFileFilter(filter);
 			choose.setAcceptAllFileFilterUsed(false);
 			int result = choose.showOpenDialog(this);
-			while((!choose.getSelectedFile().getName().substring(
+			while(result == JFileChooser.APPROVE_OPTION && 
+					(!choose.getSelectedFile().getName().substring(
 					choose.getSelectedFile().getName().lastIndexOf(".")+1,
 					choose.getSelectedFile().getName().length()).equals("wav") || 
-					choose.getSelectedFile() == null) && 
-					result == JFileChooser.APPROVE_OPTION){
+					choose.getSelectedFile() == null)){
 				result = choose.showOpenDialog(this);
 			}
 			if(choose.getSelectedFile() != null && result == JFileChooser.APPROVE_OPTION){
@@ -196,8 +196,11 @@ public class Setup extends JPanel implements ActionListener{
 					}
 				}while(!(new File("/src/Songs/"+s).mkdirs()));
 				new File("/src/Songs/"+s).delete();
-				lblName.setText(choose.getSelectedFile().getName());
-				audTest = new Audio(choose.getSelectedFile());
+				if(s != null){
+					lblName.setText(choose.getSelectedFile().getName());
+					audTest = new Audio(choose.getSelectedFile());
+					Main.frame.setTitle("Rhythm Master - " + s);
+				}
 			}
 		}
 		if(arg0.getSource() == btnStop){
