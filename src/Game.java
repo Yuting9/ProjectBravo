@@ -56,12 +56,16 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		addKeyListener(this);
 		song.audio.start();
 		timer.start();
-		
+		this.repaint();
+	}
+	
+	public Game(){
+		this.repaint();
 	}
 	
 	public void paintComponent(Graphics g){
-		System.out.print("this is happeneing");
 		super.paintComponent(g);
+		System.out.print("this is happeneing");
 		g.drawImage(image, 0, 0, this);
 		g.setColor(Color.blue);
 		for (Note n: song.map){
