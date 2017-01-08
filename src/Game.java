@@ -22,9 +22,8 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	private Song song;
 	private int time;
 	private JLabel label;
-	private ImageIcon image;
-	//private static ImageIcon image;
-	private JPanel why;
+	
+	private static ImageIcon image;
 
 	
 	public static void GameSetup(){
@@ -86,7 +85,11 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		g.drawLine(100*3, 0, 100*3, 600);
 		g.drawLine(100*4, 0, 100*4, 600);
 		g.drawLine(100*5, 0, 100*5, 600);
+<<<<<<< HEAD
 		g.drawLine(0, 550, 600, 550);
+=======
+		g.drawLine(0, 510, 600, 510);
+>>>>>>> origin/master
 		g.setColor(Color.blue);
 		for (Note n: song.map){
 			g.fillRect(100*n.position,5*(time - n.time) - 5*n.length, 100,5*n.length);
@@ -97,11 +100,11 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		if(5*time-20==600)
+		if(5*time-90==600)
 		{
 			song.audio.start();
 		}
-		System.out.println(song.audio.percentDone());
+		//System.out.println(song.audio.percentDone());
 		this.repaint();
 		time++;
 	}
