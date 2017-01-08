@@ -66,6 +66,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		label = new JLabel(image);
 		this.add(label);
 		label.setLocation(0, 0);
+		addKeyListener(this);
 		this.repaint();
 		this.revalidate();
 		song.addMap();
@@ -123,6 +124,8 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 			for(int difference=-5;difference<6;difference++){
 				if (n.time==time+i && n.position==index)
 				{
+					System.out.println(difference);
+					System.out.println();
 					score-=Math.abs(difference);
 					currentNote[index]=i;
 					breaker=true;
@@ -137,7 +140,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		System.out.println(arg0.getKeyChar());
 		if(arg0.getKeyChar()=='s')
 		{
 			if (currentNote[0]!=-1)
