@@ -21,6 +21,8 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	private Timer timer = new Timer(16,this);
 	private Song song;
 	private int time;
+	private int timeHeld[] = new int[6];
+	private int score;
 	private JLabel label;
 	
 	private static ImageIcon image;
@@ -88,7 +90,8 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		g.drawLine(0, 510, 600, 510);
 		g.setColor(Color.blue);
 		for (Note n: song.map){
-			g.fillRect(100*n.position,5*(time - n.time) - 5*n.length, 100,5*n.length);
+			if (5*(time - n.time) - 5*n.length<510)
+				g.fillRect(100*n.position,5*(time - n.time) - 5*n.length, 100,5*n.length);
 		}
 	}
 	
@@ -96,8 +99,9 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		if(5*time-90==600)
+		if(5*time==470)
 		{
+			System.out.println("started");
 			song.audio.start();
 		}
 		//System.out.println(song.audio.percentDone());
@@ -108,13 +112,59 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		if(arg0.getKeyChar()=='s')
+		{
+			timeHeld[0]++;
+		}
+		if(arg0.getKeyChar()=='d')
+		{
+			timeHeld[1]++;
+		}
+		if(arg0.getKeyChar()=='f')
+		{
+			timeHeld[2]++;
+		}
+		if(arg0.getKeyChar()=='j')
+		{
+			timeHeld[3]++;
+		}
+		if(arg0.getKeyChar()=='k')
+		{
+			timeHeld[4]++;
+		}
+		if(arg0.getKeyChar()=='l')
+		{
+			timeHeld[5]++;
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		if(arg0.getKeyChar()=='s')
+		{
+			timeHeld[0]=0;
+		}
+		if(arg0.getKeyChar()=='d')
+		{
+			timeHeld[1]=0;
+		}
+		if(arg0.getKeyChar()=='f')
+		{
+			timeHeld[2]=0;
+		}
+		if(arg0.getKeyChar()=='j')
+		{
+			timeHeld[3]=0;
+		}
+		if(arg0.getKeyChar()=='k')
+		{
+			timeHeld[4]=0;
+		}
+		if(arg0.getKeyChar()=='l')
+		{
+			timeHeld[5]=0;
+		}
 	}
 
 	@Override
