@@ -105,7 +105,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		if(5*time==470)
+		if(5*time==510)
 		{
 			System.out.println("started");
 			song.audio.start();

@@ -152,6 +152,7 @@ public class Setup extends JPanel implements ActionListener{
 			System.out.println(chosenName);
 			if(chosenName != null){
 				timer.stop();
+				audTest.stop();
 				GameFrame.clear();
 				GameFrame.state="Edit";
 				new Edit(choose.getSelectedFile().getAbsoluteFile(),chosenName);
