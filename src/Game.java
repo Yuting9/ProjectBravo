@@ -94,8 +94,12 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		g.drawLine(0, 510, 600, 510);
 		g.setColor(Color.blue);
 		for (Note n: song.map){
-			if (5*(time - n.time) - 5*n.length<510)
-				g.fillRect(100*n.position,5*(time - n.time) - 5*n.length, 100,5*n.length);
+			if (5*(time - n.time) - 5*n.length<=510)
+			{
+				g.fillRect(100*n.position,5*(time - n.time - n.length), 100,5*n.length);
+				if (5*(time-n.time-n.length)==510)
+					System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
+			}
 			else
 				max_index=song.map.indexOf(n);
 		}
@@ -105,7 +109,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		if(5*time==470)
+		if(5*time==510)
 		{
 			System.out.println("started");
 			song.audio.start();

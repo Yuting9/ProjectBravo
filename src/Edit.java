@@ -68,7 +68,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		
 		this.revalidate();
 		this.repaint();
-		System.out.println("In edit mode");
+		//System.out.println("In edit mode");
 		tempAud.start();
 		time.start();
 	}
