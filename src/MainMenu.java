@@ -23,7 +23,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 	
 	public MainMenu(){
 		try{
-			arrow = new ImageIcon("src/Arrow_Right.png");
+			arrow = new ImageIcon("src/assets/Arrow_Right.png");
 		}catch(Exception e){
 			e.printStackTrace();
 		}

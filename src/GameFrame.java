@@ -33,7 +33,6 @@ public class GameFrame extends JFrame implements ActionListener{
 	public static void reset(){
 		Main.frame.getContentPane().removeAll();
 		Main.frame.getContentPane().add(menu);
-		
 	}
 	
 	// 
