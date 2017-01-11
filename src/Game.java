@@ -56,7 +56,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	public Game(Song song){
 		GameFrame.clear();
 		GameFrame.add(this);
-		System.out.println("playing: "+song.title);
+		//System.out.println("playing: "+song.title);
 		this.song=song;
 		this.setLayout(null);
 		addKeyListener(this);
@@ -66,7 +66,6 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		label = new JLabel(image);
 		this.add(label);
 		label.setLocation(0, 0);
-		addKeyListener(this);
 		this.repaint();
 		this.revalidate();
 		song.addMap();
@@ -97,8 +96,8 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 			if (5*(time - n.time) - 5*n.length<=510)
 			{
 				g.fillRect(100*n.position,5*(time - n.time - n.length), 100,5*n.length);
-				if (5*(time-n.time-n.length)==510)
-					System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
+				//if (5*(time-n.time-n.length)==510)
+					//System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
 			}
 			else
 				max_index=song.map.indexOf(n);
