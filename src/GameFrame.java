@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 public class GameFrame extends JFrame implements ActionListener{
 	
 	// Frame Variables
-	private static Container container;
 	private static MainMenu menu = new MainMenu();
 	public static String state = "Menu";
 	public static Timer timer;
