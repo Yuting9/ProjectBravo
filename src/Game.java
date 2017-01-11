@@ -114,6 +114,11 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 			System.out.println("started");
 			song.audio.start();
 		}
+		if(song.audio.percentDone()==100)
+		{
+			GameFrame.reset();
+			GameFrame.add(new MainMenu());
+		}
 		//System.out.println(song.audio.percentDone());
 		this.repaint();
 		time++;

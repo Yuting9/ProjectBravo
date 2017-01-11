@@ -60,8 +60,8 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 	
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource() == btnArray[0]){
-			btnArray[0].setText("Loading...");
-			btnArray[0].repaint();
+			//btnArray[0].setText("Loading...");
+			//btnArray[0].repaint();
 			this.repaint();
 			GameFrame.timer.stop();
 			GameFrame.clear();
