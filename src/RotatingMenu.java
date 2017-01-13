@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class RotatingMenu extends JPanel implements MouseMotionListener, MouseListener, KeyListener{
 	
 	private static ArrayList<JButton> buttons = new ArrayList<JButton>();
+	public static JButton btnReturn = new JButton("Back");
 	private int allx,ally;
 	private static int movement;
 
@@ -29,8 +30,11 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		lblDown.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		lblUp.setBounds(230, 0, 260, 50);
 		lblDown.setBounds(230, 521, 260, 50);
+		btnReturn.setBounds(490,521,110,50);
+		btnReturn.addActionListener(Main.frame);
 		this.add(lblUp);
 		this.add(lblDown);
+		this.add(btnReturn);
 		if (GameFrame.state.equals("Game")){
 			this.revalidate();
 			this.repaint();	
