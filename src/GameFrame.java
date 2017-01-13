@@ -15,6 +15,7 @@ public class GameFrame extends JFrame implements ActionListener{
 	private static MainMenu menu = new MainMenu();
 	public static String state = "Menu";
 	public static Timer timer;
+	public static float calibrate;
 	
 	// Defualt Constructor
 	public GameFrame(){

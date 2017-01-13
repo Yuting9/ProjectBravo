@@ -6,40 +6,38 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Setup extends JPanel implements ActionListener{
 	
-	private JPanel pnlConfirm;
-	private JPanel pnlChoices;
-	private JPanel pnlChoSong;
-	private JPanel pnlPicture;
-	private JPanel pnlFileNom;
-	private JPanel pnlGetSong;
-	private JPanel pnlPlaSong;
-	private JPanel pnlSongBtn;
-	private JPanel pnlSongLen;
-	private JPanel pnlControl;
+	private static JPanel pnlConfirm;
+	private static JPanel pnlChoices;
+	private static JPanel pnlChoSong;
+	private static JPanel pnlPicture;
+	private static JPanel pnlFileNom;
+	private static JPanel pnlGetSong;
+	private static JPanel pnlPlaSong;
+	private static JPanel pnlSongBtn;
+	private static JPanel pnlSongLen;
+	private static JPanel pnlControl;
 	
-	private JButton btnConfirm;
-	private JButton btnCancel; 
-	private JButton btnChoSong;
-	private JButton btnChoPic;
-	private JButton btnPlayPause;
-	private JButton btnStop;
+	private static JButton btnConfirm;
+	private static JButton btnCancel; 
+	private static JButton btnChoSong;
+	private static JButton btnChoPic;
+	private static JButton btnPlayPause;
+	private static JButton btnCalibrate;
+	private static JButton btnStop;
 	
-	private JLabel lblSong;
-	private JLabel lblName;
-	private JLabel lblPict;
-	private JLabel lblInfo;
+	private static JLabel lblSong;
+	private static JLabel lblName;
+	private static JLabel lblPict;
+	private static JLabel lblInfo;
 	
-	private File song;
+	private static File song;
 	
-	private Audio audTest;
+	private static Audio audTest;
 	
-	private DrawPanel songProgress;
-	
-	private Timer timer;
-	
-	private String chosenName;
-	
-	private JFileChooser choose;
+	private static DrawPanel songProgress;
+	private static Timer timer;
+	private static String chosenName;
+	private static JFileChooser choose;
 	
 	public Setup(){
 		//--------------------------Variable Initialization------------------------
@@ -60,6 +58,7 @@ public class Setup extends JPanel implements ActionListener{
 		btnChoPic    = new JButton("Choose Thumbnail");
 		btnPlayPause = new JButton("Play");
 		btnStop      = new JButton("Stop");
+		btnCalibrate = new JButton("Calibrate");
 		
 		choose 	     = new JFileChooser();
 		
@@ -69,6 +68,7 @@ public class Setup extends JPanel implements ActionListener{
 		btnChoPic   .addActionListener(this);
 		btnPlayPause.addActionListener(this);
 		btnStop   	.addActionListener(this);
+		btnCalibrate.addActionListener(this);
 		
 		audTest = new Audio();
 		
@@ -104,10 +104,11 @@ public class Setup extends JPanel implements ActionListener{
 		//--------------------Adding Components----------------------------------
 
 		add(pnlConfirm, BorderLayout.SOUTH);
-		add(pnlChoices, BorderLayout.CENTER);
-		
 		pnlConfirm.add(btnCancel);
+		pnlConfirm.add(btnCalibrate);
 		pnlConfirm.add(btnConfirm);
+
+		add(pnlChoices, BorderLayout.CENTER);
 		pnlChoices.add(pnlChoSong);
 		pnlChoSong.add(pnlGetSong);
 		pnlGetSong.add(pnlFileNom);
@@ -173,6 +174,11 @@ public class Setup extends JPanel implements ActionListener{
 				audTest.pause();
 				repaint();
 			}
+		}
+		if(arg0.getSource() == btnCalibrate){
+			GameFrame.clear();
+			new Calibrate();
+			System.out.println("Calibrate");
 		}
 		if(arg0.getSource() == btnChoSong){
 			//JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");

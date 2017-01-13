@@ -82,10 +82,12 @@ public class Calibrate extends JPanel implements ActionListener, KeyListener{
 			if(buffer == 70){
 				buffer = 0;
 				boop = true;
-				System.out.println("BEEEEEEP");
 				calAud.start();
 			}
 			this.repaint();
+		}
+		if(e.getSource() == btnConfirm){
+			GameFrame.calibrate = avg;
 		}
 	}
 
