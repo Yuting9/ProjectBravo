@@ -51,6 +51,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		GameFrame.add(gameMenu);
 		gameMenu.revalidate();
 		gameMenu.repaint();
+		
 	}
 	
 	public Game(Song song){
@@ -74,6 +75,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		score=10000;
 		timer.start();
 		this.repaint();
+		this.requestFocus();
 	}
 	
 	public Game(){
@@ -151,68 +153,53 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		System.out.println(arg0.getKeyChar());
 		if(arg0.getKeyChar()=='s')
 		{
-			if (currentNote[0]!=-1)
-			{
-				keyPressedChecker(0);
-			}
+			keyPressedChecker(0);
 			timeHeld[0]++;
 		}
 		if(arg0.getKeyChar()=='d')
 		{
-			if (currentNote[2]!=-1)
-			{
-				keyPressedChecker(1);
-			}
+			keyPressedChecker(1);
 			timeHeld[1]++;
 		}
 		if(arg0.getKeyChar()=='f')
 		{
-			if (currentNote[2]!=-1)
-			{
-				keyPressedChecker(2);
-			}
+			keyPressedChecker(2);
 			timeHeld[2]++;
 		}
 		if(arg0.getKeyChar()=='j')
 		{
-			if (currentNote[3]!=-1)
-			{
-				keyPressedChecker(3);
-			}
+			keyPressedChecker(3);
 			timeHeld[3]++;
 		}
 		if(arg0.getKeyChar()=='k')
 		{
-			if (currentNote[4]!=-1)
-			{
-				keyPressedChecker(4);
-			}
+			keyPressedChecker(4);
 			timeHeld[4]++;
 		}
 		if(arg0.getKeyChar()=='l')
 		{
-			if (currentNote[5]!=-1)
-			{
-				keyPressedChecker(5);
-			}
+			keyPressedChecker(5);
 			timeHeld[5]++;
 		}
 	}
 	
 	public void keyReleasedChecker(int index)
 	{
-		Note n = song.map.get(currentNote[index]);
-		int d=10;
-		for(int diff=-5;diff<5;diff++)
-		{
-			if(time+diff== n.time)
+		if(currentNote[index]!=-1){
+			Note n = song.map.get(currentNote[index]);
+			int d=10;
+			for(int diff=-5;diff<5;diff++)
 			{
-				d=Math.abs(diff);
-				break;
+				if(time+diff== n.time)
+				{
+					d=Math.abs(diff);
+					break;
+				}
 			}
+			score-=d;
+			System.out.println(score);
+			timeHeld[index]=0;
 		}
-		score-=d;
-		timeHeld[index]=0;
 	}
 
 	@Override
