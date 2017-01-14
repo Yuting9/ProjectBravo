@@ -40,7 +40,10 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 			this.repaint();	
 		}
 	}
-	
+	public static void reset()
+	{
+		buttons.clear();
+	}
 	public void addNotify(){
 		super.addNotify();
 		requestFocus();

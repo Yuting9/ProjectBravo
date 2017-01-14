@@ -110,15 +110,20 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		if(5*time==510)
+		if(5*(time-(int)Calibrate.avg)==510)
 		{
 			System.out.println("started");
 			song.audio.start();
 		}
 		if(song.audio.percentDone()==100)
 		{
+			this.timer.stop();
 			GameFrame.reset();
+			RotatingMenu.reset();
+			songs.clear();
+			gameMenu= new RotatingMenu();
 			GameFrame.add(new MainMenu());
+			
 		}
 		//System.out.println(song.audio.percentDone());
 		this.repaint();
