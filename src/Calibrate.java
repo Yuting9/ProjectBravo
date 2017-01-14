@@ -4,11 +4,13 @@ import javax.swing.*;
 
 public class Calibrate extends JPanel implements ActionListener, KeyListener{
 	Timer time;
-	int dif;
 	float avg;
 	int type;
 	int buffer;
+	int count;
+	int[] calibration = new int[10];
 	boolean boop;
+	boolean keyPress;
 	Audio calAud;
 	
 	JPanel pnlButton;
@@ -22,13 +24,14 @@ public class Calibrate extends JPanel implements ActionListener, KeyListener{
 	JButton btnConfirm;
 	
 	JLabel lblInfo;
+	JLabel lblInst;
 	
 	Calibrate(){
 		time = new Timer(16, this);
 		calAud = new Audio("src/assets/BEEP.wav");
-		dif = 0;
 		buffer = 0;
 		type = 0;
+		keyPress = true;
 		avg = 0;
 		
 		pnlButton = new JPanel();
@@ -36,7 +39,11 @@ public class Calibrate extends JPanel implements ActionListener, KeyListener{
 		pnlLabels = new JPanel();
 		pnlBuffer = new JPanel();
 		
-		lblInfo = new JLabel(avg + " ticks off");
+		lblInfo = new JLabel("Average of " + avg + " ticks off");
+		lblInst = new JLabel("<html><body style='width: 400px'> When you hear the beat and/or see the green light flash, please press any key. The calibration system will take" + 
+							" in account your most recent 10 calibrations and provide an average for you. The calibration will calibrate from" +
+							" the closest beat, be that the beat that just passed or the beat that is coming, so missing a beat will not" + 
+							" adversely affect your calibration number. </html>");
 		
 		pnlDrawIt = new DrawPanel();
 		
@@ -59,6 +66,7 @@ public class Calibrate extends JPanel implements ActionListener, KeyListener{
 		pnlScreen.add(pnlLabels);
 		pnlLabels.add(lblInfo);
 		pnlScreen.add(pnlBuffer);
+		pnlBuffer.add(lblInst);
 		
 		GameFrame.add(this);
 		
@@ -93,20 +101,37 @@ public class Calibrate extends JPanel implements ActionListener, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(buffer > 35){
-			dif += 0 - (70 - buffer);
+		if(keyPress){
+			if(buffer > 35){
+				calibration[count] = 0 - (70 - buffer);
+			}
+			else
+				calibration[count] = buffer;
+			if(count < 9){
+				count++;
+			}
+			else{
+				count = 0;
+			}
+			if(type < 10)
+				type ++;
+			avg = sum(calibration)/(float)type;
+			lblInfo.setText("Average of " + avg + " ticks off");
+			keyPress = false;
 		}
-		else
-			dif += buffer;
-		type ++;
-		avg = (float)dif/(float)type;
-		lblInfo.setText("Average of " + avg + " ticks off");
+	}
+	
+	public float sum(int[] arr){
+		int x = 0;
+		for(int i : arr){
+			x+=i;
+		}
+		return x;
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+		keyPress = true;
 	}
 
 	@Override
