@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Calibrate extends JPanel implements ActionListener, KeyListener{
 	Timer time;
-	static float avg = 115.0f;
+	static float avg = 5.0f;
 	int type;
 	int buffer;
 	int count;

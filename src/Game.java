@@ -68,7 +68,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		song.addMap();
 		for (int i=0;i<6;i++)
 			currentNote[i]=-1;
-		score=10000;
+		score=0;
 		timer.start();
 		this.repaint();
 		this.requestFocus();
@@ -81,7 +81,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(image, 0, 0, null);
-		g.setColor(Color.BLACK);
+		g.setColor(Color.WHITE);
 		g.drawLine(100, 0, 100, 600);
 		g.drawLine(100*2, 0, 100*2, 600);
 		g.drawLine(100*3, 0, 100*3, 600);
@@ -137,7 +137,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 				{
 					System.out.println(difference);
 					System.out.println();
-					score-=Math.abs(difference);
+					score+=6-Math.abs(difference);
 					currentNote[index]=i;
 					breaker=true;
 					break;
@@ -197,7 +197,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 					break;
 				}
 			}
-			score-=d;
+			score+=6-d;
 			System.out.println(score);
 			timeHeld[index]=0;
 		}
