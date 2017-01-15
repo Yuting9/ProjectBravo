@@ -94,14 +94,21 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		g.drawLine(100*5, 0, 100*5, 600);
 		g.drawLine(0, 550, 600, 550);
 		g.drawLine(0, 510, 600, 510);
-		g.setColor(Color.blue);
+		
 		for (Note n: song.map){
 			if(timeHeld[n.position]!=0 && 5*(time - n.time - n.length)<510 && 5*(time - n.time)>=510)
 			{
+				g.setColor(Color.blue);
 				g.fillRect(100*n.position,5*(time - n.time - n.length), 100,510-5*(time - n.time - n.length));
+			}
+			else if(5*(time-n.time-n.length)>510)
+			{
+				g.setColor(new Color(255,255,255,0));
+				g.fillRect(100*n.position,5*(time - n.time - n.length), 100,5*n.length);
 			}
 			else
 			{
+				g.setColor(Color.blue);
 				g.fillRect(100*n.position,5*(time - n.time - n.length), 100,5*n.length);
 			}
 			//if (5*(time-n.time-n.length)==510)
