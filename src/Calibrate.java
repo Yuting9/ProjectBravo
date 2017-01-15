@@ -10,6 +10,7 @@ public class Calibrate extends JPanel implements ActionListener, KeyListener{
 	int count;
 	int[] calibration = new int[10];
 	boolean boop;
+	boolean done;
 	boolean keyPress;
 	Audio calAud;
 	
@@ -27,6 +28,7 @@ public class Calibrate extends JPanel implements ActionListener, KeyListener{
 	JLabel lblInst;
 	
 	Calibrate(){
+		done = false;
 		time = new Timer(16, this);
 		calAud = new Audio("src/assets/BEEP.wav");
 		buffer = 0;
@@ -56,6 +58,8 @@ public class Calibrate extends JPanel implements ActionListener, KeyListener{
 		pnlButton.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 		time.addActionListener(this);
+		btnConfirm.addActionListener(this);
+		btnReturn.addActionListener(this);
 		addKeyListener(this);
 		
 		add(pnlButton, BorderLayout.SOUTH);
@@ -70,10 +74,9 @@ public class Calibrate extends JPanel implements ActionListener, KeyListener{
 		
 		GameFrame.add(this);
 		
-		this.setVisible(true);
+		this.setVisible(false);
 		this.revalidate();
 		this.repaint();
-		time.start();
 	}
 
 	public void addNotify(){
@@ -96,6 +99,10 @@ public class Calibrate extends JPanel implements ActionListener, KeyListener{
 		}
 		if(e.getSource() == btnConfirm){
 			GameFrame.calibrate = avg;
+			time.stop();
+			done = true;
+			calAud.stop();
+			this.setVisible(false);
 		}
 	}
 

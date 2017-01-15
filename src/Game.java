@@ -106,7 +106,6 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 			}
 			//if (5*(time-n.time-n.length)==510)
 				//System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
-			else
 				max_index=song.map.indexOf(n);
 		}
 	}

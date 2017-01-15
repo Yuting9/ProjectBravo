@@ -30,6 +30,8 @@ public class Setup extends JPanel implements ActionListener{
 	private static JLabel lblPict;
 	private static JLabel lblInfo;
 	
+	private static Calibrate calib;
+	
 	private static File song;
 	
 	private static Audio audTest;
@@ -61,6 +63,8 @@ public class Setup extends JPanel implements ActionListener{
 		btnCalibrate = new JButton("Calibrate");
 		
 		choose 	     = new JFileChooser();
+		
+		calib 		 = new Calibrate();
 		
 		btnConfirm  .addActionListener(this);
 		btnCancel   .addActionListener(this);
@@ -137,9 +141,11 @@ public class Setup extends JPanel implements ActionListener{
 	
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource() == timer){
+			if(calib.done){
+				this.setVisible(true);
+			}
 			lblInfo.setText("Song Length: " + audTest.getTime());
 			if(!audTest.empty){
-				System.out.println(audTest.getCurrentTime() + " " + audTest.percentDone());
 				songProgress.repaint();
 			}
 			this.revalidate();
@@ -176,8 +182,10 @@ public class Setup extends JPanel implements ActionListener{
 			}
 		}
 		if(arg0.getSource() == btnCalibrate){
-			GameFrame.clear();
-			new Calibrate();
+			audTest.stop();
+			this.setVisible(false);
+			calib.setVisible(true);
+			calib.time.start();
 			System.out.println("Calibrate");
 		}
 		if(arg0.getSource() == btnChoSong){
