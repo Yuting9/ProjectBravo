@@ -25,7 +25,6 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	private int timeHeld[] = new int[6];
 	private int currentNote[] = new int[6];
 	private int score;
-	private JLabel label;
 	
 	private static BufferedImage image;
 
@@ -91,12 +90,16 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		g.drawLine(0, 510, 600, 510);
 		g.setColor(Color.blue);
 		for (Note n: song.map){
-			if (5*(time - n.time) - 5*n.length<=510)
+			if(timeHeld[n.position]!=0 && 5*(time - n.time - n.length)<510 && 5*(time - n.time)>=510)
+			{
+				g.fillRect(100*n.position,5*(time - n.time - n.length), 100,510-5*(time - n.time - n.length));
+			}
+			else if (5*(time - n.time) - 5*n.length<=510)
 			{
 				g.fillRect(100*n.position,5*(time - n.time - n.length), 100,5*n.length);
-				//if (5*(time-n.time-n.length)==510)
-					//System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
 			}
+			//if (5*(time-n.time-n.length)==510)
+				//System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
 			else
 				max_index=song.map.indexOf(n);
 		}
@@ -129,7 +132,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	public void keyPressedChecker(int index)
 	{
 		boolean breaker = false;
-		for (int i=0;i<song.map.size();i++)
+		for (int i=max_index;i<song.map.size();i++)
 		{
 			Note n= song.map.get(i);
 			for(int difference=-5;difference<6;difference++){
