@@ -79,7 +79,13 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(image, 0, 0, null);
+		//g.drawImage(image, 0, 0, null);
+		if (g instanceof Graphics2D){
+			Paint p = new GradientPaint(0.0f, 0.0f, new Color(0,0,0,200), 0.0f, getHeight(), new Color(40,40,40,50));
+			Graphics2D g2D = (Graphics2D) g;
+			g2D.setPaint(p);
+			g2D.fillRect(0,0,getWidth(),getHeight());
+		}
 		g.setColor(Color.WHITE);
 		g.drawLine(100, 0, 100, 600);
 		g.drawLine(100*2, 0, 100*2, 600);

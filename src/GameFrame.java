@@ -20,6 +20,7 @@ public class GameFrame extends JFrame {
 		setTitle("Rhythm Master");
 		setSize(600,600);
 		setVisible(true);
+		//setBackground(new Color(0,0,0,0));
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setResizable(false);
 		getContentPane().add(menu);
