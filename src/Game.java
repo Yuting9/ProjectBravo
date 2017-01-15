@@ -6,7 +6,7 @@
 
 import java.awt.*;
 import java.awt.event.*;
-
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -27,7 +27,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	private int score;
 	private JLabel label;
 	
-	private static ImageIcon image;
+	private static BufferedImage image;
 
 	
 	public static void GameSetup(){
@@ -41,12 +41,12 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 			gameMenu.add_button(i.title);
 		}
 		
-		//try{
-		//	image= ImageIO.read(new File("bin/Untitled-2.png"));
-		//}catch(Exception e)
-		//{
-		//	e.printStackTrace();
-		//}
+		try{
+			image= ImageIO.read(new File("src/Assets/background.png"));
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
 		GameFrame.add(gameMenu);
 		gameMenu.revalidate();
@@ -63,10 +63,6 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		addKeyListener(this);
 		setLayout(null);
 		//why = new DrawPanel();
-		image = new ImageIcon("bin/Unititled-2.png");
-		label = new JLabel(image);
-		this.add(label);
-		label.setLocation(0, 0);
 		this.repaint();
 		this.revalidate();
 		song.addMap();
@@ -84,7 +80,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		//g.drawImage(image, 0, 0, this);
+		g.drawImage(image, 0, 0, null);
 		g.setColor(Color.BLACK);
 		g.drawLine(100, 0, 100, 600);
 		g.drawLine(100*2, 0, 100*2, 600);
