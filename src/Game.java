@@ -106,7 +106,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 			}
 			//if (5*(time-n.time-n.length)==510)
 				//System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
-			else
+			if (5*(time-n.time-n.length)>510)
 				max_index=song.map.indexOf(n);
 		}
 	}
@@ -137,23 +137,20 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	
 	public void keyPressedChecker(int index)
 	{
-		boolean breaker = false;
 		for (int i=max_index;i<song.map.size();i++)
 		{
 			Note n= song.map.get(i);
-			for(int difference=-5;difference<6;difference++){
-				if (n.time==time+i && n.position==index)
-				{
-					System.out.println(difference);
-					System.out.println();
-					score+=6-Math.abs(difference);
-					currentNote[index]=i;
-					breaker=true;
-					break;
+			if (time>=n.time && time<=n.time+n.length){
+				if (Math.abs(time-n.time)<=6){
+					score+=7-Math.abs(time-n.time);
 				}
-			}
-			if(breaker)
+				else
+					score+=1;
+				currentNote[index]=i;
+				max_index++;
 				break;
+			}
+			
 		}
 	}
 
@@ -163,32 +160,32 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		System.out.println(arg0.getKeyChar());
 		if(arg0.getKeyChar()=='s')
 		{
-			keyPressedChecker(0);
+			if(currentNote[0]==-1) keyPressedChecker(0);
 			timeHeld[0]++;
 		}
 		if(arg0.getKeyChar()=='d')
 		{
-			keyPressedChecker(1);
+			if(currentNote[1]==-1) keyPressedChecker(1);
 			timeHeld[1]++;
 		}
 		if(arg0.getKeyChar()=='f')
 		{
-			keyPressedChecker(2);
+			if(currentNote[2]==-1) keyPressedChecker(2);
 			timeHeld[2]++;
 		}
 		if(arg0.getKeyChar()=='j')
 		{
-			keyPressedChecker(3);
+			if(currentNote[3]==-1) keyPressedChecker(3);
 			timeHeld[3]++;
 		}
 		if(arg0.getKeyChar()=='k')
 		{
-			keyPressedChecker(4);
+			if(currentNote[4]==-1) keyPressedChecker(4);
 			timeHeld[4]++;
 		}
 		if(arg0.getKeyChar()=='l')
 		{
-			keyPressedChecker(5);
+			if(currentNote[5]==-1) keyPressedChecker(5);
 			timeHeld[5]++;
 		}
 	}
@@ -206,9 +203,10 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 					break;
 				}
 			}
-			score+=6-d;
+			score+=7-d;
 			System.out.println(score);
 			timeHeld[index]=0;
+			currentNote[index]=-1;
 		}
 	}
 
