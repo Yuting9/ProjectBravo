@@ -6,15 +6,13 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class GameFrame extends JFrame implements ActionListener{
+
+public class GameFrame extends JFrame {
 	
 	// Frame Variables
 	private static MainMenu menu = new MainMenu();
 	public static String state = "Menu";
-	public static Timer timer;
 	public static float calibrate;
 	
 	// Defualt Constructor
@@ -26,8 +24,6 @@ public class GameFrame extends JFrame implements ActionListener{
 		setResizable(false);
 		getContentPane().add(menu);
 		menu.addKeyListener(menu);
-		timer = new Timer(17,this);
-		timer.start();
 	}
 	
 	// Resets the main frame
@@ -51,26 +47,5 @@ public class GameFrame extends JFrame implements ActionListener{
 	
 	public void paint( Graphics g){
 		super.paint(g);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		if (state.equals("RotatingMenu")){
-			if(RotatingMenu.getMovement()==2 && RotatingMenu.shift<0 ){
-				RotatingMenu.shift+=7;	
-				RotatingMenu.update();
-				//System.out.println(RotatingMenu.shift);
-			}
-			if(RotatingMenu.getMovement()==-2 && RotatingMenu.shift>530+(40*(RotatingMenu.getButtons().size()-1))*-1 ){
-				RotatingMenu.shift-=7;
-				RotatingMenu.update();
-				//System.out.println(RotatingMenu.shift);
-				//System.out.println(40*(RotatingMenu.getButtons().size()-1));
-				//System.out.println();
-			}
-			if(arg0.getSource() == RotatingMenu.btnReturn){
-				
-			}
-		}	
 	}
 }

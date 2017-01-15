@@ -10,28 +10,27 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 
-public class RotatingMenu extends JPanel implements MouseMotionListener, MouseListener, KeyListener{
+public class RotatingMenu extends JPanel implements MouseMotionListener, MouseListener, ActionListener{
 	
 	private static ArrayList<JButton> buttons = new ArrayList<JButton>();
 	public static JButton btnReturn = new JButton("Back");
 	private int allx,ally;
 	private static int movement;
-
-	public static int shift= 0;
+	private Timer timer= new Timer(16,this);
+	private static int shift= 0;
 	public RotatingMenu(){
-		GameFrame.timer.start();
+		timer.start();
 		JLabel lblUp = new JLabel(), lblDown = new JLabel();
 		GameFrame.state= "RotatingMenu";
 		this.setLayout(null);
 		addMouseMotionListener(this);
-		addKeyListener(this);
 		
 		lblUp.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		lblDown.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		lblUp.setBounds(230, 0, 260, 50);
 		lblDown.setBounds(230, 521, 260, 50);
 		btnReturn.setBounds(490,521,110,50);
-		btnReturn.addActionListener(Main.frame);
+		btnReturn.addActionListener(this);
 		this.add(lblUp);
 		this.add(lblDown);
 		this.add(btnReturn);
@@ -134,25 +133,26 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 
 	@Override
 	public void mouseReleased(MouseEvent e) { }
-
 	@Override
-	public void keyPressed(KeyEvent arg0) {
-		//System.out.println(arg0.getKeyCode());
-		// Untested Code - Please Test
-		if(arg0.getKeyCode() == 38){
-			movement = 55;
+	public void actionPerformed(ActionEvent arg0) {
+		if(arg0.getSource()==timer){
+			if(movement==2 && shift<0 ){
+				shift+=7;	
+				update();
+			}
+			if(getMovement()==-2 && shift>530+(40*(buttons.size()-1))*-1 ){
+				shift-=7;
+				update();
+			}
+			if(arg0.getSource() == RotatingMenu.btnReturn){
+				timer.stop();
+				GameFrame.reset();
+				GameFrame.add(new MainMenu());
+				System.out.println("Going Back");
+			}
 		}
-		else if(arg0.getKeyCode() == 40){
-			movement = -55;
-		}
 	}
 
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-	}
+	
+	
 }

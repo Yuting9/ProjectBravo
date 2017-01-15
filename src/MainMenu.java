@@ -63,7 +63,6 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 			//btnArray[0].setText("Loading...");
 			//btnArray[0].repaint();
 			this.repaint();
-			GameFrame.timer.stop();
 			GameFrame.clear();
 			GameFrame.state="Game";
 			//System.out.println("Game Setup");
@@ -71,20 +70,17 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 		}
 		else if(arg0.getSource() == btnArray[1]){
 			this.repaint();
-			GameFrame.timer.stop();
 			GameFrame.clear();
 			GameFrame.state="Setup";
 			System.out.println("Edit Setup");
 			new Setup();
 		}
 		if(arg0.getSource() == btnArray[2]){
-			GameFrame.timer.stop();
 			GameFrame.clear();
 			GameFrame.state="Options";
 			new Instructions();
 		}
 		else if(arg0.getSource() == btnArray[3]){
-			GameFrame.timer.stop();
 			Main.frame.dispose();
 		}
 	}
