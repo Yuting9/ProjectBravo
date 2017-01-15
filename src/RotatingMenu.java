@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class RotatingMenu extends JPanel implements MouseMotionListener, MouseListener, ActionListener{
 	
 	private static ArrayList<JButton> buttons = new ArrayList<JButton>();
+	private static ArrayList<String> btnNames = new ArrayList<String>();
 	public static JButton btnReturn = new JButton("Back");
 	private int allx,ally;
 	private static int movement;
@@ -46,10 +47,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 			System.out.println(b.getName());
 		}
 	}
-	public static void reset()
-	{
-		buttons.clear();
-	}
+	
 	public void addNotify(){
 		super.addNotify();
 		requestFocus();
@@ -58,6 +56,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 	public void add_button(String title){
 		int temp_x=40*buttons.size()+(int)(shift%10000);
 		buttons.add(new JButton(title));
+		btnNames.add(title);
 		buttons.get(buttons.size()-1).setSize(7*title.length()+40,30);
 		buttons.get(buttons.size()-1).setName(title);
 		//System.out.println(buttons.get(buttons.size()-1).getName());
@@ -116,23 +115,28 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 	public void mouseClicked(MouseEvent e) {	
 		//System.out.println("playing "+Game.songs.get(buttons.indexOf(e.getComponent())));
 		Game.songs.get(buttons.indexOf(e.getComponent())).audio.stop();
-		new Game(Game.songs.get(buttons.indexOf(e.getComponent())));
+		new Game(Game.songs.get(btnNames.indexOf(e.getComponent().getName())));
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		;
+		System.out.println(btnNames);
+		System.out.println(Game.songs);
 		if(e.getSource().getClass() == JButton.class){
-			e.getComponent().getName();
+			System.out.println(e.getComponent().getName());
 			//System.out.println("Show clipart for: " +e.getComponent().getName());
-			Game.songs.get(buttons.indexOf(e.getComponent())).audio.start();
+			for(String s : btnNames){
+				System.out.println(s);
+				System.out.println(e.getComponent().getName());
+			}
+			Game.songs.get(btnNames.indexOf(e.getComponent().getName())).audio.start();
 			// Image Get And Set Here
 		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {	
-		Game.songs.get(buttons.indexOf(e.getComponent())).audio.stop();
+		Game.songs.get(btnNames.indexOf(e.getComponent().getName())).audio.stop();
 	}
 
 	@Override
@@ -154,13 +158,23 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 		}
 		if(arg0.getSource() == btnReturn){
 			System.out.println("doing this");
+			System.out.println(Game.songs);
+			System.out.println(buttons);
 			timer.stop();
-			GameFrame.reset();
-			RotatingMenu.reset();
+			System.out.println(Game.songs);
+			System.out.println(buttons);
 			Game.songs.clear();
 			buttons.clear();
+			System.out.println(Game.songs);
+			System.out.println(buttons);
+			GameFrame.reset();
 			GameFrame.add(new MainMenu());
 		}
+	}
+
+	public static void reset() {
+		buttons.clear();
+		
 	}
 
 	

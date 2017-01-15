@@ -11,7 +11,7 @@ import java.awt.*;
 public class GameFrame extends JFrame {
 	
 	// Frame Variables
-	private static MainMenu menu = new MainMenu();
+	public static MainMenu menu = new MainMenu();
 	public static String state = "Menu";
 	public static float calibrate;
 	
