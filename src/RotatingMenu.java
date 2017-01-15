@@ -38,6 +38,13 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 			this.revalidate();
 			this.repaint();	
 		}
+		System.out.println("here");
+		for(Song s:Game.songs){
+			System.out.println(s);
+		}
+		for (JButton b: buttons){
+			System.out.println(b.getName());
+		}
 	}
 	public static void reset()
 	{
@@ -143,13 +150,16 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 			if(getMovement()==-2 && shift>530+(40*(buttons.size()-1))*-1 ){
 				shift-=7;
 				update();
-			}
-			if(arg0.getSource() == RotatingMenu.btnReturn){
-				timer.stop();
-				GameFrame.reset();
-				GameFrame.add(new MainMenu());
-				System.out.println("Going Back");
-			}
+			}	
+		}
+		if(arg0.getSource() == btnReturn){
+			System.out.println("doing this");
+			timer.stop();
+			GameFrame.reset();
+			RotatingMenu.reset();
+			Game.songs.clear();
+			buttons.clear();
+			GameFrame.add(new MainMenu());
 		}
 	}
 
