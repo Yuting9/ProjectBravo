@@ -14,10 +14,11 @@ public class BeatMap{
 	public BeatMap(){
 		map = new ArrayList<Note>();
 	}
-	
+		
 	public ArrayList<Note> getMap(){
 		return map;
 	}
+
 	
 	public void add(int l, int p, int t){
 		//insertion sort here
@@ -39,7 +40,6 @@ public class BeatMap{
 		}
 		
 	}
-	
 }
 
 class Note{

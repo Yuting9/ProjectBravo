@@ -68,7 +68,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		
 		this.revalidate();
 		this.repaint();
-		System.out.println("In edit mode");
+		//System.out.println("In edit mode");
 		tempAud.start();
 		time.start();
 	}
@@ -262,7 +262,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		if(arg0.getKeyChar() == 's'){
 			if(ins < 5)
 				ins = 5;
-			tempBeats.add(ins, 0, bes);
+			tempBeats.add(ins, 0, bes + (int)Calibrate.avg);
 			ins = 0;
 			bes = 0;
 			bs = false;
@@ -270,7 +270,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		if(arg0.getKeyChar() == 'd'){
 			if(ind < 5)
 				ind = 5;
-			tempBeats.add(ind, 1, bed);
+			tempBeats.add(ind, 1, bed+ (int)Calibrate.avg);
 			ind = 0;
 			bed = 0;
 			bd = false;
@@ -278,7 +278,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		if(arg0.getKeyChar() == 'f'){
 			if(inf < 5)
 				inf = 5;
-			tempBeats.add(inf, 2, bef);
+			tempBeats.add(inf, 2, bef+ (int)Calibrate.avg);
 			inf = 0;
 			bef = 0;
 			bf = false;
@@ -286,7 +286,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		if(arg0.getKeyChar() == 'j'){
 			if(inj < 5)
 				inj = 5;
-			tempBeats.add(inj, 3, bej);
+			tempBeats.add(inj, 3, bej + (int)Calibrate.avg);
 			inj = 0;
 			bej = 0;
 			bj = false;
@@ -294,7 +294,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		if(arg0.getKeyChar() == 'k'){
 			if(ink < 5)
 				ink = 5;
-			tempBeats.add(ink, 4, bek);
+			tempBeats.add(ink, 4, bek + (int)Calibrate.avg);
 			ink = 0;
 			bek = 0;
 			bk = false;
@@ -302,7 +302,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		if(arg0.getKeyChar() == 'l'){
 			if(inl < 5)
 				inl = 5;
-			tempBeats.add(inl, 5, bel);
+			tempBeats.add(inl, 5, bel + (int)Calibrate.avg);
 			inl = 0;
 			bel = 0;
 			bl = false;

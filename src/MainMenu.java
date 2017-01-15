@@ -23,7 +23,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 	
 	public MainMenu(){
 		try{
-			arrow = new ImageIcon("src/Arrow_Right.png");
+			arrow = new ImageIcon("src/assets/Arrow_Right.png");
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -60,65 +60,27 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 	
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource() == btnArray[0]){
-			btnArray[0].setText("Loading...");
-			btnArray[0].repaint();
+			//btnArray[0].setText("Loading...");
+			//btnArray[0].repaint();
 			this.repaint();
-			GameFrame.timer.stop();
 			GameFrame.clear();
 			GameFrame.state="Game";
-			System.out.println("Game Setup");
+			//System.out.println("Game Setup");
 			Game.GameSetup();
 		}
 		else if(arg0.getSource() == btnArray[1]){
-			/*
 			this.repaint();
-			GameFrame.timer.stop();
 			GameFrame.clear();
 			GameFrame.state="Setup";
 			System.out.println("Edit Setup");
 			new Setup();
-			*/
-			GameFrame.timer.stop();
-			JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV File", "wav");
-			JFileChooser choose = new JFileChooser();
-			choose.setVisible(true);
-			choose.setFileFilter(filter);
-			choose.setAcceptAllFileFilterUsed(false);
-			int result = choose.showOpenDialog(this);
-			while((!choose.getSelectedFile().getName().substring(
-					choose.getSelectedFile().getName().lastIndexOf(".")+1,
-					choose.getSelectedFile().getName().length()).equals("wav") || 
-					choose.getSelectedFile() == null) && 
-					result == JFileChooser.APPROVE_OPTION){
-				result = choose.showOpenDialog(this);
-			}
-			if(choose.getSelectedFile() != null && result == JFileChooser.APPROVE_OPTION){
-				String s = null;
-				do{
-					if(s != null){
-						JOptionPane.showMessageDialog(this, "Invalid Choice - Song already exists");
-					}
-					s = (String) JOptionPane.showInputDialog(this, "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE);	
-					if(s == null){
-						break;
-					}
-				}while(!(new File("/src/Songs/"+s).mkdirs()));
-				new File("/src/Songs/"+s).delete();
-				GameFrame.clear();
-				GameFrame.state="Edit";
-				if(s != null)
-					new Edit(choose.getSelectedFile().getAbsoluteFile(),s);
-			}
 		}
 		if(arg0.getSource() == btnArray[2]){
-			GameFrame.timer.stop();
 			GameFrame.clear();
 			GameFrame.state="Options";
 			new Instructions();
 		}
 		else if(arg0.getSource() == btnArray[3]){
-			GameFrame.timer.stop();
 			Main.frame.dispose();
 		}
 	}
@@ -188,7 +150,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// This part works now! yay
-		System.out.println(arg0.getKeyCode() + "check");
+		//System.out.println(arg0.getKeyCode() + "check");
 	}
 
 	@Override

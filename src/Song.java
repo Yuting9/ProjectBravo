@@ -19,13 +19,43 @@ public class Song implements Serializable{
 	public Audio audio;
 	
 	public Song(String name){
-		this.title = name;
-		this.audio = new Audio("src/Songs/"+title+"/"+title+".wav");
+		title = name;
+		map = new ArrayList<Note>();
+		audio = new Audio("src/Songs/"+title+"/"+title+".wav");
 	}
-	
-	public Song(String name, BeatMap map, File song){
-		this.title = name;
-		this.map = map.getMap();
+	/*
+	public Song(String name, BeatMap beat, File songFile){
+		title = name;
+		map = beat.inportMap(title);
+		song = songFile;
+		audio = new Audio("src/Songs/"+title+"/"+title+".wav");
+	}
+	*/
+	public void addMap(){
+		System.out.println("start of getmap");
+		BufferedReader input=null;
+		try{
+			input= new BufferedReader(new FileReader("src/Songs/"+title+"/"+title+".songMap"));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		String line = null;
+		String[] strNums;
+		int parameters[] = new int[3];
+		try {
+			while((line=input.readLine()) != null){
+				strNums=line.split("\\s");
+				for(int i=0;i<3;i++)
+				{
+					parameters[i]=Integer.parseInt(strNums[i]);
+				}
+				System.out.println(parameters);
+				map.add(new Note(parameters[0],parameters[1],parameters[2]));
+			}
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -45,21 +75,6 @@ public class Song implements Serializable{
 			fileOut = new FileOutputStream("/src/Songs/"+title+".songMap");
 			outStream = new ObjectOutputStream(fileOut);
 			outStream.writeObject(this);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-	
-	public void get_BeatMap(){
-		FileInputStream fileOut;
-		ObjectInputStream outStream;
-		try{
-			fileOut = new FileInputStream("src/Songs/"+this.title+"/"+this.title+".songMap");
-			outStream = new ObjectInputStream(fileOut);
-			this.map = ((BeatMap) outStream.readObject()).getMap();
-			
-			outStream.close();
-			fileOut.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}

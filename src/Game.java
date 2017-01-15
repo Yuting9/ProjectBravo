@@ -6,7 +6,7 @@
 
 import java.awt.*;
 import java.awt.event.*;
-
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -21,10 +21,12 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	private Timer timer = new Timer(16,this);
 	private Song song;
 	private int time;
-	private JLabel label;
-	private ImageIcon image;
-	//private static ImageIcon image;
-	private JPanel why;
+	private int max_index;
+	private int timeHeld[] = new int[6];
+	private int currentNote[] = new int[6];
+	private int score;
+	
+	private static BufferedImage image;
 
 	
 	public static void GameSetup(){
@@ -38,39 +40,37 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 			gameMenu.add_button(i.title);
 		}
 		
-		//try{
-		//	image= ImageIO.read(new File("bin/Untitled-2.png"));
-		//}catch(Exception e)
-		//{
-		//	e.printStackTrace();
-		//}
+		try{
+			image= ImageIO.read(new File("src/Assets/background.png"));
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
 		GameFrame.add(gameMenu);
 		gameMenu.revalidate();
 		gameMenu.repaint();
+		
 	}
 	
 	public Game(Song song){
 		GameFrame.clear();
 		GameFrame.add(this);
-		System.out.println("playing: "+song.title);
+		//System.out.println("playing: "+song.title);
 		this.song=song;
 		this.setLayout(null);
-		song.get_BeatMap();
 		addKeyListener(this);
 		setLayout(null);
 		//why = new DrawPanel();
-		image = new ImageIcon("bin/Unititled-2.png");
-		label = new JLabel(image);
-		this.add(label);
-		label.setLocation(0, 0);
 		this.repaint();
 		this.revalidate();
-		for (Note n: song.map)
-			System.out.println(n.length);
-		song.audio.start();
+		song.addMap();
+		for (int i=0;i<6;i++)
+			currentNote[i]=-1;
+		score=0;
 		timer.start();
 		this.repaint();
+		this.requestFocus();
 	}
 	
 	public Game(){
@@ -79,62 +79,171 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		//g.drawImage(image, 0, 0, this);
-		g.setColor(Color.blue);
+		//g.drawImage(image, 0, 0, null);
+		if (g instanceof Graphics2D){
+			Paint p = new GradientPaint(0.0f, 0.0f, new Color(0,0,0,200), 0.0f, getHeight(), new Color(40,40,40,50));
+			Graphics2D g2D = (Graphics2D) g;
+			g2D.setPaint(p);
+			g2D.fillRect(0,0,getWidth(),getHeight());
+		}
+		g.setColor(Color.WHITE);
+		g.drawLine(100, 0, 100, 600);
+		g.drawLine(100*2, 0, 100*2, 600);
+		g.drawLine(100*3, 0, 100*3, 600);
+		g.drawLine(100*4, 0, 100*4, 600);
+		g.drawLine(100*5, 0, 100*5, 600);
+		g.drawLine(0, 550, 600, 550);
+		g.drawLine(0, 510, 600, 510);
+		
 		for (Note n: song.map){
-			g.fillRect(100*n.position,5*(time - n.time) - 5*n.length, 100,5*n.length);
+			if(timeHeld[n.position]!=0 && 5*(time - n.time - n.length)<510 && 5*(time - n.time)>=510)
+			{
+				g.setColor(Color.blue);
+				g.fillRect(100*n.position,5*(time - n.time - n.length), 100,510-5*(time - n.time - n.length));
+			}
+			else if(5*(time-n.time-n.length)>510)
+			{
+				g.setColor(new Color(255,255,255,0));
+				g.fillRect(100*n.position,5*(time - n.time - n.length), 100,5*n.length);
+			}
+			else
+			{
+				g.setColor(Color.blue);
+				g.fillRect(100*n.position,5*(time - n.time - n.length), 100,5*n.length);
+			}
+			//if (5*(time-n.time-n.length)==510)
+				//System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
+			if (5*(time-n.time-n.length)>510)
+				max_index=song.map.indexOf(n);
 		}
 	}
 	
-	/*
-	class DrawPanel extends JPanel{
-		int std = 0, stf = 0, stj = 0, stk = 0;
-		
-		public DrawPanel(){
-			this.repaint();
-		}
-		
-		public void drawMap(Graphics g){
-			int place = this.getWidth()/6;
-			g.setColor(Color.blue);
-			g.fillRect(place*n.position,5*(time - n.time) - 5*n.length, place,5*n.length);
-			}
-		}
-		
 
-		
-		public void paintComponent(Graphics g){
-			int place = this.getWidth()/6;
-			super.paintComponent(g);
-			g.setColor(Color.BLACK);
-			g.drawLine(place, 0, place, this.getHeight());
-			g.drawLine(place*2, 0, place*2, this.getHeight());
-			g.drawLine(place*3, 0, place*3, this.getHeight());
-			g.drawLine(place*4, 0, place*4, this.getHeight());
-			g.drawLine(place*5, 0, place*5, this.getHeight());
-			
-			drawMap(g);
-		}
-	}
-	*/
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.print("stuff");
+		if(5*(time-(int)Calibrate.avg)==510)
+		{
+			System.out.println("started");
+			song.audio.start();
+		}
+		if(song.audio.percentDone()==100)
+		{
+			this.timer.stop();
+			GameFrame.reset();
+			RotatingMenu.reset();
+			songs.clear();
+			gameMenu= new RotatingMenu();
+			GameFrame.add(new MainMenu());
+			
+		}
+		//System.out.println(song.audio.percentDone());
 		this.repaint();
 		time++;
+	}
+	
+	public void keyPressedChecker(int index)
+	{
+		for (int i=max_index;i<song.map.size();i++)
+		{
+			Note n= song.map.get(i);
+			if (time>=n.time && time<=n.time+n.length){
+				if (Math.abs(time-n.time)<=6){
+					score+=7-Math.abs(time-n.time);
+				}
+				else
+					score+=1;
+				currentNote[index]=i;
+				max_index++;
+				break;
+			}
+			
+		}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		System.out.println(arg0.getKeyChar());
+		if(arg0.getKeyChar()=='s')
+		{
+			if(currentNote[0]==-1) keyPressedChecker(0);
+			timeHeld[0]++;
+		}
+		if(arg0.getKeyChar()=='d')
+		{
+			if(currentNote[1]==-1) keyPressedChecker(1);
+			timeHeld[1]++;
+		}
+		if(arg0.getKeyChar()=='f')
+		{
+			if(currentNote[2]==-1) keyPressedChecker(2);
+			timeHeld[2]++;
+		}
+		if(arg0.getKeyChar()=='j')
+		{
+			if(currentNote[3]==-1) keyPressedChecker(3);
+			timeHeld[3]++;
+		}
+		if(arg0.getKeyChar()=='k')
+		{
+			if(currentNote[4]==-1) keyPressedChecker(4);
+			timeHeld[4]++;
+		}
+		if(arg0.getKeyChar()=='l')
+		{
+			if(currentNote[5]==-1) keyPressedChecker(5);
+			timeHeld[5]++;
+		}
+	}
+	
+	public void keyReleasedChecker(int index)
+	{
+		if(currentNote[index]!=-1){
+			Note n = song.map.get(currentNote[index]);
+			int d=10;
+			for(int diff=-5;diff<5;diff++)
+			{
+				if(time+diff== n.time)
+				{
+					d=Math.abs(diff);
+					break;
+				}
+			}
+			score+=7-d;
+			System.out.println(score);
+			timeHeld[index]=0;
+			currentNote[index]=-1;
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		if(arg0.getKeyChar()=='s')
+		{
+			keyReleasedChecker(0);
+		}
+		if(arg0.getKeyChar()=='d')
+		{
+			keyReleasedChecker(1);
+		}
+		if(arg0.getKeyChar()=='f')
+		{
+			keyReleasedChecker(2);
+		}
+		if(arg0.getKeyChar()=='j')
+		{
+			keyReleasedChecker(3);
+		}
+		if(arg0.getKeyChar()=='k')
+		{
+			keyReleasedChecker(4);
+		}
+		if(arg0.getKeyChar()=='l')
+		{
+			keyReleasedChecker(5);
+		}
 	}
 
 	@Override
