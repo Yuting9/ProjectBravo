@@ -25,6 +25,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	private int timeHeld[] = new int[6];
 	private int currentNote[] = new int[6];
 	private int score;
+	private JLabel scoreBar;
 	
 	private static BufferedImage image;
 
@@ -71,6 +72,11 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		timer.start();
 		this.repaint();
 		this.requestFocus();
+		scoreBar = new JLabel("Score: "+Integer.toString(Math.abs(score)));
+		scoreBar.setLocation(100, 100);
+		this.add(scoreBar);
+		this.repaint();
+		this.revalidate();
 	}
 	
 	public Game(){
@@ -86,6 +92,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 			g2D.setPaint(p);
 			g2D.fillRect(0,0,getWidth(),getHeight());
 		}
+		scoreBar.setText("Score: "+Integer.toString(score));
 		g.setColor(Color.WHITE);
 		g.drawLine(100, 0, 100, 600);
 		g.drawLine(100*2, 0, 100*2, 600);
@@ -113,12 +120,10 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 			}
 			//if (5*(time-n.time-n.length)==510)
 				//System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
-<<<<<<< HEAD
-=======
-			if (5*(time-n.time-n.length)>510)
->>>>>>> origin/master
+			if (5*(time-n.time-n.length) > 510)
 				max_index=song.map.indexOf(n);
 		}
+		this.revalidate();
 	}
 	
 
