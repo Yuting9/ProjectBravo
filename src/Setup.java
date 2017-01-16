@@ -189,6 +189,9 @@ public class Setup extends JPanel implements ActionListener{
 			calib.time.start();
 			System.out.println("Calibrate");
 		}
+		if(arg0.getSource() == btnChoPic){
+			
+		}
 		if(arg0.getSource() == btnChoSong){
 			//JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV File", "wav");

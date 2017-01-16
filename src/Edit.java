@@ -82,7 +82,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			tempBeats.writeMap(beatPlace);
 			dest = new FileOutputStream(tempSong+"/"+fileName+".wav");
 			dest.getChannel().transferFrom(src.getChannel(), 0, src.getChannel().size());
-			File file = new File(tempSong + "/" + fileName + ".score");
+			File file = new File(tempSong + "/" + fileName + ".scores");
 			file.createNewFile();
 		}catch(Exception e){
 			e.printStackTrace();
