@@ -182,6 +182,7 @@ public class Setup extends JPanel implements ActionListener{
 			}
 		}
 		if(arg0.getSource() == btnCalibrate){
+			calib = new Calibrate();
 			audTest.stop();
 			this.setVisible(false);
 			calib.setVisible(true);
@@ -230,7 +231,6 @@ public class Setup extends JPanel implements ActionListener{
 	}
 	
 	class DrawPanel extends JPanel{
-		
 		public DrawPanel(){
 			this.repaint();
 		}
