@@ -7,7 +7,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class Score extends JPanel
+public class Score extends JPanel implements ActionListener
 {
 	int score;
 	JLabel scoreLbl;
@@ -23,6 +23,11 @@ public class Score extends JPanel
 		save=new JButton("Save");
 		quit = new JButton("Quit");
 		score = num;
+		save.addActionListener(this);
+		quit.addActionListener(this);
+		
+		
+		
 	}
 	
 	public void addScores(String title){
@@ -56,10 +61,16 @@ public class Score extends JPanel
 		}
 		
 		int mid = (end-start)/2;
-		if(score>Integer.parseInt(scores.get(start)[1]))
+		if(score>Integer.parseInt(scores.get(mid)[1]))
 			return binSearch(mid+1,end);
 		else
 			return binSearch(start,mid);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
