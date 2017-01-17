@@ -101,6 +101,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			songPercent = tempAud.percentDone();
 			lblPercent.setText(Integer.toString(songPercent) + "% Complete");
 			if(songPercent == 100 && !btnSub.isEnabled()){
+				time.stop();
 				btnSub.setEnabled(true);
 			}
 			totime++;

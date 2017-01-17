@@ -190,7 +190,18 @@ public class Setup extends JPanel implements ActionListener{
 			System.out.println("Calibrate");
 		}
 		if(arg0.getSource() == btnChoPic){
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPeG File", "JPG");
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("Jpeg File", "JPG");
+			choose.setVisible(true);
+			choose.setFileFilter(filter);
+			choose.setAcceptAllFileFilterUsed(false);
+			int result = choose.showOpenDialog(this);
+			while(result == JFileChooser.APPROVE_OPTION && 
+					(!choose.getSelectedFile().getName().substring(
+					choose.getSelectedFile().getName().lastIndexOf(".")+1,
+					choose.getSelectedFile().getName().length()).equals("jpg") || 
+					choose.getSelectedFile() == null)){
+				result = choose.showOpenDialog(this);
+			}
 		}
 		if(arg0.getSource() == btnChoSong){
 			//JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
