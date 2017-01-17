@@ -152,7 +152,12 @@ public class Setup extends JPanel implements ActionListener{
 			this.repaint();
 		}
 		if(arg0.getSource() == btnCancel){
-			
+			timer.stop();
+			audTest.stop();
+			GameFrame.clear();
+			GameFrame.state="MainMenu";
+			GameFrame.reset();
+			GameFrame.add(new MainMenu());
 		}
 		if(arg0.getSource() == btnConfirm){
 			System.out.println("CONFIRM");

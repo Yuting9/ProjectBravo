@@ -29,6 +29,7 @@ public class GameFrame extends JFrame {
 	
 	// Resets the main frame
 	public static void reset(){
+		Main.frame.setTitle("Rhythm Master");
 		Main.frame.getContentPane().removeAll();
 		Main.frame.getContentPane().add(menu);
 	}
