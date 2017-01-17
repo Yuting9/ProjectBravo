@@ -178,22 +178,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			int place = this.getWidth()/6;
 			ArrayList<Note> notes = tempBeats.getMap();
 			for(Note n : notes){
-				switch(n.position){
-				case 0: g.setColor(Color.BLUE);
-						break;
-				case 1: g.setColor(Color.GREEN);
-						break;
-				case 2: g.setColor(Color.BLUE);
-						break;
-				case 3: g.setColor(Color.GREEN);
-						break;
-				case 4: g.setColor(Color.BLUE);
-						break;
-				case 5: g.setColor(Color.GREEN);
-						break;
-				default: g.setColor(Color.BLACK);
-						break;
-				}
+				g.setColor(Color.BLUE);
 				g.fillRect(place*n.position,5*(totime - n.time) - 5*n.length, place,5*n.length);
 			}
 		}

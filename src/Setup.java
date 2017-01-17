@@ -190,7 +190,7 @@ public class Setup extends JPanel implements ActionListener{
 			System.out.println("Calibrate");
 		}
 		if(arg0.getSource() == btnChoPic){
-			
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPeG File", "JPG");
 		}
 		if(arg0.getSource() == btnChoSong){
 			//JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
