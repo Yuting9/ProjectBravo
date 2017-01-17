@@ -17,16 +17,23 @@ public class Score extends JPanel implements ActionListener
 	
 	public Score(String title,int num)
 	{
-		
+		System.out.println("in score now");
 		this.setLayout(null);
 		scoreLbl=new JLabel("Your score is: "+Integer.toString(num));
+		scoreLbl.setLocation(100, 100);
 		save=new JButton("Save");
 		quit = new JButton("Quit");
+		save.setLocation(100, 450);
+		quit.setLocation(500,450);
 		score = num;
 		save.addActionListener(this);
 		quit.addActionListener(this);
-		
-		
+		this.add(save);
+		this.add(quit);
+		this.add(scoreLbl);
+		this.setVisible(true);
+		this.revalidate();
+		this.repaint();
 		
 	}
 	

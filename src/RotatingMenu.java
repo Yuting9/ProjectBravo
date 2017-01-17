@@ -39,13 +39,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 			this.revalidate();
 			this.repaint();	
 		}
-		System.out.println("here");
-		for(Song s:Game.songs){
-			System.out.println(s);
-		}
-		for (JButton b: buttons){
-			System.out.println(b.getName());
-		}
+
 	}
 	
 	public void addNotify(){
