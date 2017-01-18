@@ -181,11 +181,8 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
 
     @Override
     public void keyPressed(KeyEvent arg0) {
-<<<<<<< HEAD
-=======
         // TODO Auto-generated method stub
         //System.out.println(arg0.getKeyChar());
->>>>>>> origin/master
         if(arg0.getKeyChar()=='s')
         {
             if(currentNote[0]==-1) keyPressedChecker(0);
