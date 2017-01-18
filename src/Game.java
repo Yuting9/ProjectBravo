@@ -18,7 +18,7 @@ import java.util.Arrays;
 public class Game extends JPanel implements ActionListener, KeyListener, GlobalVar{
     public static ArrayList<Song> songs = new ArrayList<Song>();
     public static RotatingMenu gameMenu = new RotatingMenu();
-    private Timer timer = new Timer(15,this);
+    private Timer timer = new Timer(16,this);
     private Song song;
     private int time;
     private int max_index;
@@ -86,9 +86,10 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         //g.drawImage(image, 0, 0, null);
-        Graphics2D g2D=null;
+        
         if (g instanceof Graphics2D){
-        	Paint p = null;
+        	Graphics2D g2D=(Graphics2D) g;
+        	Paint p;
             for(int i=0;i<6;i++){
             	if(timeHeld[i]!=0){
             		p = new GradientPaint(0.0f, 0.0f, new Color(0,0,0,200), 0.0f, getHeight(), new Color(40,40,255,15));
@@ -180,11 +181,8 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
 
     @Override
     public void keyPressed(KeyEvent arg0) {
-<<<<<<< HEAD
-=======
         // TODO Auto-generated method stub
         //System.out.println(arg0.getKeyChar());
->>>>>>> origin/master
         if(arg0.getKeyChar()=='s')
         {
             if(currentNote[0]==-1) keyPressedChecker(0);
@@ -231,7 +229,6 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
                 }
             }
             score+=7-d;
-            //System.out.println(score);
             
         }
         timeHeld[index]=0;
