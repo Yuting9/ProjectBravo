@@ -125,12 +125,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
                 g.setColor(Color.blue);
                 g.fillRect(100*n.position,5*(time - n.time - n.length), 100,510-5*(time - n.time - n.length));
             }
-            else if(5*(time-n.time-n.length)>510)
-            {
-                g.setColor(new Color(255,255,255,0));
-                g.fillRect(100*n.position,5*(time - n.time - n.length), 100,5*n.length);
-            }
-            else
+            else if(5*(time-n.time-n.length)<510)
             {
                 g.setColor(Color.blue);
                 g.fillRect(100*n.position,5*(time - n.time - n.length), 100,5*n.length);
@@ -188,6 +183,11 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
 
     @Override
     public void keyPressed(KeyEvent arg0) {
+<<<<<<< HEAD
+=======
+        // TODO Auto-generated method stub
+        //System.out.println(arg0.getKeyChar());
+>>>>>>> origin/master
         if(arg0.getKeyChar()=='s')
         {
             if(currentNote[0]==-1) keyPressedChecker(0);
