@@ -86,11 +86,23 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         //g.drawImage(image, 0, 0, null);
+        Graphics2D g2D=null;
         if (g instanceof Graphics2D){
             Paint p = new GradientPaint(0.0f, 0.0f, new Color(0,0,0,200), 0.0f, getHeight(), new Color(40,40,40,10));
-            Graphics2D g2D = (Graphics2D) g;
+            g2D = (Graphics2D) g;
             g2D.setPaint(p);
             g2D.fillRect(0,0,getWidth(),getHeight());
+            for(int i=0;i<6;i++){
+            	if(timeHeld[i]!=0){
+            		p = new GradientPaint(0.0f, 0.0f, new Color(0,0,0,200), 0.0f, getHeight(), new Color(40,40,255,15));
+            	}
+            	else
+            	{
+            		p = new GradientPaint(0.0f, 0.0f, new Color(0,0,0,200), 0.0f, getHeight(), new Color(40,40,40,10));
+            	}
+            	g2D.setPaint(p);
+            	g2D.fillRect(i*100,0,100,600);
+            }
             
         }
         g.setColor(Color.WHITE);
@@ -102,6 +114,10 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         g.drawLine(100*5, 0, 100*5, 600);
         g.drawLine(0, 550, 600, 550);
         g.drawLine(0, 510, 600, 510);
+        
+        g.setColor(Color.BLUE);
+        g.fillRect(50, 10, (int)(5*song.audio.percentDone()), 10);
+        g.drawLine(50, 15, 550, 15);
         
         for (Note n: song.map){
             if(timeHeld[n.position]!=0 && 5*(time - n.time - n.length)<=510 && 5*(time - n.time)>=510)
@@ -221,9 +237,10 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
             }
             score+=7-d;
             System.out.println(score);
-            timeHeld[index]=0;
-            currentNote[index]=-1;
+            
         }
+        timeHeld[index]=0;
+        currentNote[index]=-1;
     }
 
     @Override
