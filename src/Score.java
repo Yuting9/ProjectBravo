@@ -1,8 +1,14 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -11,12 +17,12 @@ public class Score extends JPanel implements ActionListener, GlobalVar
 {
     private int score;
     private JLabel scoreLbl;
-    private JLabel[] names = new JLabel[10];
+    private File scoreFile;
     private JLabel[] nums = new JLabel[10];
     private JButton save;
     private JButton quit;
-    private ArrayList<String[]> scores = new ArrayList<String[]>();
-    private JPanel btnPnl,namePnl, numPnl;
+    private ArrayList<Integer> scores = new ArrayList<Integer>();
+    private JPanel btnPnl, namePnl, numPnl;
     public Score(String title,int num)
     {
     	addScores(title);
@@ -24,12 +30,10 @@ public class Score extends JPanel implements ActionListener, GlobalVar
     	for(int i=0;i<10;i++)
     	{
     		if(i<scores.size()){
-    			names[i] = new JLabel(scores.get(i)[0]);
-    			nums[i] = new JLabel(scores.get(i)[1]);
+    			nums[i] = new JLabel(Integer.toString(scores.get(i)));
     		}
     		else
     		{
-    			names[i] = new JLabel("");
     			nums[i] = new JLabel("");
     		}
     		
@@ -61,17 +65,18 @@ public class Score extends JPanel implements ActionListener, GlobalVar
     public void addScores(String title){
         BufferedReader input = null;
         try{
-            input=new BufferedReader(new FileReader("src/Songs/"+title+"/"+title+".scores"));
+        	scoreFile = new File("src/Songs/"+title+"/"+title+".scores");
+            input = new BufferedReader(new FileReader("src/Songs/"+title+"/"+title+".scores"));
         }catch(Exception e){
             e.printStackTrace();
         }
         String line = null;
-        String[] data;
+        int data;
         try
         {
             while((line=input.readLine()) != null)
             {
-                data = line.split("\\s");
+                data = Integer.parseInt(line);
                 scores.add(data);
             }
         }catch(Exception e){
@@ -81,15 +86,15 @@ public class Score extends JPanel implements ActionListener, GlobalVar
     
     public int binSearch(int start,int end)
     {
-        if(start-end==0 && score>Integer.parseInt(scores.get(start)[1])){
+        if(start-end==0 && score>scores.get(start)){
             return start+1;
         }
-        else if(start-end==0 && score<=Integer.parseInt(scores.get(start)[1])){
+        else if(start-end==0 && score<=scores.get(start)){
             return start-1;
         }
         
         int mid = (end-start)/2;
-        if(score>Integer.parseInt(scores.get(mid)[1]))
+        if(score>scores.get(mid))
             return binSearch(mid+1,end);
         else
             return binSearch(start,mid);
@@ -98,6 +103,28 @@ public class Score extends JPanel implements ActionListener, GlobalVar
     @Override
     public void actionPerformed(ActionEvent arg0) 
     {
-        
+        if(arg0.getSource() == save){
+        	try {
+            	scoreFile.delete();
+            	scoreFile.createNewFile();
+				PrintWriter fout = new PrintWriter(scoreFile);
+				for(int i : scores){
+					fout.println(i);
+				}
+				fout.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			frame.clear();
+			frame.state="MainMenu";
+			frame.reset();
+			frame.add(new MainMenu());
+        }
+        if(arg0.getSource() == quit){
+			frame.clear();
+			frame.state="MainMenu";
+			frame.reset();
+			frame.add(new MainMenu());
+        }
     }
 }
