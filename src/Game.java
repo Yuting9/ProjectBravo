@@ -86,8 +86,9 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         //g.drawImage(image, 0, 0, null);
-        Graphics2D g2D=null;
+        
         if (g instanceof Graphics2D){
+        	Graphics2D g2D=(Graphics2D) g;
         	Paint p = null;
             for(int i=0;i<6;i++){
             	if(timeHeld[i]!=0){
@@ -95,7 +96,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
             	}
             	else
             	{
-            		p = new GradientPaint(0.0f, 0.0f, new Color(0,0,0,200), 0.0f, getHeight(), new Color(40,40,40,10));
+            		p = new GradientPaint(0.0f, 0.0f, new Color(0,0,0,150), 0.0f, getHeight(), new Color(40,40,40,10));
             	}
             	g2D.setPaint(p);
             	g2D.fillRect(i*100,0,100,600);
@@ -180,11 +181,8 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
 
     @Override
     public void keyPressed(KeyEvent arg0) {
-<<<<<<< HEAD
-=======
         // TODO Auto-generated method stub
         //System.out.println(arg0.getKeyChar());
->>>>>>> origin/master
         if(arg0.getKeyChar()=='s')
         {
             if(currentNote[0]==-1) keyPressedChecker(0);
