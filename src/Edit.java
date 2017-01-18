@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
-public class Edit extends JPanel implements ActionListener, KeyListener{
+public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVar{
 	
 	private JPanel pnlScreen, pnlBtn;
 	private JButton btnPlay, btnClear, btnSub, btnExit;
@@ -43,9 +43,9 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		pnlScreen.setBackground(Color.WHITE);
 
 		System.out.println(fileName);
-		Main.frame.setTitle("Rythmn Master - " + fileName);
+		frame.setTitle("Rythmn Master - " + fileName);
 		
-		GameFrame.add(this);
+		frame.add(this);
 		addKeyListener(this);
 		
 		setLayout(new BorderLayout());
@@ -127,8 +127,8 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 		}
 		else if(arg0.getSource() == btnExit){
 			tempAud.remove();
-			GameFrame.reset();
-			GameFrame.add(new MainMenu());
+			frame.reset();
+			frame.add(new MainMenu());
 			System.out.println("Going Back");
 		}
 		else if (arg0.getSource() == btnSub){
@@ -136,8 +136,8 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 				createFiles();
 				//Get the images and stuff
 				closeThings();
-				GameFrame.reset();
-				GameFrame.add(new MainMenu());
+				frame.reset();
+				frame.add(new MainMenu());
 				System.out.println("Going Back");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -148,8 +148,8 @@ public class Edit extends JPanel implements ActionListener, KeyListener{
 			try {//                                  |
 				createFiles();
 				closeThings();
-				GameFrame.reset();
-				GameFrame.add(new MainMenu());
+				frame.reset();
+				frame.add(new MainMenu());
 				System.out.println("Going Back");
 			} catch (Exception e) {
 				e.printStackTrace();

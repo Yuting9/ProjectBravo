@@ -4,42 +4,42 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class Setup extends JPanel implements ActionListener{
+public class Setup extends JPanel implements ActionListener,GlobalVar{
 	
-	private static JPanel pnlConfirm;
-	private static JPanel pnlChoices;
-	private static JPanel pnlChoSong;
-	private static JPanel pnlPicture;
-	private static JPanel pnlFileNom;
-	private static JPanel pnlGetSong;
-	private static JPanel pnlPlaSong;
-	private static JPanel pnlSongBtn;
-	private static JPanel pnlSongLen;
-	private static JPanel pnlControl;
+	private JPanel pnlConfirm;
+	private JPanel pnlChoices;
+	private JPanel pnlChoSong;
+	private JPanel pnlPicture;
+	private JPanel pnlFileNom;
+	private JPanel pnlGetSong;
+	private JPanel pnlPlaSong;
+	private JPanel pnlSongBtn;
+	private JPanel pnlSongLen;
+	private JPanel pnlControl;
 	
-	private static JButton btnConfirm;
-	private static JButton btnCancel; 
-	private static JButton btnChoSong;
-	private static JButton btnChoPic;
-	private static JButton btnPlayPause;
-	private static JButton btnCalibrate;
-	private static JButton btnStop;
+	private JButton btnConfirm;
+	private JButton btnCancel; 
+	private JButton btnChoSong;
+	private JButton btnChoPic;
+	private JButton btnPlayPause;
+	private JButton btnCalibrate;
+	private JButton btnStop;
 	
-	private static JLabel lblSong;
-	private static JLabel lblName;
-	private static JLabel lblPict;
-	private static JLabel lblInfo;
+	private JLabel lblSong;
+	private JLabel lblName;
+	private JLabel lblPict;
+	private JLabel lblInfo;
 	
-	private static Calibrate calib;
+	private Calibrate calib;
 	
-	private static File song;
+	private File song;
 	
-	private static Audio audTest;
+	private Audio audTest;
 	
-	private static DrawPanel songProgress;
-	private static Timer timer;
-	private static String chosenName;
-	private static JFileChooser choose;
+	private DrawPanel songProgress;
+	private Timer timer;
+	private String chosenName;
+	private JFileChooser choose;
 	
 	public Setup(){
 		//--------------------------Variable Initialization------------------------
@@ -131,7 +131,7 @@ public class Setup extends JPanel implements ActionListener{
 		pnlChoices.add(pnlPicture);
 		pnlPicture.add(btnChoPic);
 		
-		GameFrame.add(this);
+		frame.add(this);
 		
 		this.setVisible(true);
 		this.revalidate();
@@ -154,10 +154,10 @@ public class Setup extends JPanel implements ActionListener{
 		if(arg0.getSource() == btnCancel){
 			timer.stop();
 			audTest.stop();
-			GameFrame.clear();
-			GameFrame.state="MainMenu";
-			GameFrame.reset();
-			GameFrame.add(new MainMenu());
+			frame.clear();
+			frame.state="MainMenu";
+			frame.reset();
+			frame.add(new MainMenu());
 		}
 		if(arg0.getSource() == btnConfirm){
 			System.out.println("CONFIRM");
@@ -165,8 +165,8 @@ public class Setup extends JPanel implements ActionListener{
 			if(chosenName != null){
 				timer.stop();
 				audTest.stop();
-				GameFrame.clear();
-				GameFrame.state="Edit";
+				frame.clear();
+				frame.state="Edit";
 				new Edit(choose.getSelectedFile().getAbsoluteFile(),chosenName);
 			}
 		}
@@ -238,7 +238,7 @@ public class Setup extends JPanel implements ActionListener{
 					chosenName = s;
 					lblName.setText(choose.getSelectedFile().getName());
 					audTest = new Audio(choose.getSelectedFile());
-					Main.frame.setTitle("Rhythm Master - " + chosenName);
+					frame.setTitle("Rhythm Master - " + chosenName);
 				}
 			}
 		}
