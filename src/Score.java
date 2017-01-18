@@ -11,12 +11,30 @@ public class Score extends JPanel implements ActionListener, GlobalVar
 {
     private int score;
     private JLabel scoreLbl;
+    private JLabel[] names = new JLabel[10];
+    private JLabel[] nums = new JLabel[10];
     private JButton save;
     private JButton quit;
     private ArrayList<String[]> scores = new ArrayList<String[]>();
-    private JPanel btnPnl;
+    private JPanel btnPnl,namePnl, numPnl;
     public Score(String title,int num)
     {
+    	addScores(title);
+    	//namePnl.setLayout(new BoxLayout());
+    	for(int i=0;i<10;i++)
+    	{
+    		if(i<scores.size()){
+    			names[i] = new JLabel(scores.get(i)[0]);
+    			nums[i] = new JLabel(scores.get(i)[1]);
+    		}
+    		else
+    		{
+    			names[i] = new JLabel("");
+    			nums[i] = new JLabel("");
+    		}
+    		
+    	}
+    	
         frame.add(this);
         this.setLayout(new BorderLayout());
         btnPnl=new JPanel();
