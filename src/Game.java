@@ -108,7 +108,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         g.drawLine(50, 15, 550, 15);
         g.setColor(Color.blue);
         for (Note n: song.map){
-        	int num = ((song.audio.getSecondTime() - n.time)/3) -n.length + 510;
+        	int num = ((song.audio.getSecondTime() - n.time)/3) -n.length+510;
             if(timeHeld[n.position]!=0 && num<=510 && num>=510)
             {
                 g.fillRect(100*n.position,num, 100,num);
@@ -117,20 +117,21 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
             {
                 g.fillRect(100*n.position,num, 100,5*n.length);
             }
-            g.drawLine(100, 0, 100, 600);
-            g.drawLine(100*2, 0, 100*2, 600);
-            g.drawLine(100*3, 0, 100*3, 600);
-            g.drawLine(100*4, 0, 100*4, 600);
-            g.drawLine(100*5, 0, 100*5, 600);
-            g.drawLine(0, 550, 600, 550);
-            g.drawLine(0, 510, 600, 510);
+            //g.fillRect(100*n.position,num, 100,5*n.length);
             //if (5*(time-n.time-n.length)==510)
                 //System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
             if (num > 510)
                 max_index=song.map.indexOf(n);
-            if ((song.audio.getSecondTime()-n.time)/3<0)
+            if (num<0)
             	break;
         }
+        g.drawLine(100, 0, 100, 600);
+        g.drawLine(100*2, 0, 100*2, 600);
+        g.drawLine(100*3, 0, 100*3, 600);
+        g.drawLine(100*4, 0, 100*4, 600);
+        g.drawLine(100*5, 0, 100*5, 600);
+        g.drawLine(0, 550, 600, 550);
+        g.drawLine(0, 510, 600, 510);
     }
     
 
