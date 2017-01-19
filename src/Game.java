@@ -105,16 +105,14 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         g.setColor(Color.BLUE);
         g.fillRect(50, 10, (int)(5*song.audio.percentDone()), 10);
         g.drawLine(50, 15, 550, 15);
-        
+        g.setColor(Color.blue);
         for (Note n: song.map){
             if(timeHeld[n.position]!=0 && 5*(time - n.time - n.length)<=510 && 5*(time - n.time)>=510)
             {
-                g.setColor(Color.blue);
                 g.fillRect(100*n.position,5*(time - n.time - n.length), 100,510-5*(time - n.time - n.length));
             }
             else if(5*(time-n.time-n.length)<510)
             {
-                g.setColor(Color.blue);
                 g.fillRect(100*n.position,5*(time - n.time - n.length), 100,5*n.length);
             }
             g.drawLine(100, 0, 100, 600);
@@ -128,6 +126,8 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
                 //System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
             if (5*(time-n.time-n.length) > 510)
                 max_index=song.map.indexOf(n);
+            if (5*(time-n.time)<0)
+            	break;
         }
     }
     
@@ -162,6 +162,8 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         for (int i=max_index;i<song.map.size();i++)
         {
             Note n= song.map.get(i);
+            if (5*(time-n.time-n.length)<500)
+            	break;
             if (time>=n.time && time<=n.time+n.length && n.position==index){
             	System.out.println("Score");
                 if (Math.abs(time-n.time)<=6){
@@ -178,7 +180,13 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
     }
 
     @Override
+<<<<<<< HEAD
     public void keyPressed(KeyEvent arg0) {	
+=======
+    public void keyPressed(KeyEvent arg0) {
+        // TODO Auto-generated method stub
+        //System.out.println(arg0.getKeyChar());
+>>>>>>> origin/master
         if(arg0.getKeyChar()=='s')
         {
             if(currentNote[0]==-1) keyPressedChecker(0);
@@ -216,17 +224,9 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         if(currentNote[index]!=-1){
             Note n = song.map.get(currentNote[index]);
             int d=10;
-            for(int diff=-5;diff<5;diff++)
-            {
-                if(time+diff== n.time)
-                {
-                    d=Math.abs(diff);
-                    break;
-                }
-            }
-            score+=7-d;
-            //System.out.println(score);
-            
+            if (Math.abs(time-n.time)<=5){
+                score+=6-Math.abs(time-n.time);
+            }            
         }
         timeHeld[index]=0;
         currentNote[index]=-1;
