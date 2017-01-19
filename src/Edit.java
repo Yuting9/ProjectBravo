@@ -20,7 +20,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 	private File tempSong, beatPlace;
 	private boolean bd = false, bf = false, bl = false, bs = false, bj = false, bk = false; // If the button bX is being pressed
 	private int ind = 0,inf = 0,inl = 0,ins = 0,inj = 0,ink = 0; // length of key inX
-	private int bed = 0,bef = 0,bel = 0,bes = 0,bej = 0,bek = 0,totime = 0; // The beginning of the key press, and total time passed
+	private int bed = 0,bef = 0,bel = 0,bes = 0,bej = 0,bek = 0; // The beginning of the key press, and total time passed
 	private int songPercent = 0;
 	private Audio tempAud;
 	private Timer time = new Timer(16, this);
@@ -104,7 +104,6 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 				time.stop();
 				btnSub.setEnabled(true);
 			}
-			totime++;
 			pnlScreen.repaint();
 			if(bd){
 				ind++;
@@ -180,7 +179,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			ArrayList<Note> notes = tempBeats.getMap();
 			for(Note n : notes){
 				g.setColor(Color.BLUE);
-				g.fillRect(place*n.position,5*(totime - n.time) - 5*n.length, place,5*n.length);
+				g.fillRect(place*n.position,(tempAud.getSecondTime() - n.time)/3 - 5*n.length, place,5*n.length);
 			}
 		}
 		
@@ -208,37 +207,37 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 		// Find which key was pressed, and if it isn't being held, set the initial time to the current time
 		if(arg0.getKeyChar() == 's'){
 			if(!bs){
-				bes = totime;
+				bes = tempAud.getSecondTime();
 			}
 			bs = true;
 		}
 		if(arg0.getKeyChar() == 'd'){
 			if(!bd){
-				bed = totime;
+				bed = tempAud.getSecondTime();
 			}
 			bd = true;
 		}
 		if(arg0.getKeyChar() == 'f'){
 			if(!bf){
-				bef = totime;
+				bef = tempAud.getSecondTime();
 			}
 			bf = true;
 		}
 		if(arg0.getKeyChar() == 'j'){
 			if(!bj){
-				bej = totime;
+				bej = tempAud.getSecondTime();
 			}
 			bj = true;
 		}
 		if(arg0.getKeyChar() == 'k'){
 			if(!bk){
-				bek = totime;
+				bek = tempAud.getSecondTime();
 			}
 			bk = true;
 		}
 		if(arg0.getKeyChar() == 'l'){
 			if(!bl){
-				bel = totime;
+				bel = tempAud.getSecondTime();
 			}
 			bl = true;
 		}

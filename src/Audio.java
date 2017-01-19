@@ -74,6 +74,10 @@ public class Audio {
 		return clip.getMicrosecondPosition();
 	}
 	
+	public int getSecondTime(){
+		return (int)clip.getMicrosecondPosition()/1000;
+	}
+	
 	public int percentDone(){
 		return (int)(((double)clip.getMicrosecondPosition())/len*100);
 	}
