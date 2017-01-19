@@ -7,18 +7,14 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
 import java.io.File;
-import java.io.FilenameFilter;
-import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 public class Game extends JPanel implements ActionListener, KeyListener, GlobalVar{
     public static ArrayList<Song> songs = new ArrayList<Song>();
     public static RotatingMenu gameMenu = new RotatingMenu();
-    private Timer timer = new Timer(15,this);
+    private Timer timer = new Timer(16,this);
     private Song song;
     private int time;
     private int max_index;
@@ -105,13 +101,6 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         }
         g.setColor(Color.WHITE);
         scoreBar.setText("Score: "+Integer.toString(score));
-        g.drawLine(100, 0, 100, 600);
-        g.drawLine(100*2, 0, 100*2, 600);
-        g.drawLine(100*3, 0, 100*3, 600);
-        g.drawLine(100*4, 0, 100*4, 600);
-        g.drawLine(100*5, 0, 100*5, 600);
-        g.drawLine(0, 550, 600, 550);
-        g.drawLine(0, 510, 600, 510);
         
         g.setColor(Color.BLUE);
         g.fillRect(50, 10, (int)(5*song.audio.percentDone()), 10);
@@ -128,6 +117,13 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
                 g.setColor(Color.blue);
                 g.fillRect(100*n.position,5*(time - n.time - n.length), 100,5*n.length);
             }
+            g.drawLine(100, 0, 100, 600);
+            g.drawLine(100*2, 0, 100*2, 600);
+            g.drawLine(100*3, 0, 100*3, 600);
+            g.drawLine(100*4, 0, 100*4, 600);
+            g.drawLine(100*5, 0, 100*5, 600);
+            g.drawLine(0, 550, 600, 550);
+            g.drawLine(0, 510, 600, 510);
             //if (5*(time-n.time-n.length)==510)
                 //System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
             if (5*(time-n.time-n.length) > 510)
@@ -162,10 +158,12 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
     
     public void keyPressedChecker(int index)
     {
+    	System.out.println("Key Pressed");
         for (int i=max_index;i<song.map.size();i++)
         {
             Note n= song.map.get(i);
             if (time>=n.time && time<=n.time+n.length && n.position==index){
+            	System.out.println("Score");
                 if (Math.abs(time-n.time)<=6){
                     score+=7-Math.abs(time-n.time);
                 }
@@ -180,7 +178,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
     }
 
     @Override
-    public void keyPressed(KeyEvent arg0) {
+    public void keyPressed(KeyEvent arg0) {	
         if(arg0.getKeyChar()=='s')
         {
             if(currentNote[0]==-1) keyPressedChecker(0);
