@@ -118,7 +118,6 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
             {
                 g.fillRect(100*n.position,num, 100,5*n.length);
             }
-            //g.fillRect(100*n.position,num, 100,5*n.length);
             //if (5*(time-n.time-n.length)==510)
                 //System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
             if (num > 510)
