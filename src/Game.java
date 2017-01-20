@@ -120,8 +120,8 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         	{
         		pos = ((song.audio.getSecondTime() - n.time-n.length)/3) +510;
         	}
-        		//timeHeld[n.position]!=0 &&
-            if( pos<=510 && pos+(3*n.length)>=510)
+        
+            if( timeHeld[n.position]!=0 && pos<=510 && pos+(3*n.length)>=510)
             {
             	//System.out.println(n.time+" "+n.length+" "+n.position+" "+buffer);
                 g.fillRect(100*n.position,pos, 100,510-pos);
@@ -174,8 +174,6 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         for (int i=max_index;i<song.map.size();i++)
         {
             Note n= song.map.get(i);
-            if (5*(song.audio.getSecondTime()-n.time-n.length)<500)
-            	break;
             if (song.audio.getSecondTime()>=n.time && song.audio.getSecondTime()<=n.time+n.length && n.position==index){
             	System.out.println("Score");
                 if (Math.abs(song.audio.getSecondTime()-n.time)<=6){
