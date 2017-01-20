@@ -130,10 +130,6 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
             {
                 g.fillRect(100*n.position,pos, 100,3*n.length);
             }
-<<<<<<< HEAD
-=======
-            //g.fillRect(100*n.position,pos, 100,5*n.length);
->>>>>>> origin/master
             //if (5*(time-n.time-n.length)==510)
                 //System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
             if (pos > 510)
