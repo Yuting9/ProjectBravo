@@ -22,6 +22,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
     private int currentNote[] = new int[6];
     private int score;
     private JLabel scoreBar;
+    private int pos;
     
     private static BufferedImage image;
 
@@ -73,7 +74,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         this.repaint();
         this.revalidate();
 
-        song.audio.start();
+        
     }
     
     public Game(){
@@ -106,23 +107,30 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         g.setColor(Color.BLUE);
         g.fillRect(50, 10, (int)(5*song.audio.percentDone()), 10);
         g.drawLine(50, 15, 550, 15);
+        
         g.setColor(Color.blue);
         for (Note n: song.map){
-        	int num = ((song.audio.getSecondTime() - n.time)/3) -n.length+510;
-            if(timeHeld[n.position]!=0 && num<=510 && num>=510)
+        	
+        	if (buffer<170)
+        		pos=(buffer-n.length)*3;
+        	else
+        		pos = ((song.audio.getSecondTime() - n.time-n.length)/3) +510;
+        	//timeHeld[n.position]!=0 &&
+            if( pos<=510 && pos+(3*n.length)>=510)
             {
-                g.fillRect(100*n.position,num, 100,num);
+            	System.out.println(n.time+" "+n.length+" "+buffer);
+                g.fillRect(100*n.position,pos, 100,510-pos);
             }
-            else if(num<510)
+            else if(pos<510)
             {
-                g.fillRect(100*n.position,num, 100,5*n.length);
+                g.fillRect(100*n.position,pos, 100,5*n.length);
             }
-            //g.fillRect(100*n.position,num, 100,5*n.length);
+            //g.fillRect(100*n.position,pos, 100,5*n.length);
             //if (5*(time-n.time-n.length)==510)
                 //System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
-            if (num > 510)
+            if (pos > 510)
                 max_index=song.map.indexOf(n);
-            if (num<0)
+            if (pos<0)
             	break;
         }
         g.drawLine(100, 0, 100, 600);
@@ -138,6 +146,8 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
     @Override
     public void actionPerformed(ActionEvent arg0) {
         // TODO Auto-generated method stub
+    	if(buffer==170)
+    		song.audio.start();
     	if(arg0.getSource() == timer){
             buffer++;
     	}
