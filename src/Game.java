@@ -110,19 +110,23 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         g.drawLine(50, 15, 550, 15);
         
         g.setColor(Color.blue);
-        for (int i=max_index;i<song.map.size();i++){
+        for (int i=0;i<song.map.size();i++){
+        	if(buffer==170)
+        		System.out.println("Switch");
         	Note n = song.map.get(i);
-        	if (buffer<170)
-        		pos=(buffer-n.length)*3;
+        	if (buffer<169)
+        		pos=((16*buffer)-n.time-n.length)/3-390;
         	else
+        	{
         		pos = ((song.audio.getSecondTime() - n.time-n.length)/3) +510;
-        	//timeHeld[n.position]!=0 &&
+        	}
+        		//timeHeld[n.position]!=0 &&
             if( pos<=510 && pos+(3*n.length)>=510)
             {
-            	System.out.println(n.time+" "+n.length+" "+buffer);
+            	//System.out.println(n.time+" "+n.length+" "+n.position+" "+buffer);
                 g.fillRect(100*n.position,pos, 100,510-pos);
             }
-            else if(pos<510)
+            else if(pos<510 && pos+(3*n.length)>0)
             {
                 g.fillRect(100*n.position,pos, 100,3*n.length);
             }
@@ -130,13 +134,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
             //if (5*(time-n.time-n.length)==510)
                 //System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
             if (pos > 510)
-                max_index=song.map.indexOf(n);
-<<<<<<< HEAD
-            if (pos<0)
-=======
-            if (num<-300  )
->>>>>>> origin/master
-            	break;
+                max_index=i;
         }
         g.drawLine(100, 0, 100, 600);
         g.drawLine(100*2, 0, 100*2, 600);
