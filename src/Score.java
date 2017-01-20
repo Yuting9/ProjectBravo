@@ -105,7 +105,11 @@ public class Score extends JPanel implements ActionListener, GlobalVar
     {
         if(arg0.getSource() == save){
         	try {
-            	scoreFile.delete();
+        		if(scores.size()!=0)
+        			scores.add(binSearch(0,scores.size()-1), score);
+        		else
+        			scores.add(score);
+        		scoreFile.delete();
             	scoreFile.createNewFile();
 				PrintWriter fout = new PrintWriter(scoreFile);
 				for(int i : scores){
