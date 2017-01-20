@@ -55,6 +55,12 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
         int temp_x=40*buttons.size()+(int)(shift%10000);
         buttons.add(new JButton(title));
         btnNames.add(title);
+        
+        //Pretty buttons, have bugs tho.
+        //buttons.get(buttons.size()-1).setBackground(new Color(0,0,255,30));
+        //buttons.get(buttons.size()-1).setContentAreaFilled(false);
+        //buttons.get(buttons.size()-1).setOpaque(true);
+        
         buttons.get(buttons.size()-1).setSize(7*title.length()+40,30);
         buttons.get(buttons.size()-1).setName(title);
         //System.out.println(buttons.get(buttons.size()-1).getName());
