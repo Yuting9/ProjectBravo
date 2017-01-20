@@ -19,7 +19,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 	private FileOutputStream dest;
 	private File tempSong, beatPlace;
 	private boolean bd = false, bf = false, bl = false, bs = false, bj = false, bk = false; // If the button bX is being pressed
-	private int ind = 0,inf = 0,inl = 0,ins = 0,inj = 0,ink = 0; // length of key inX
+	private int ind = 0,inf = 0,inl = 0,ins = 0,inj = 0,ink = 0; // Indicator length
 	private int bed = 0,bef = 0,bel = 0,bes = 0,bej = 0,bek = 0; // The beginning of the key press, and total time passed
 	private int songPercent = 0;
 	private Audio tempAud;
@@ -179,7 +179,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			ArrayList<Note> notes = tempBeats.getMap();
 			for(Note n : notes){
 				g.setColor(Color.BLUE);
-				g.fillRect(place*n.position,(tempAud.getSecondTime() - n.time-n.length)/3 , place,3*n.length);
+				g.fillRect(place*n.position,(tempAud.getSecondTime() - n.time-n.length)/3 , place,n.length/3);
 			}
 		}
 		
@@ -192,12 +192,18 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			g.drawLine(place*3, 0, place*3, this.getHeight());
 			g.drawLine(place*4, 0, place*4, this.getHeight());
 			g.drawLine(place*5, 0, place*5, this.getHeight());
-			g.fillRect(0, 0, place, ins*3);
-			g.fillRect(place, 0, place, ind*3);
-			g.fillRect(place*2, 0, place, inf*3);
-			g.fillRect(place*3, 0, place, inj*3);
-			g.fillRect(place*4, 0, place, ink*3);
-			g.fillRect(place*5, 0, place, inl*3);
+			if(bs)
+				g.fillRect(0, 0, place, (tempAud.getSecondTime()-bes)/3);
+			if(bd)
+				g.fillRect(place, 0, place, (tempAud.getSecondTime()-bed)/3);
+			if(bf)
+				g.fillRect(place*2, 0, place, (tempAud.getSecondTime()-bef)/3);
+			if(bj)
+				g.fillRect(place*3, 0, place, (tempAud.getSecondTime()-bej)/3);
+			if(bk)
+				g.fillRect(place*4, 0, place, (tempAud.getSecondTime()-bek)/3);
+			if(bl)
+				g.fillRect(place*5, 0, place, (tempAud.getSecondTime()-bel)/3);
 			drawMap(g);
 		}
 	}
@@ -245,51 +251,58 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
+		int len;
 		// Find which key was released, set the minimum length of note, create the note in the beatmap, and reset vars.
 		if(arg0.getKeyChar() == 's'){
-			if(ins < 5)
-				ins = 5;
-			tempBeats.add(ins, 0, bes + (int)Calibrate.avg);
+			len = tempAud.getSecondTime()-bes;
+			if(len < 175)
+				len = 75;
+			tempBeats.add(len, 0, bes + (int)Calibrate.avg);
 			ins = 0;
 			bes = 0;
 			bs = false;
 		}
 		if(arg0.getKeyChar() == 'd'){
-			if(ind < 5)
-				ind = 5;
-			tempBeats.add(ind, 1, bed+ (int)Calibrate.avg);
+			len = tempAud.getSecondTime()-bed;
+			if(len < 175)
+				len = 75;
+			tempBeats.add(len, 1, bed+ (int)Calibrate.avg);
 			ind = 0;
 			bed = 0;
 			bd = false;
 		}
 		if(arg0.getKeyChar() == 'f'){
-			if(inf < 5)
-				inf = 5;
-			tempBeats.add(inf, 2, bef+ (int)Calibrate.avg);
+			len = tempAud.getSecondTime()-bef;
+			if(len < 175)
+				len = 75;
+			tempBeats.add(len, 2, bef+ (int)Calibrate.avg);
 			inf = 0;
 			bef = 0;
 			bf = false;
 		}
 		if(arg0.getKeyChar() == 'j'){
-			if(inj < 5)
-				inj = 5;
-			tempBeats.add(inj, 3, bej + (int)Calibrate.avg);
+			len = tempAud.getSecondTime()-bej;
+			if(len < 175)
+				len = 75;
+			tempBeats.add(len, 3, bej + (int)Calibrate.avg);
 			inj = 0;
 			bej = 0;
 			bj = false;
 		}
 		if(arg0.getKeyChar() == 'k'){
-			if(ink < 5)
-				ink = 5;
-			tempBeats.add(ink, 4, bek + (int)Calibrate.avg);
+			len = tempAud.getSecondTime()-bek;
+			if(len < 175)
+				len = 75;
+			tempBeats.add(len, 4, bek + (int)Calibrate.avg);
 			ink = 0;
 			bek = 0;
 			bk = false;
 		}
 		if(arg0.getKeyChar() == 'l'){
-			if(inl < 5)
-				inl = 5;
-			tempBeats.add(inl, 5, bel + (int)Calibrate.avg);
+			len = tempAud.getSecondTime()-bel;
+			if(len < 175)
+				len = 75;
+			tempBeats.add(len, 5, bel + (int)Calibrate.avg);
 			inl = 0;
 			bel = 0;
 			bl = false;
