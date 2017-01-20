@@ -172,6 +172,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
 
     public static void reset() {
         buttons.clear();
+        btnNames.clear();
         
     }
 
