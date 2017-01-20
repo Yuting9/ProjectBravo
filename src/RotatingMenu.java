@@ -20,6 +20,9 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
     private Timer timer= new Timer(16,this);
     private static int shift= 0;
     public RotatingMenu(){
+    	buttons = new ArrayList<JButton>();
+    	btnNames = new ArrayList<String>();
+    	
         System.out.println(this);
         timer.start();
         JLabel lblUp = new JLabel(), lblDown = new JLabel();
@@ -157,6 +160,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
             timer.stop();
             Game.songs.clear();
             buttons.clear();
+            System.out.println("CLEARING");
             System.out.println(Game.songs);
             System.out.println(buttons);
             frame.reset();

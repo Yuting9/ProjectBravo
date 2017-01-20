@@ -27,6 +27,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
 
     
     public static void GameSetup(){
+    	songs = new ArrayList<Song>();
         File folder = new File("src/Songs/");
         for (final File fileEntry : folder.listFiles()){
             if(fileEntry.isDirectory()){
@@ -122,7 +123,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
                 //System.out.println(time-102+"   "+n.time+"    "+(time-102-n.time-n.length));
             if (num > 510)
                 max_index=song.map.indexOf(n);
-            if (num<0)
+            if (num<-300  )
             	break;
         }
         g.drawLine(100, 0, 100, 600);
