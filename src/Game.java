@@ -109,8 +109,8 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         g.drawLine(50, 15, 550, 15);
         
         g.setColor(Color.blue);
-        for (Note n: song.map){
-        	
+        for (int i=max_index;i<song.map.size();i++){
+        	Note n = song.map.get(i);
         	if (buffer<170)
         		pos=(buffer-n.length)*3;
         	else
@@ -123,7 +123,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
             }
             else if(pos<510)
             {
-                g.fillRect(100*n.position,pos, 100,5*n.length);
+                g.fillRect(100*n.position,pos, 100,3*n.length);
             }
             //g.fillRect(100*n.position,pos, 100,5*n.length);
             //if (5*(time-n.time-n.length)==510)

@@ -179,7 +179,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			ArrayList<Note> notes = tempBeats.getMap();
 			for(Note n : notes){
 				g.setColor(Color.BLUE);
-				g.fillRect(place*n.position,(tempAud.getSecondTime() - n.time)/3 - 5*n.length, place,5*n.length);
+				g.fillRect(place*n.position,(tempAud.getSecondTime() - n.time-n.length)/3 , place,3*n.length);
 			}
 		}
 		
@@ -192,12 +192,12 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			g.drawLine(place*3, 0, place*3, this.getHeight());
 			g.drawLine(place*4, 0, place*4, this.getHeight());
 			g.drawLine(place*5, 0, place*5, this.getHeight());
-			g.fillRect(0, 0, place, ins*5);
-			g.fillRect(place, 0, place, ind*5);
-			g.fillRect(place*2, 0, place, inf*5);
-			g.fillRect(place*3, 0, place, inj*5);
-			g.fillRect(place*4, 0, place, ink*5);
-			g.fillRect(place*5, 0, place, inl*5);
+			g.fillRect(0, 0, place, ins*3);
+			g.fillRect(place, 0, place, ind*3);
+			g.fillRect(place*2, 0, place, inf*3);
+			g.fillRect(place*3, 0, place, inj*3);
+			g.fillRect(place*4, 0, place, ink*3);
+			g.fillRect(place*5, 0, place, inl*3);
 			drawMap(g);
 		}
 	}
