@@ -121,14 +121,14 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         		pos = ((song.audio.getSecondTime() - n.time-n.length)/3) +510;
         	}
         
-            if( timeHeld[n.position]!=0 && pos<=510 && pos+(3*n.length)>=510)
+            if( timeHeld[n.position]!=0 && pos<=510 && pos+(n.length/3)>=510)
             {
             	//System.out.println(n.time+" "+n.length+" "+n.position+" "+buffer);
                 g.fillRect(100*n.position,pos, 100,510-pos);
             }
-            else if(pos<510 && pos+(3*n.length)>0)
+            else if(pos<510 && pos+(n.length/3)>0)
             {
-                g.fillRect(100*n.position,pos, 100,3*n.length);
+                g.fillRect(100*n.position,pos, 100,n.length/3);
             }
             
             if (pos > 510)

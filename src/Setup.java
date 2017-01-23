@@ -226,14 +226,13 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 				String s = null;
 				do{
 					if(s != null){
-						JOptionPane.showMessageDialog(this, "Invalid Choice - Song already exists");
+						JOptionPane.showMessageDialog(this, "Invalid Choice - Song must have a name");
 					}
 					s = (String) JOptionPane.showInputDialog(this, "Enter the song's name:\n","Enter Name", JOptionPane.PLAIN_MESSAGE);	
 					if(s == null){
 						break;
 					}
-				}while(!(new File("/src/Songs/"+s).mkdir()));
-				new File("/src/Songs/"+s).delete();
+				}while((new File("/src/Songs/"+s).exists()));
 				if(s != null){
 					chosenName = s;
 					lblName.setText(choose.getSelectedFile().getName());
