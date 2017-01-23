@@ -139,7 +139,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         g.drawLine(100*3, 0, 100*3, 600);
         g.drawLine(100*4, 0, 100*4, 600);
         g.drawLine(100*5, 0, 100*5, 600);
-        g.drawLine(0, 550, 600, 550);
+        //g.drawLine(0, 550, 600, 550);
         g.drawLine(0, 510, 600, 510);
     }
     
