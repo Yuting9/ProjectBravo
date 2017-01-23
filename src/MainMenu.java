@@ -79,7 +79,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
         }
         if(arg0.getSource() == btnArray[2]){
             frame.clear();
-            frame.state="Options";
+            frame.state="Calibrate";
             new Instructions();
         }
         else if(arg0.getSource() == btnArray[3]){
