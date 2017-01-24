@@ -88,17 +88,23 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         
         if (g instanceof Graphics2D){
         	Graphics2D g2D=(Graphics2D) g;
-        	Paint p = null;
+        	Paint p1 = null;
+        	Paint p2=null;
             for(int i=0;i<6;i++){
             	if(timeHeld[i]!=0){
-            		p = new GradientPaint(0.0f, 0.0f, new Color(0,0,0,200), 0.0f, getHeight(), new Color(40,40,255,15));
+            		p1 = new GradientPaint(0.0f, 0.0f, new Color(0,0,0,200), 0.0f, getHeight(), new Color(40,40,255,15));
+            		p2 = new GradientPaint(0.0f, 0.0f, new Color(40,40,255,15), 0.0f, getHeight(), new Color(0,0,0,50));
             	}
             	else
             	{
-            		p = new GradientPaint(0.0f, 0.0f, new Color(0,0,0,150), 0.0f, getHeight(), new Color(40,40,40,10));
+            		p1 = new GradientPaint(0.0f, 0.0f, new Color(0,0,0,150), 0.0f, getHeight(), new Color(40,40,40,10));
+            		p2 = new GradientPaint(0.0f, 0.0f, new Color(40,40,40,10), 0.0f, getHeight(), new Color(0,0,0,10));
             	}
-            	g2D.setPaint(p);
-            	g2D.fillRect(i*100,0,100,600);
+            	g2D.setPaint(p1);
+            	g2D.fillRect(i*100,0,100,510);
+            	g2D.setPaint(p2);
+            	g2D.fillRect(i*100,510,100,90);
+            	
             }
             
         }
