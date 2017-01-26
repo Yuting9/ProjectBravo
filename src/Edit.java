@@ -19,7 +19,6 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 	private FileOutputStream dest;
 	private File tempSong, beatPlace;
 	private boolean bd = false, bf = false, bl = false, bs = false, bj = false, bk = false; // If the button bX is being pressed
-	private int ind = 0,inf = 0,inl = 0,ins = 0,inj = 0,ink = 0; // Indicator length
 	private int bed = 0,bef = 0,bel = 0,bes = 0,bej = 0,bek = 0; // The beginning of the key press, and total time passed
 	private int songPercent = 0;
 	private Audio tempAud;
@@ -28,6 +27,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 	private File songPlace;
 	private JLabel lblPercent;
 	
+	// New editing screen
 	public Edit(File song, String name){
 		songPlace = song;
 		fileName = name;
@@ -73,6 +73,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 		time.start();
 	}
 	
+	// Creates the files
 	public void createFiles(){
 		tempSong = new File("Songs/"+fileName);
 		beatPlace = new File("Songs/"+fileName+"/"+fileName+".songMap");
@@ -89,7 +90,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 		}
 	}
 
-
+	// Don't know what this does but it's needed for keylistener
 	public void addNotify(){
 		super.addNotify();
 		requestFocus();
@@ -97,6 +98,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0){
+		// Sets the song percentage
 		if(arg0.getSource() == time){
 			songPercent = tempAud.percentDone();
 			lblPercent.setText(Integer.toString(songPercent) + "% Complete");
@@ -105,31 +107,15 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 				btnSub.setEnabled(true);
 			}
 			pnlScreen.repaint();
-			if(bd){
-				ind++;
-			}
-			if(bf){
-				inf++;
-			}
-			if(bl){
-				inl++;
-			}
-			if(bs){
-				ins++;
-			}
-			if(bj){
-				inj++;
-			}
-			if(bk){
-				ink++;
-			}
 		}
+		// Exits to main menu
 		else if(arg0.getSource() == btnExit){
 			tempAud.remove();
 			frame.reset();
 			frame.add(new MainMenu());
 			System.out.println("Going Back");
 		}
+		// Submits the beatmap, creates the files, and exits to main menu if 
 		else if (arg0.getSource() == btnSub){
 			try {
 				createFiles();
@@ -142,6 +128,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 				e.printStackTrace();
 			}
 		}
+		// Debug Mode
 		// TEMPORARY CODE START-----------------------
 		else if (arg0.getSource() == btnPlay){//     |
 			try {//                                  |
@@ -157,6 +144,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 		// TEMPORARY CODE END -------------------------
 	}
 	
+	// Close all the things needed
 	public void closeThings(){
 		try {
 			tempAud.remove();
@@ -167,6 +155,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 		}
 	}
 	
+	// Drawpanel
 	class DrawPanel extends JPanel{
 		int std = 0, stf = 0, stj = 0, stk = 0;
 		
@@ -174,6 +163,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			this.repaint();
 		}
 		
+		// Draws the notes
 		public void drawMap(Graphics g){
 			int place = this.getWidth()/6;
 			ArrayList<Note> notes = tempBeats.getMap();
@@ -183,6 +173,7 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			}
 		}
 		
+		// Draws the holding of the notes
 		public void paintComponent(Graphics g){
 			int place = this.getWidth()/6;
 			super.paintComponent(g);
@@ -258,7 +249,6 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			if(len < 175)
 				len = 75;
 			tempBeats.add(len, 0, bes + (int)Calibrate.avg);
-			ins = 0;
 			bes = 0;
 			bs = false;
 		}
@@ -267,7 +257,6 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			if(len < 175)
 				len = 75;
 			tempBeats.add(len, 1, bed+ (int)Calibrate.avg);
-			ind = 0;
 			bed = 0;
 			bd = false;
 		}
@@ -276,7 +265,6 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			if(len < 175)
 				len = 75;
 			tempBeats.add(len, 2, bef+ (int)Calibrate.avg);
-			inf = 0;
 			bef = 0;
 			bf = false;
 		}
@@ -285,7 +273,6 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			if(len < 175)
 				len = 75;
 			tempBeats.add(len, 3, bej + (int)Calibrate.avg);
-			inj = 0;
 			bej = 0;
 			bj = false;
 		}
@@ -294,7 +281,6 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			if(len < 175)
 				len = 75;
 			tempBeats.add(len, 4, bek + (int)Calibrate.avg);
-			ink = 0;
 			bek = 0;
 			bk = false;
 		}
@@ -303,7 +289,6 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			if(len < 175)
 				len = 75;
 			tempBeats.add(len, 5, bel + (int)Calibrate.avg);
-			inl = 0;
 			bel = 0;
 			bl = false;
 		}
