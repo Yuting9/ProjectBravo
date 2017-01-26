@@ -127,12 +127,9 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
         System.out.println(btnNames);
         System.out.println(Game.songs);
         if(e.getSource().getClass() == JButton.class){
-            System.out.println(e.getComponent().getName());
+            System.out.println();
+        	System.out.println(e.getComponent().getName());
             //System.out.println("Show clipart for: " +e.getComponent().getName());
-            for(String s : btnNames){
-                System.out.println(s);
-                System.out.println(e.getComponent().getName());
-            }
             //frame.bgm.pause();
             Game.songs.get(btnNames.indexOf(e.getComponent().getName())).audio.start();
             // Image Get And Set Here 	
