@@ -29,7 +29,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
     
     public static void GameSetup(){
     	songs = new ArrayList<Song>();
-        File folder = new File("src/Songs/");
+        File folder = new File("Songs/");
         for (final File fileEntry : folder.listFiles()){
             if(fileEntry.isDirectory()){
                 songs.add(new Song(fileEntry.getName()));
@@ -40,7 +40,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         }
         
         try{
-            image= ImageIO.read(new File("src/Assets/background.png"));
+            image= ImageIO.read(new File("Assets/background.png"));
         }catch(Exception e)
         {
             e.printStackTrace();

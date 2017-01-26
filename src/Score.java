@@ -65,8 +65,8 @@ public class Score extends JPanel implements ActionListener, GlobalVar
     public void addScores(String title){
         BufferedReader input = null;
         try{
-        	scoreFile = new File("src/Songs/"+title+"/"+title+".scores");
-            input = new BufferedReader(new FileReader("src/Songs/"+title+"/"+title+".scores"));
+        	scoreFile = new File("Songs/"+title+"/"+title+".scores");
+            input = new BufferedReader(new FileReader("Songs/"+title+"/"+title+".scores"));
         }catch(Exception e){
             e.printStackTrace();
         }

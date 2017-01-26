@@ -232,7 +232,7 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 					if(s == null){
 						break;
 					}
-				}while((new File("/src/Songs/"+s).exists()));
+				}while((new File("/Songs/"+s).exists()));
 				if(s != null){
 					chosenName = s;
 					lblName.setText(choose.getSelectedFile().getName());

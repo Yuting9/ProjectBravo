@@ -30,7 +30,7 @@ public class Calibrate extends JPanel implements ActionListener, KeyListener,Glo
     Calibrate(){
         done = false;
         time = new Timer(16, this);
-        calAud = new Audio("src/assets/BEEP.wav");
+        calAud = new Audio("assets/BEEP.wav");
         buffer = 0;
         type = 0;
         keyPress = true;
