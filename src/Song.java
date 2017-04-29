@@ -21,7 +21,7 @@ public class Song implements Serializable{
 	public Song(String name){
 		title = name;
 		map = new ArrayList<Note>();
-		audio = new Audio("Songs/"+title+"/"+title+".wav");
+		audio = new Audio("src/Songs/"+title+"/"+title+".wav");
 	}
 	/*
 	public Song(String name, BeatMap beat, File songFile){
@@ -35,7 +35,7 @@ public class Song implements Serializable{
 		System.out.println("start of getmap");
 		BufferedReader input=null;
 		try{
-			input= new BufferedReader(new FileReader("Songs/"+title+"/"+title+".songMap"));
+			input= new BufferedReader(new FileReader("src/Songs/"+title+"/"+title+".songMap"));
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -72,7 +72,7 @@ public class Song implements Serializable{
 		FileOutputStream fileOut;
 		ObjectOutputStream outStream;
 		try{
-			fileOut = new FileOutputStream("Songs/"+title+".songMap");
+			fileOut = new FileOutputStream("src/Songs/"+title+".songMap");
 			outStream = new ObjectOutputStream(fileOut);
 			outStream.writeObject(this);
 		}catch(Exception e){
