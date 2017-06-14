@@ -27,6 +27,39 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 	private File songPlace;
 	private JLabel lblPercent;
 	
+	public Edit()
+	{
+		pnlScreen = new DrawPanel();
+		pnlBtn = new JPanel();
+		btnPlay = new JButton("Test");
+		btnClear = new JButton("Clear");
+		btnSub = new JButton("Submit");
+		btnSub.setEnabled(false);
+		btnExit = new JButton("Exit");
+		tempAud = new Audio(songPlace);
+		lblPercent = new JLabel(Integer.toString(songPercent));
+		pnlScreen.setBackground(Color.WHITE);
+		frame.add(this);
+		addKeyListener(this);
+		
+		setLayout(new BorderLayout());
+		add(pnlScreen, BorderLayout.CENTER);
+		pnlBtn.setLayout(new FlowLayout());
+		add(pnlBtn, BorderLayout.SOUTH);
+		
+		pnlBtn.add(btnPlay);
+		pnlBtn.add(btnClear);
+		pnlBtn.add(btnSub);
+		pnlBtn.add(btnExit);
+		pnlBtn.add(lblPercent);
+		
+		btnPlay.addActionListener(this);
+		btnClear.addActionListener(this);
+		btnSub.addActionListener(this);
+		btnExit.addActionListener(this);
+		
+	}
+	
 	// New editing screen
 	public Edit(File song, String name){
 		songPlace = song;
@@ -75,8 +108,8 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 	
 	// Creates the files
 	public void createFiles(){
-		tempSong = new File("Songs/"+fileName);
-		beatPlace = new File("Songs/"+fileName+"/"+fileName+".songMap");
+		tempSong = new File("src/Songs/"+fileName);
+		beatPlace = new File("src/Songs/"+fileName+"/"+fileName+".songMap");
 		try{
 			System.out.println("Created the folder: " + tempSong.mkdirs());
 			src = new FileInputStream(songPlace);

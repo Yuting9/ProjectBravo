@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Game extends JPanel implements ActionListener, KeyListener, GlobalVar{
     public static ArrayList<Song> songs = new ArrayList<Song>();
     public static RotatingMenu gameMenu = new RotatingMenu();
-    private Timer timer = new Timer(16,this);
+    private Timer timer = new Timer(10,this);
     private int buffer;
     private Song song;
     private int max_index;
@@ -50,6 +50,29 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         gameMenu.revalidate();
         gameMenu.repaint();
     }
+    public Game()
+    {
+    	this.setLayout(null);
+        addKeyListener(this);
+        setLayout(null);
+        score=0;
+        scoreBar = new JLabel("Score: "+Integer.toString(Math.abs(score)));
+        scoreBar.setLocation(100, 100);
+    }
+    
+    public void startGame(Song song)
+    {
+    	this.song=song;
+    	song.addMap();
+        for (int i=0;i<6;i++)
+            currentNote[i]=-1;
+        timer.start();
+        this.repaint();
+        this.requestFocus();
+        this.repaint();
+        this.revalidate();
+
+    }
     
     public Game(Song song){
         frame.clear();
@@ -74,12 +97,6 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         this.add(scoreBar);
         this.repaint();
         this.revalidate();
-
-        
-    }
-    
-    public Game(){
-        this.repaint();
     }
     
     public void paintComponent(Graphics g){
