@@ -175,6 +175,13 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 			}
 		}
 		// TEMPORARY CODE END -------------------------
+		
+		else if (arg0.getSource() == btnClear){
+			tempAud.remove();
+			frame.clear();
+			frame.state="Edit";
+			new Edit(songPlace,fileName);			
+		}
 	}
 	
 	// Close all the things needed
