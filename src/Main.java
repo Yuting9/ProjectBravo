@@ -12,6 +12,7 @@ public class Main implements GlobalVar{
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch(Exception e) {
         }
+        Audio.init();
         frame.setTitle("Rhythm Master");
     }
 

@@ -21,10 +21,10 @@ public class Audio {
 	public static void init()
 	{
 		try {
-			bgmIn = AudioSystem.getAudioInputStream(new File ("bgm.wav.wav"));
+			bgmIn = AudioSystem.getAudioInputStream(new File ("src/bgm.wav"));
 			bgm = AudioSystem.getClip();
 			bgm.open(bgmIn);
-			bgm.loop(0);
+			bgm.loop(Clip.LOOP_CONTINUOUSLY);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("BGM ERROR");
@@ -76,7 +76,10 @@ public class Audio {
 	
 	public void pause(){
 		if(!empty)
+		{
 			clip.stop();
+			bgm.start();
+		}
 	}
 	
 	public void stop(){

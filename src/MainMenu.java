@@ -24,10 +24,11 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
     
     public MainMenu(){
     	System.out.println("Getting Arrow");
-    	Audio.init();
+    	
         try{
             arrow = new ImageIcon("assets/Arrow_Right.png");
         }catch(Exception e){
+        	System.out.println("check");
             e.printStackTrace();
         }
         this.setLayout(new BorderLayout());
