@@ -122,6 +122,7 @@ public class Score extends JPanel implements ActionListener, GlobalVar
 			frame.clear();
 			frame.state="MainMenu";
 			frame.reset();
+			Audio.init();
 			frame.add(new MainMenu());
         }
         if(arg0.getSource() == quit){

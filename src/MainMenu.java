@@ -27,19 +27,23 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
     
     public MainMenu(){
     	System.out.println("Getting Arrow");
-    	
+    	System.out.println("title before: "+title);
         try{
-        	title = new ImageIcon("assets/title.png");
+        	title = new ImageIcon("assets/title.jpg");
             arrow = new ImageIcon("assets/Arrow_Right.png");
         }catch(Exception e){
         	//System.out.println("check");
             e.printStackTrace();
         }
         
+        System.out.println("title before: "+title);
+        
         this.setLayout(new BorderLayout());
         for(int i = 0; i<4; i++){
             lblArray[i] = new JLabel("");
         }
+        gameTitle.setIcon(title);
+        gameTitle.setLocation(300,300);
         btnArray[0] = new JButton("Player Mode");
         btnArray[1] = new JButton("Creator Mode");
         btnArray[2] = new JButton("Options");
@@ -59,9 +63,16 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
             btnPanel.add(lblArray[i]);
             btnPanel.add(btnArray[i]);
         }
+        this.repaint();
         
         
-        
+    }
+    
+    public void paintComponent(Graphics g)
+    {
+    	super.paintComponent(g);
+    	System.out.println("paintIcon");
+    	title.paintIcon(this, g, 30, 30);
     }
     
     public void addNotify(){
@@ -94,12 +105,13 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
         else if(arg0.getSource() == btnArray[3]){
             frame.dispose();
         }
+        this.revalidate();
+        this.repaint();
     }
     
     private void setIcons(int n){
         for(int i = 0; i<4; i++){
             if(i == n){
-                gameTitle.setIcon(title);
                 lblArray[i].setIcon(arrow);
             }
             else{
