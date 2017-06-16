@@ -97,16 +97,8 @@ public class Calibrate extends JPanel implements ActionListener, KeyListener,Glo
             }
             this.repaint();
         }
-        // Submits and exits calibrate
         if(e.getSource() == btnConfirm){
             GameFrame.calibrate = avg;
-            time.stop();
-            done = true;
-            calAud.stop();
-            this.setVisible(false);
-        }
-        // Exits calibrate
-        if(e.getSource() == btnReturn){
             time.stop();
             done = true;
             calAud.stop();

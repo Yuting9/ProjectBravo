@@ -6,7 +6,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Setup extends JPanel implements ActionListener,GlobalVar{
 	
-	// Panels (most are containers for other panels, it's to make all this look nicer)
 	private JPanel pnlConfirm;
 	private JPanel pnlChoices;
 	private JPanel pnlChoSong;
@@ -18,7 +17,6 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 	private JPanel pnlSongLen;
 	private JPanel pnlControl;
 	
-	// Buttons
 	private JButton btnConfirm;
 	private JButton btnCancel; 
 	private JButton btnChoSong;
@@ -27,21 +25,17 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 	private JButton btnCalibrate;
 	private JButton btnStop;
 	
-	// Labels
 	private JLabel lblSong;
 	private JLabel lblName;
+	private JLabel lblPict;
 	private JLabel lblInfo;
 	
-	// The calibration panel
 	private Calibrate calib;
 	
-	// The song file
 	private File song;
 	
-	// The playable audio
 	private Audio audTest;
 	
-	// Drawpanel, timer, and misc items used
 	private DrawPanel songProgress;
 	private Timer timer;
 	private String chosenName;
@@ -84,6 +78,7 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 		
 		lblSong = new JLabel("Selected File: ");
 		lblName = new JLabel("Choose a WAV File");
+		lblPict = new JLabel();
 		lblInfo = new JLabel("Song Length: " + audTest.getTime());
 		
 		songProgress = new DrawPanel();
@@ -146,7 +141,6 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 	
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource() == timer){
-			// Gets the progress bar and calibration
 			if(calib.done){
 				this.setVisible(true);
 			}
@@ -157,7 +151,6 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 			this.revalidate();
 			this.repaint();
 		}
-		// Cancels setup
 		if(arg0.getSource() == btnCancel){
 			timer.stop();
 			audTest.stop();
@@ -166,7 +159,6 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 			frame.reset();
 			frame.add(new MainMenu());
 		}
-		// Confirms
 		if(arg0.getSource() == btnConfirm){
 			System.out.println("CONFIRM");
 			System.out.println(chosenName);
@@ -178,7 +170,6 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 				new Edit(choose.getSelectedFile().getAbsoluteFile(),chosenName);
 			}
 		}
-		// Play the song, set the button to pause
 		if(arg0.getActionCommand() != null){
 			if(arg0.getActionCommand().equals("Play")){
 				if(!audTest.empty){
@@ -195,7 +186,6 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 				repaint();
 			}
 		}
-		// Opens calibration
 		if(arg0.getSource() == btnCalibrate){
 			calib = new Calibrate();
 			audTest.stop();
@@ -204,7 +194,6 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 			calib.time.start();
 			System.out.println("Calibrate");
 		}
-		// Chooses the image (depreciated)
 		if(arg0.getSource() == btnChoPic){
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("Jpeg File", "JPG");
 			choose.setVisible(true);
@@ -219,7 +208,6 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 				result = choose.showOpenDialog(this);
 			}
 		}
-		// Choose a song
 		if(arg0.getSource() == btnChoSong){
 			//JOptionPane.showMessageDialog(this, "Please Choose a song (Must be in WAV format)");
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV File", "wav");
@@ -253,19 +241,18 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 				}
 			}
 		}
-		// Stops the song
 		if(arg0.getSource() == btnStop){
 			System.out.println("Stop");
 			audTest.stop();
 			repaint();
 		}
 	}
-	// The drawpanel
+	
 	class DrawPanel extends JPanel{
 		public DrawPanel(){
 			this.repaint();
 		}
-		// The progress bar
+		
 		public void paintComponent(Graphics g){
 			super.paintComponent(g);
 			int w = this.getWidth(), h = this.getHeight();
