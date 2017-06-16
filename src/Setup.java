@@ -43,17 +43,17 @@ public class Setup extends JPanel implements ActionListener,GlobalVar{
 	
 	public Setup(){
 		//--------------------------Variable Initialization------------------------
-		pnlConfirm = new JPanel();
-		pnlChoices = new JPanel();
-		pnlChoSong = new JPanel();
-		pnlPicture = new JPanel();
-		pnlFileNom = new JPanel();
-		pnlSongLen = new JPanel();
-		pnlSongBtn = new JPanel();
-		pnlGetSong = new JPanel();
-		pnlPlaSong = new JPanel();
-		pnlControl = new JPanel();
-		
+		pnlConfirm   = new JPanel();
+		pnlChoices   = new JPanel();
+		pnlChoSong   = new JPanel();
+		pnlPicture   = new JPanel();
+		pnlFileNom   = new JPanel();
+		pnlSongLen   = new JPanel();
+		pnlSongBtn   = new JPanel();
+		pnlGetSong   = new JPanel();
+		pnlPlaSong   = new JPanel();
+		pnlControl   = new JPanel();
+		           
 		btnConfirm   = new JButton("Confirm");
 		btnCancel    = new JButton("Cancel");
 		btnChoSong   = new JButton("Choose Song");

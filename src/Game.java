@@ -152,19 +152,33 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
             if( timeHeld[n.position]!=0 && pos<=510 && pos+(n.length/3)>=510)
             {
             	//System.out.println(n.time+" "+n.length+" "+n.position+" "+buffer);
+            	if(n.position < 3){
+            		g.setColor(Color.GREEN);
+            	}
+            	else{
+            		g.setColor(Color.BLUE);
+            	}
                 g.fillRect(100*n.position,pos, 100,510-pos);
             }
             else if(pos<510 && pos+(n.length/3)>0)
             {
+            	if(n.position < 3){
+            		g.setColor(Color.GREEN);
+            	}
+            	else{
+            		g.setColor(Color.BLUE);
+            	}
                 g.fillRect(100*n.position,pos, 100,n.length/3);
             }
             
             if (pos > 510)
                 max_index=i;
         }
+        g.setColor(Color.GREEN);
         g.drawLine(100, 0, 100, 600);
         g.drawLine(100*2, 0, 100*2, 600);
         g.drawLine(100*3, 0, 100*3, 600);
+        g.setColor(Color.BLUE);
         g.drawLine(100*4, 0, 100*4, 600);
         g.drawLine(100*5, 0, 100*5, 600);
         //g.drawLine(0, 550, 600, 550);
