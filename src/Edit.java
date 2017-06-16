@@ -108,8 +108,8 @@ public class Edit extends JPanel implements ActionListener, KeyListener,GlobalVa
 	
 	// Creates the files
 	public void createFiles(){
-		tempSong = new File("src/Songs/"+fileName);
-		beatPlace = new File("src/Songs/"+fileName+"/"+fileName+".songMap");
+		tempSong = new File("Songs/"+fileName);
+		beatPlace = new File("Songs/"+fileName+"/"+fileName+".songMap");
 		try{
 			System.out.println("Created the folder: " + tempSong.mkdirs());
 			src = new FileInputStream(songPlace);

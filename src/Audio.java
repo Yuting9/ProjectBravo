@@ -21,7 +21,7 @@ public class Audio {
 	public static void init()
 	{
 		try {
-			bgmIn = AudioSystem.getAudioInputStream(new File ("src/bgm.wav"));
+			bgmIn = AudioSystem.getAudioInputStream(new File ("bgm.wav"));
 			bgm = AudioSystem.getClip();
 			bgm.open(bgmIn);
 			bgm.loop(Clip.LOOP_CONTINUOUSLY);
