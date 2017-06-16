@@ -29,7 +29,10 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
     
     public static void GameSetup(){
     	songs = new ArrayList<Song>();
-        File folder = new File("src/Songs/");
+        File folder = new File("Songs");
+        try {
+        System.out.println(folder.getCanonicalPath());
+        } catch(Exception mother) {}
         for (final File fileEntry : folder.listFiles()){
             if(fileEntry.isDirectory()){
                 songs.add(new Song(fileEntry.getName()));
@@ -40,7 +43,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         }
         
         try{
-            image= ImageIO.read(new File("src/Assets/background.png"));
+            image= ImageIO.read(new File("Assets/background.png"));
         }catch(Exception e)
         {
             e.printStackTrace();
@@ -50,6 +53,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         gameMenu.revalidate();
         gameMenu.repaint();
     }
+    /* 
     public Game()
     {
     	this.setLayout(null);
@@ -59,9 +63,10 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         scoreBar = new JLabel("Score: "+Integer.toString(Math.abs(score)));
         scoreBar.setLocation(100, 100);
     }
-    
+   
     public void startGame(Song song)
     {
+    	
     	this.song=song;
     	song.addMap();
         for (int i=0;i<6;i++)
@@ -73,7 +78,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         this.revalidate();
 
     }
-    
+    */
     public Game(Song song){
         frame.clear();
         frame.add(this);
@@ -134,8 +139,8 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
         
         g.setColor(Color.blue);
         for (int i=0;i<song.map.size();i++){
-        	if(buffer==170)
-        		System.out.println("Switch");
+        	if(buffer==170){}
+        		//System.out.println("Switch");
         	Note n = song.map.get(i);
         	if (buffer<169)
         		pos=((16*buffer)-n.time-n.length)/3-390;
@@ -183,7 +188,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
             songs.clear();
             gameMenu= new RotatingMenu();
             frame.add(new Score(song.title,score));
-            System.out.println("just called Score()");
+            //System.out.println("just called Score()");
         }
         //System.out.println(song.audio.percentDone());
         this.repaint();
@@ -191,12 +196,12 @@ public class Game extends JPanel implements ActionListener, KeyListener, GlobalV
     
     public void keyPressedChecker(int index)
     {
-    	System.out.println("Key Pressed");
+    	//System.out.println("Key Pressed");
         for (int i=max_index;i<song.map.size();i++)
         {
             Note n= song.map.get(i);
             if (song.audio.getSecondTime()>=n.time && song.audio.getSecondTime()<=n.time+n.length && n.position==index){
-            	System.out.println("Score");
+            	//System.out.println("Score");
                 if (Math.abs(song.audio.getSecondTime()-n.time)<=6){
                     score+=7-Math.abs(song.audio.getSecondTime()-n.time);
                 }

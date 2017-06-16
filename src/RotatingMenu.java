@@ -23,7 +23,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
     	buttons = new ArrayList<JButton>();
     	btnNames = new ArrayList<String>();
     	
-        System.out.println(this);
+        //System.out.println(this);
         timer.start();
         JLabel lblUp = new JLabel(), lblDown = new JLabel();
         frame.state= "RotatingMenu";
@@ -53,7 +53,7 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
     
     public void add_button(String title){
         int temp_x=40*buttons.size()+(int)(shift%10000);
-        buttons.add(new JButton(title));
+        JButton tBtn = new JButton(title);
         btnNames.add(title);
         
         //Pretty buttons, have bugs tho.
@@ -61,12 +61,13 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
         //buttons.get(buttons.size()-1).setContentAreaFilled(false);
         //buttons.get(buttons.size()-1).setOpaque(true);
         
-        buttons.get(buttons.size()-1).setSize(7*title.length()+40,30);
-        buttons.get(buttons.size()-1).setName(title);
+        tBtn.setSize(7*title.length()+40,30);
+        tBtn.setName(title);
         //System.out.println(buttons.get(buttons.size()-1).getName());
-        buttons.get(buttons.size()-1).setLocation((int)(-4*(temp_x*temp_x-570*temp_x)/10000), temp_x);
-        buttons.get(buttons.size()-1).addMouseListener(this);
-        this.add(buttons.get(buttons.size()-1));
+        tBtn.setLocation((int)(-4*(temp_x*temp_x-570*temp_x)/10000), temp_x);
+        tBtn.addMouseListener(this);
+        buttons.add(tBtn);
+        this.add(tBtn);
 
         requestFocus();
     }
@@ -116,20 +117,21 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {    
+    public void mouseClicked(MouseEvent e) {
+    	//System.out.println("qwf");
         //System.out.println("playing "+Game.songs.get(buttons.indexOf(e.getComponent())));
-    	System.out.println(buttons.indexOf(e.getComponent()));
-        Game.songs.get(buttons.indexOf(e.getComponent())).audio.stop();
+    	//System.out.println(buttons.indexOf(e.getComponent()));
+        Game.songs.get(buttons.indexOf(e.getComponent())).audio.fullstop();
         new Game(Game.songs.get(btnNames.indexOf(e.getComponent().getName())));
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println(btnNames);
-        System.out.println(Game.songs);
-        if(e.getSource().getClass() == JButton.class){
-            System.out.println();
-        	System.out.println(e.getComponent().getName());
+        //System.out.println(btnNames);
+        //System.out.println(Game.songs);
+        if(e.getSource() instanceof JButton){
+            //System.out.println();
+        	//System.out.println(e.getComponent().getName());
             //System.out.println("Show clipart for: " +e.getComponent().getName());
             //frame.bgm.pause();
             Game.songs.get(btnNames.indexOf(e.getComponent().getName())).audio.start();
@@ -144,10 +146,10 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
     }
 
     @Override
-    public void mousePressed(MouseEvent e) { }
+    public void mousePressed(MouseEvent e) { System.out.println("Pressed:"); }
 
     @Override
-    public void mouseReleased(MouseEvent e) { }
+    public void mouseReleased(MouseEvent e) { System.out.println("Released:"); }
     @Override
     public void actionPerformed(ActionEvent arg0) {
         if(arg0.getSource()==timer){
@@ -164,9 +166,9 @@ public class RotatingMenu extends JPanel implements MouseMotionListener, MouseLi
             timer.stop();
             Game.songs.clear();
             buttons.clear();
-            System.out.println("CLEARING");
-            System.out.println(Game.songs);
-            System.out.println(buttons);
+            //System.out.println("CLEARING");
+            //System.out.println(Game.songs);
+            //System.out.println(buttons);
             frame.reset();
             frame.add(new MainMenu());
             frame.reset();

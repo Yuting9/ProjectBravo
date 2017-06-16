@@ -32,7 +32,7 @@ public class Song implements Serializable{
 	}
 	*/
 	public void addMap(){
-		System.out.println("start of getmap");
+		//System.out.println("start of getmap");
 		BufferedReader input=null;
 		try{
 			input= new BufferedReader(new FileReader("Songs/"+title+"/"+title+".songMap"));
@@ -49,7 +49,7 @@ public class Song implements Serializable{
 				{
 					parameters[i]=Integer.parseInt(strNums[i]);
 				}
-				System.out.println(parameters);
+				//System.out.println(parameters);
 				map.add(new Note(parameters[0],parameters[1],parameters[2]));
 			}
 		} catch (IOException e) {

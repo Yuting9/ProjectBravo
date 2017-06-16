@@ -14,7 +14,7 @@ public class Audio {
 	private static AudioInputStream bgmIn;
 	
 	public Audio(){
-		System.out.println("Empty Audio Created");
+		//System.out.println("Empty Audio Created");
 		empty = true;
 	}
 	
@@ -24,10 +24,10 @@ public class Audio {
 			bgmIn = AudioSystem.getAudioInputStream(new File ("bgm.wav"));
 			bgm = AudioSystem.getClip();
 			bgm.open(bgmIn);
-			bgm.loop(Clip.LOOP_CONTINUOUSLY);
+			bgm.loop(99999);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("BGM ERROR");
+			//System.out.println("BGM ERROR");
 			e.printStackTrace();
 		}
 		
@@ -88,6 +88,12 @@ public class Audio {
 			clip.setMicrosecondPosition(0);
 			bgm.start();
 		}
+	}
+	
+	public void fullstop()
+	{
+		clip.stop();
+		bgm.stop();
 	}
 	
 	public boolean checkEnd(){

@@ -6,6 +6,7 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -19,18 +20,22 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
     
     JButton[] btnArray = new JButton[4];
     JLabel[] lblArray = new JLabel[4];
+    JLabel gameTitle = new JLabel();
     JPanel btnPanel = new JPanel();
     Icon arrow = null;
+    Icon title = null;
     
     public MainMenu(){
     	System.out.println("Getting Arrow");
     	
         try{
+        	title = new ImageIcon("assets/title.png");
             arrow = new ImageIcon("assets/Arrow_Right.png");
         }catch(Exception e){
-        	System.out.println("check");
+        	//System.out.println("check");
             e.printStackTrace();
         }
+        
         this.setLayout(new BorderLayout());
         for(int i = 0; i<4; i++){
             lblArray[i] = new JLabel("");
@@ -54,6 +59,8 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
             btnPanel.add(lblArray[i]);
             btnPanel.add(btnArray[i]);
         }
+        
+        
         
     }
     
@@ -92,6 +99,7 @@ public class MainMenu extends JPanel implements ActionListener, MouseMotionListe
     private void setIcons(int n){
         for(int i = 0; i<4; i++){
             if(i == n){
+                gameTitle.setIcon(title);
                 lblArray[i].setIcon(arrow);
             }
             else{
